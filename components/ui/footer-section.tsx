@@ -2,7 +2,6 @@ import React from 'react';
 import type { ComponentProps, ReactNode } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { FacebookIcon, InstagramIcon, LinkedinIcon, YoutubeIcon } from 'lucide-react';
-import logo from '../../assets/logo-2.png';
 
 interface FooterLink {
 	title: string;
@@ -61,9 +60,9 @@ export function Footer() {
 
 			<div className="grid w-full gap-8 xl:grid-cols-3 xl:gap-8">
 				<AnimatedContainer className="space-y-4">
-					<img 
-						src={logo} 
-						alt="Stellar Wave Logo" 
+					<img
+						src="/assets/logo-2.png"
+						alt="Stellar Wave Logo"
 						className="h-8 w-auto object-contain"
 						style={{ filter: 'brightness(0) invert(1)' }}
 					/>

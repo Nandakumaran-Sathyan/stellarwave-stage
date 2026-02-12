@@ -2,7 +2,6 @@
 import React from "react";
 import { ContainerScroll } from "./ui/container-scroll-animation";
 import { BackgroundCircles } from "./ui/background-circles";
-import Screen from "../assets/tab-screen.png";
 
 export function HeroScroll() {
   return (
@@ -11,7 +10,7 @@ export function HeroScroll() {
       <div className="absolute inset-0 z-0">
         <BackgroundCircles variant="septenary" className="h-full" />
       </div>
-      
+
       {/* Content */}
       <div className="relative z-10">
         <ContainerScroll
@@ -27,7 +26,7 @@ export function HeroScroll() {
           }
         >
           <img
-            src={Screen}
+            src="/assets/tab-screen.png"
             alt="hero"
             className="mx-auto rounded-2xl object-cover h-full object-left-top"
             draggable={false}

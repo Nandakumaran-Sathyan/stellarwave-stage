@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from '../assets/logo.png';
 import Aurora from './Aurora';
 import { StarButton } from './ui/star-button';
 
@@ -21,7 +20,7 @@ const Hero: React.FC = () => {
       {/* Aurora Background */}
       <div className="absolute inset-0 z-0 scale-250 origin-top sm:scale-125 md:scale-100">
         <Aurora
-          colorStops={["#093550","#7f4148","#a5827f"]}
+          colorStops={["#093550", "#7f4148", "#a5827f"]}
           amplitude={0.5}
           blend={0.4}
         />
@@ -39,13 +38,13 @@ const Hero: React.FC = () => {
 
         <div className="relative w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl flex items-center justify-center aspect-[2/1] sm:aspect-[3/1] md:aspect-[4/1]">
           <img
-            src={logo}
+            src="/assets/logo.png"
             alt="Stellar Wave Logo"
             className="w-full h-full object-contain drop-shadow-lg max-h-[40vw] sm:max-h-[30vw] md:max-h-[20vw]"
             style={{ filter: 'brightness(0) invert(1)' }}
           />
           {/* Transparent to black gradient overlay on logo */}
-          <div className="absolute inset-0 pointer-events-none" style={{background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 100%)'}} />
+          <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 100%)' }} />
         </div>
 
         {/* Text below logo */}
@@ -59,8 +58,8 @@ const Hero: React.FC = () => {
         <div onClick={() => {
           document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
         }}>
-          <StarButton 
-            lightColor="#FFFFFF" 
+          <StarButton
+            lightColor="#FFFFFF"
             className="rounded-3xl h-11 px-6 text-sm sm:h-12 sm:px-8 sm:text-base cursor-pointer"
           >
             Revolutionize Your Brand

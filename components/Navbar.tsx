@@ -1,7 +1,6 @@
 import React from 'react';
 import { Home, Briefcase, Award, Phone } from "lucide-react"
 import { AnimeNavBar } from "./ui/anime-navbar"
-import logo from '../assets/logo-2.png';
 
 const navItems = [
   {
@@ -27,7 +26,7 @@ const navItems = [
 ]
 
 const Navbar: React.FC = () => {
-  return <AnimeNavBar items={navItems} defaultActive="Home" logo={logo} />
+  return <AnimeNavBar items={navItems} defaultActive="Home" logo="/assets/logo-2.png" />
 }
 
 export default Navbar;
