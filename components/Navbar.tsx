@@ -10,7 +10,7 @@ const navItems = [
   },
   {
     name: "Services",
-    url: "#services",
+    url: "/services",
     icon: Briefcase,
   },
   {

@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import Navbar from './components/Navbar';
-import VideoHero from './components/VideoHero';
-import HeroScroll from './components/HeroScroll';
-import Services from './components/Services';
-import { Clients } from './components/Clients';
-import Team from './components/Team';
-import CTA from './components/CTA';
-import Footer from './components/Footer';
+import HomePage from './pages/HomePage';
+import ServicesPage from './pages/ServicesPage';
 import PageLoader from './components/PageLoader';
 
 function App() {
@@ -18,22 +13,18 @@ function App() {
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="min-h-screen bg-background-dark text-white font-sans antialiased">
-      <Navbar />
-      <main>
-        <VideoHero />
-        <HeroScroll />
-        <Services />
-        <Clients />
-        <Team />
-        <CTA />
-      </main>
-      <Footer />
-    </motion.div>
+    <BrowserRouter>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="min-h-screen bg-background-dark text-white font-sans antialiased">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/services" element={<ServicesPage />} />
+        </Routes>
+      </motion.div>
+    </BrowserRouter>
   );
 }
 

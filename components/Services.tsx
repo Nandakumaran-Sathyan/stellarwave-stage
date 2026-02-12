@@ -13,8 +13,8 @@ const features = [
     Icon: Lightbulb,
     name: "Marketing Strategy",
     description: "Strategic planning and market analysis to elevate your brand and reach your target audience effectively.",
-    href: "#contact",
-    cta: "Learn more",
+    href: "/services",
+    cta: "View Details",
     background: (
       <img
         className="absolute inset-0 w-full h-full object-cover opacity-40"
@@ -28,8 +28,8 @@ const features = [
     Icon: Palette,
     name: "Brand Design",
     description: "Visual identity and brand development that captures your essence and resonates with your audience.",
-    href: "#contact",
-    cta: "Learn more",
+    href: "/services",
+    cta: "View Details",
     background: (
       <img
         className="absolute inset-0 w-full h-full object-cover opacity-40"
@@ -43,8 +43,8 @@ const features = [
     Icon: Code,
     name: "Web Development",
     description: "Custom websites and applications built with cutting-edge technology for optimal performance.",
-    href: "#contact",
-    cta: "Learn more",
+    href: "/services",
+    cta: "View Details",
     background: (
       <img
         className="absolute inset-0 w-full h-full object-cover opacity-40"
@@ -58,8 +58,8 @@ const features = [
     Icon: TrendingUp,
     name: "Digital Marketing",
     description: "SEO, social media, and online campaigns that drive engagement and grow your digital presence.",
-    href: "#contact",
-    cta: "Learn more",
+    href: "/services",
+    cta: "View Details",
     background: (
       <img
         className="absolute inset-0 w-full h-full object-cover opacity-40"
@@ -73,8 +73,8 @@ const features = [
     Icon: PenTool,
     name: "Content Creation",
     description: "Engaging content for all platforms that tells your story and connects with your audience.",
-    href: "#contact",
-    cta: "Learn more",
+    href: "/services",
+    cta: "View Details",
     background: (
       <img
         className="absolute inset-0 w-full h-full object-cover opacity-40"
