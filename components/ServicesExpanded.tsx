@@ -1,11 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import {
-    Lightbulb,
-    Palette,
-    Code,
-    TrendingUp,
-    PenTool,
+    Target,
+    Megaphone,
+    Rocket,
+    Shield,
+    Trophy,
 } from "lucide-react";
 import ServiceDetailCard from "./ServiceDetailCard";
 import { SpaceParticles } from "./ui/space-particles";
@@ -15,7 +15,7 @@ import { Hero } from "./ui/hero-1";
 const servicesData = [
     {
         id: "service-marketing-strategy",
-        Icon: Lightbulb,
+        Icon: Target,
         name: "Strategic Architecture",
         tagline: "Before capital is deployed, risk must be reduced.",
         fullDescription:
@@ -32,7 +32,7 @@ const servicesData = [
     },
     {
         id: "service-brand-design",
-        Icon: Palette,
+        Icon: Megaphone,
         name: "Communication & Influence Systems",
         tagline: "Perception determines market power.",
         fullDescription:
@@ -55,7 +55,7 @@ const servicesData = [
     },
     {
         id: "service-web-development",
-        Icon: Code,
+        Icon: Rocket,
         name: "Performance & Digital Infrastructure",
         tagline: "Growth must be measurable. And scalable.",
         fullDescription:
@@ -78,7 +78,7 @@ const servicesData = [
     },
     {
         id: "service-digital-marketing",
-        Icon: TrendingUp,
+        Icon: Shield,
         name: "Authority & Market Control Systems",
         tagline: "Short-term traction is easy. Sustained dominance is engineered.",
         fullDescription:
@@ -102,7 +102,7 @@ const servicesData = [
     },
     {
         id: "service-content-creation",
-        Icon: PenTool,
+        Icon: Trophy,
         name: "Sporting & Institutional Growth Architecture",
         tagline: "Competitive ecosystems require structural discipline.",
         fullDescription:
@@ -134,7 +134,6 @@ export default function ServicesExpanded() {
                     quantity={150}
                     color="#ffffff"
                 />
-                <BackgroundCircles variant="septenary" className="h-full opacity-30" />
             </div>
 
             {/* Gradient Overlays */}

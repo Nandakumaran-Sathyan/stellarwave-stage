@@ -31,6 +31,26 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
     setMounted(true)
   }, [])
 
+  // Sync active tab with current route
+  useEffect(() => {
+    const path = location.pathname
+
+    // Map routes to nav item names
+    const routeToNavMap: Record<string, string> = {
+      '/': 'Home',
+      '/services': 'Services',
+    }
+
+    // Check if current path matches a route
+    const matchedNav = routeToNavMap[path]
+    if (matchedNav) {
+      setActiveTab(matchedNav)
+    } else if (path === '/' || location.hash) {
+      // If we're on home page with a hash (anchor), keep Home active
+      setActiveTab('Home')
+    }
+  }, [location.pathname, location.hash])
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768)

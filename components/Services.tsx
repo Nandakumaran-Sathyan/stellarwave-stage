@@ -1,16 +1,16 @@
 import {
-  Lightbulb,
-  Palette,
-  Code,
-  TrendingUp,
-  PenTool,
+  Target,
+  Megaphone,
+  Rocket,
+  Shield,
+  Trophy,
 } from "lucide-react";
 
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
 
 const features = [
   {
-    Icon: Lightbulb,
+    Icon: Target,
     name: "Strategic Architecture",
     description: "Strategic foundation that governs execution — positioning, audience modeling, competitive mapping, and structured growth roadmaps.",
     href: "/services#service-marketing-strategy",
@@ -25,7 +25,7 @@ const features = [
     className: "lg:row-start-1 lg:row-end-4 lg:col-start-2 lg:col-end-3",
   },
   {
-    Icon: Palette,
+    Icon: Megaphone,
     name: "Communication & Influence Systems",
     description: "Communication ecosystems that reinforce authority across digital, retail, institutional, and event environments.",
     href: "/services#service-brand-design",
@@ -40,7 +40,7 @@ const features = [
     className: "lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3",
   },
   {
-    Icon: Code,
+    Icon: Rocket,
     name: "Performance & Digital Infrastructure",
     description: "Digital performance systems that convert visibility into revenue, participation, and long-term market leverage.",
     href: "/services#service-web-development",
@@ -55,7 +55,7 @@ const features = [
     className: "lg:col-start-1 lg:col-end-2 lg:row-start-3 lg:row-end-4",
   },
   {
-    Icon: TrendingUp,
+    Icon: Shield,
     name: "Authority & Market Control",
     description: "Authority ecosystems that strengthen search visibility, influence conversation, and protect brand credibility.",
     href: "/services#service-digital-marketing",
@@ -70,7 +70,7 @@ const features = [
     className: "lg:col-start-3 lg:col-end-3 lg:row-start-1 lg:row-end-2",
   },
   {
-    Icon: PenTool,
+    Icon: Trophy,
     name: "Sporting & Institutional Growth",
     description: "Building leagues, federations, championships, and sporting properties with scalable digital and commercial systems.",
     href: "/services#service-content-creation",

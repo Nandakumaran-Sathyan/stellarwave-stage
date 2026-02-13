@@ -26,7 +26,7 @@ const navItems = [
 ]
 
 const Navbar: React.FC = () => {
-  return <AnimeNavBar items={navItems} defaultActive="Home" logo="/assets/logo-2.png" />
+  return <AnimeNavBar items={navItems} logo="/assets/logo-2.png" />
 }
 
 export default Navbar;
