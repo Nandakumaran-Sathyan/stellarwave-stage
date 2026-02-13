@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { LucideIcon } from "lucide-react"
+import { useNavigate, useLocation } from "react-router-dom"
 import { cn } from "@/lib/utils"
 
 interface NavItem {
@@ -23,6 +24,8 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
   const [hoveredTab, setHoveredTab] = useState<string | null>(null)
   const [activeTab, setActiveTab] = useState<string>(defaultActive)
   const [isMobile, setIsMobile] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     setMounted(true)
@@ -40,10 +43,26 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
 
   if (!mounted) return null
 
+  const handleNavClick = (item: NavItem) => {
+    setActiveTab(item.name)
+
+    // Check if it's a route (starts with /) or an anchor (starts with #)
+    if (item.url.startsWith('/')) {
+      // Navigate to the route
+      navigate(item.url)
+    } else if (item.url.startsWith('#')) {
+      // Smooth scroll to section on current page
+      const element = document.querySelector(item.url)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+  }
+
   return (
     <div className="fixed top-5 left-0 right-0 z-[9999]">
       <div className="flex justify-center pt-6 px-4">
-        <motion.div 
+        <motion.div
           className="flex items-center gap-3 bg-black/50 border border-white/10 backdrop-blur-lg py-2 px-2 rounded-full shadow-lg relative"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -64,18 +83,9 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
             const isHovered = hoveredTab === item.name
 
             return (
-              <a
+              <button
                 key={item.name}
-                href={item.url}
-                onClick={(e) => {
-                  e.preventDefault()
-                  setActiveTab(item.name)
-                  // Smooth scroll to section
-                  const element = document.querySelector(item.url)
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' })
-                  }
-                }}
+                onClick={() => handleNavClick(item)}
                 onMouseEnter={() => setHoveredTab(item.name)}
                 onMouseLeave={() => setHoveredTab(null)}
                 className={cn(
@@ -88,7 +98,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
                   <motion.div
                     className="absolute inset-0 rounded-full -z-10 overflow-hidden"
                     initial={{ opacity: 0 }}
-                    animate={{ 
+                    animate={{
                       opacity: [0.3, 0.5, 0.3],
                       scale: [1, 1.03, 1]
                     }}
@@ -102,8 +112,8 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
                     <div className="absolute inset-[-4px] bg-primary/20 rounded-full blur-xl" />
                     <div className="absolute inset-[-8px] bg-primary/15 rounded-full blur-2xl" />
                     <div className="absolute inset-[-12px] bg-primary/5 rounded-full blur-3xl" />
-                    
-                    <div 
+
+                    <div
                       className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0"
                       style={{
                         animation: "shine 3s ease-in-out infinite"
@@ -120,14 +130,14 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
                 >
                   {item.name}
                 </motion.span>
-                <motion.span 
+                <motion.span
                   className="md:hidden relative z-10"
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
                 >
                   <Icon size={18} strokeWidth={2.5} />
                 </motion.span>
-          
+
                 <AnimatePresence>
                   {isHovered && !isActive && (
                     <motion.div
@@ -138,7 +148,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
                     />
                   )}
                 </AnimatePresence>
-              </a>
+              </button>
             )
           })}
         </motion.div>

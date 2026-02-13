@@ -5,7 +5,7 @@ import { AnimeNavBar } from "./ui/anime-navbar"
 const navItems = [
   {
     name: "Home",
-    url: "#hero",
+    url: "/",
     icon: Home,
   },
   {

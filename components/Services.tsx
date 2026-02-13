@@ -11,9 +11,9 @@ import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
 const features = [
   {
     Icon: Lightbulb,
-    name: "Marketing Strategy",
-    description: "Strategic planning and market analysis to elevate your brand and reach your target audience effectively.",
-    href: "/services",
+    name: "Strategic Architecture",
+    description: "Strategic foundation that governs execution — positioning, audience modeling, competitive mapping, and structured growth roadmaps.",
+    href: "/services#service-marketing-strategy",
     cta: "View Details",
     background: (
       <img
@@ -26,9 +26,9 @@ const features = [
   },
   {
     Icon: Palette,
-    name: "Brand Design",
-    description: "Visual identity and brand development that captures your essence and resonates with your audience.",
-    href: "/services",
+    name: "Communication & Influence Systems",
+    description: "Communication ecosystems that reinforce authority across digital, retail, institutional, and event environments.",
+    href: "/services#service-brand-design",
     cta: "View Details",
     background: (
       <img
@@ -41,9 +41,9 @@ const features = [
   },
   {
     Icon: Code,
-    name: "Web Development",
-    description: "Custom websites and applications built with cutting-edge technology for optimal performance.",
-    href: "/services",
+    name: "Performance & Digital Infrastructure",
+    description: "Digital performance systems that convert visibility into revenue, participation, and long-term market leverage.",
+    href: "/services#service-web-development",
     cta: "View Details",
     background: (
       <img
@@ -56,9 +56,9 @@ const features = [
   },
   {
     Icon: TrendingUp,
-    name: "Digital Marketing",
-    description: "SEO, social media, and online campaigns that drive engagement and grow your digital presence.",
-    href: "/services",
+    name: "Authority & Market Control",
+    description: "Authority ecosystems that strengthen search visibility, influence conversation, and protect brand credibility.",
+    href: "/services#service-digital-marketing",
     cta: "View Details",
     background: (
       <img
@@ -71,9 +71,9 @@ const features = [
   },
   {
     Icon: PenTool,
-    name: "Content Creation",
-    description: "Engaging content for all platforms that tells your story and connects with your audience.",
-    href: "/services",
+    name: "Sporting & Institutional Growth",
+    description: "Building leagues, federations, championships, and sporting properties with scalable digital and commercial systems.",
+    href: "/services#service-content-creation",
     cta: "View Details",
     background: (
       <img
