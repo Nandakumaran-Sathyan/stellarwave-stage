@@ -1,5 +1,5 @@
 import React from 'react';
-import { Footer as FooterSection } from './ui/footer-section';
+import { Footer as FooterSection } from '@/components/ui/footer-section';
 
 const Footer: React.FC = () => {
   return (

@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
-import { ServiceFeatureList } from "./ui/service-feature-list";
-import { StarButton } from "./ui/star-button";
+import { ServiceFeatureList } from "@/components/ui/service-feature-list";
+import { StarButton } from "@/components/ui/star-button";
 
 interface ServiceDetailCardProps {
     id: string;

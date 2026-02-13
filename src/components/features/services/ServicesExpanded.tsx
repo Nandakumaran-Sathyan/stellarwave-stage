@@ -8,9 +8,8 @@ import {
     Trophy,
 } from "lucide-react";
 import ServiceDetailCard from "./ServiceDetailCard";
-import { SpaceParticles } from "./ui/space-particles";
-import { BackgroundCircles } from "./ui/background-circles";
-import { Hero } from "./ui/hero-1";
+import { SpaceParticles } from "@/components/ui/space-particles";
+import { Hero } from "@/components/ui/hero-1";
 
 const servicesData = [
     {

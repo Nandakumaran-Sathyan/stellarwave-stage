@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import { ContainerScroll } from "./ui/container-scroll-animation";
-import { BackgroundCircles } from "./ui/background-circles";
+import { ContainerScroll } from "@/components/ui/container-scroll-animation";
+import { BackgroundCircles } from "@/components/ui/background-circles";
 
 export function HeroScroll() {
   return (

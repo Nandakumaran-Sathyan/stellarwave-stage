@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import ServicesExpanded from "../components/ServicesExpanded";
-import Footer from "../components/Footer";
+import Navbar from "@/components/layout/Navbar";
+import ServicesExpanded from "@/components/features/services/ServicesExpanded";
+import Footer from "@/components/layout/Footer";
 
 export default function ServicesPage() {
     const location = useLocation();

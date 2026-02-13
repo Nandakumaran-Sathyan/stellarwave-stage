@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import HomePage from './pages/HomePage';
-import ServicesPage from './pages/ServicesPage';
-import PageLoader from './components/PageLoader';
+import HomePage from '@/pages/HomePage';
+import ServicesPage from '@/pages/ServicesPage';
+import TeamsPage from '@/pages/TeamsPage';
+import PageLoader from '@/components/features/common/PageLoader';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -22,6 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/services" element={<ServicesPage />} />
+          <Route path="/teams" element={<TeamsPage />} />
         </Routes>
       </motion.div>
     </BrowserRouter>

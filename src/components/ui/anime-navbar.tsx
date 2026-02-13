@@ -39,6 +39,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
     const routeToNavMap: Record<string, string> = {
       '/': 'Home',
       '/services': 'Services',
+      '/teams': 'Teams',
     }
 
     // Check if current path matches a route
