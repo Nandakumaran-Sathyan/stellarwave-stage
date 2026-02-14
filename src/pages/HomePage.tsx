@@ -18,7 +18,9 @@ export default function HomePage() {
                 <Services />
                 <Clients />
                 {/* <Team /> */}
-                <CTA />
+                                <div id="contact">
+                                    <CTA />
+                                </div>
             </main>
             <Footer />
         </>

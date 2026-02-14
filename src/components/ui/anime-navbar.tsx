@@ -33,24 +33,22 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
 
   // Sync active tab with current route
   useEffect(() => {
-    const path = location.pathname
-
+    const path = location.pathname;
     // Map routes to nav item names
     const routeToNavMap: Record<string, string> = {
       '/': 'Home',
       '/services': 'Services',
       '/teams': 'Teams',
-    }
-
+      '/client': 'Client',
+    };
     // Check if current path matches a route
-    const matchedNav = routeToNavMap[path]
+    const matchedNav = routeToNavMap[path];
     if (matchedNav) {
-      setActiveTab(matchedNav)
+      setActiveTab(matchedNav);
     } else if (path === '/' || location.hash) {
-      // If we're on home page with a hash (anchor), keep Home active
-      setActiveTab('Home')
+      setActiveTab('Home');
     }
-  }, [location.pathname, location.hash])
+  }, [location.pathname, location.hash]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -65,20 +63,31 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
   if (!mounted) return null
 
   const handleNavClick = (item: NavItem) => {
-    setActiveTab(item.name)
-
+    if (item.name === 'Contact') {
+      // Always go to home and scroll to contact section
+      navigate('/');
+      setTimeout(() => {
+        const el = document.getElementById('contact');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+      setActiveTab('Home');
+      return;
+    }
+    setActiveTab(item.name);
     // Check if it's a route (starts with /) or an anchor (starts with #)
     if (item.url.startsWith('/')) {
       // Navigate to the route
-      navigate(item.url)
+      navigate(item.url);
     } else if (item.url.startsWith('#')) {
       // Smooth scroll to section on current page
-      const element = document.querySelector(item.url)
+      const element = document.querySelector(item.url);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' })
+        element.scrollIntoView({ behavior: 'smooth' });
       }
     }
-  }
+  };
 
   return (
     <div className="fixed top-5 left-0 right-0 z-[9999]">
