@@ -17,7 +17,7 @@ export default function HomePage() {
                 <HeroScroll />
                 <Services />
                 <Clients />
-                <Team />
+                {/* <Team /> */}
                 <CTA />
             </main>
             <Footer />

@@ -11,6 +11,7 @@ interface Client {
   name: string;
   tagline: string;
   description: string;
+  logo: string;
 }
 
 interface ClientCategory {
@@ -31,12 +32,14 @@ const clientData: ClientCategory[] = [
       {
         name: "Snowforce",
         tagline: "ERP Solutions for Infrastructure & Construction Enterprises",
-        description: "Snowforce delivers enterprise resource planning solutions tailored for infrastructure and construction companies. Operating in a complex B2B ecosystem, the brand requires knowledge-led positioning, authority-driven communication, and structured digital visibility to align with long sales cycles and technical decision-making processes."
+        description: "Snowforce delivers enterprise resource planning solutions tailored for infrastructure and construction companies. Operating in a complex B2B ecosystem, the brand requires knowledge-led positioning, authority-driven communication, and structured digital visibility to align with long sales cycles and technical decision-making processes.",
+        logo: "https://ui-avatars.com/api/?name=Snowforce&background=8350e8&color=fff&size=128&bold=true"
       },
       {
         name: "TAV",
         tagline: "Australian Mid-Drive Motor Technology Manufacturer",
-        description: "TAV is an Australian-based engineering company specializing in advanced mid-drive motor systems. Positioned within the evolving electric mobility ecosystem, the brand demands market education, technical credibility, and performance-focused communication frameworks to strengthen its global positioning."
+        description: "TAV is an Australian-based engineering company specializing in advanced mid-drive motor systems. Positioned within the evolving electric mobility ecosystem, the brand demands market education, technical credibility, and performance-focused communication frameworks to strengthen its global positioning.",
+        logo: "https://ui-avatars.com/api/?name=TAV&background=8350e8&color=fff&size=128&bold=true"
       }
     ]
   },
@@ -49,17 +52,20 @@ const clientData: ClientCategory[] = [
       {
         name: "Humming Bird",
         tagline: "Children's Magazines, Activity & Stress-Free Colouring Books",
-        description: "Humming Bird creates educational and stress-relief content for children through thoughtfully designed magazines and activity books. The brand operates in a trust-driven parent-focused market, requiring engaging communication, product visibility, and consistent digital storytelling to strengthen brand recall and purchase intent."
+        description: "Humming Bird creates educational and stress-relief content for children through thoughtfully designed magazines and activity books. The brand operates in a trust-driven parent-focused market, requiring engaging communication, product visibility, and consistent digital storytelling to strengthen brand recall and purchase intent.",
+        logo: "https://ui-avatars.com/api/?name=Humming+Bird&background=ec4899&color=fff&size=128&bold=true"
       },
       {
         name: "Cycle Studio LLP",
         tagline: "Premium Bicycle Retail & Service Brand",
-        description: "Cycle Studio LLP is a high-end bicycle retail and service outlet catering to enthusiasts and performance riders. Positioned in a niche lifestyle segment, the brand requires strong product positioning, retail branding clarity, and conversion-focused digital strategies to drive both store visits and service engagement."
+        description: "Cycle Studio LLP is a high-end bicycle retail and service outlet catering to enthusiasts and performance riders. Positioned in a niche lifestyle segment, the brand requires strong product positioning, retail branding clarity, and conversion-focused digital strategies to drive both store visits and service engagement.",
+        logo: "https://ui-avatars.com/api/?name=Cycle+Studio&background=a855f7&color=fff&size=128&bold=true"
       },
       {
         name: "Annanagar Auto Service",
         tagline: "Authorised HP Automotive Dealer",
-        description: "Annanagar Auto Service is an authorised HP dealer operating in a competitive automotive service market. The brand requires structured local visibility, trust-building communication, and consistent customer engagement systems to strengthen regional market positioning."
+        description: "Annanagar Auto Service is an authorised HP dealer operating in a competitive automotive service market. The brand requires structured local visibility, trust-building communication, and consistent customer engagement systems to strengthen regional market positioning.",
+        logo: "https://ui-avatars.com/api/?name=Annanagar+Auto&background=d946ef&color=fff&size=128&bold=true"
       }
     ]
   },
@@ -72,7 +78,8 @@ const clientData: ClientCategory[] = [
       {
         name: "Spitfire Kickboxing Academy",
         tagline: "Professional Martial Arts & Competitive Training Institution",
-        description: "Spitfire Kickboxing Academy trains athletes across multiple competitive levels. Operating in a performance-driven environment, the academy requires energetic digital positioning, disciplined communication cadence, and structured growth systems to strengthen athlete participation and brand authority."
+        description: "Spitfire Kickboxing Academy trains athletes across multiple competitive levels. Operating in a performance-driven environment, the academy requires energetic digital positioning, disciplined communication cadence, and structured growth systems to strengthen athlete participation and brand authority.",
+        logo: "https://ui-avatars.com/api/?name=Spitfire&background=f97316&color=fff&size=128&bold=true"
       }
     ]
   },
@@ -85,17 +92,20 @@ const clientData: ClientCategory[] = [
       {
         name: "TNCA",
         tagline: "Tamil Nadu Cycling Association | 60+ Years Legacy",
-        description: "TNCA is a long-standing state-level cycling association (Under SDAT & CFI) responsible for athlete development and event governance. The institution requires structured digital communication systems, event visibility amplification, and stakeholder-aligned positioning to strengthen participation and institutional credibility."
+        description: "TNCA is a long-standing state-level cycling association (Under SDAT & CFI) responsible for athlete development and event governance. The institution requires structured digital communication systems, event visibility amplification, and stakeholder-aligned positioning to strengthen participation and institutional credibility.",
+        logo: "https://ui-avatars.com/api/?name=TNCA&background=3b82f6&color=fff&size=128&bold=true"
       },
       {
         name: "TNSKA",
         tagline: "Tamil Nadu Kickboxing Association | 1000+ Athletes",
-        description: "TNSKA (Under WAKO India) oversees kickboxing development across Tamil Nadu, supporting athletes competing at state, national, and international levels. The association requires disciplined event communication, athlete engagement systems, and structured digital amplification to support large-scale participation."
+        description: "TNSKA (Under WAKO India) oversees kickboxing development across Tamil Nadu, supporting athletes competing at state, national, and international levels. The association requires disciplined event communication, athlete engagement systems, and structured digital amplification to support large-scale participation.",
+        logo: "https://ui-avatars.com/api/?name=TNSKA&background=06b6d4&color=fff&size=128&bold=true"
       },
       {
         name: "TNAA",
         tagline: "Tamil Nadu Athletic Association",
-        description: "TNAA governs athletics development within the state framework. Institutional positioning, event communication clarity, and consistent stakeholder visibility are critical to strengthening athlete outreach and ecosystem growth."
+        description: "TNAA governs athletics development within the state framework. Institutional positioning, event communication clarity, and consistent stakeholder visibility are critical to strengthening athlete outreach and ecosystem growth.",
+        logo: "https://ui-avatars.com/api/?name=TNAA&background=0ea5e9&color=fff&size=128&bold=true"
       }
     ]
   },
@@ -108,17 +118,20 @@ const clientData: ClientCategory[] = [
       {
         name: "TCL – Tamil Nadu Cycling League",
         tagline: "State-Level Franchise Cycling League",
-        description: "TCL operates as a competitive league format featuring eight district-based teams across Tamil Nadu. The property demands league identity architecture, sponsorship-ready positioning, and structured digital amplification to build audience engagement and competitive visibility."
+        description: "TCL operates as a competitive league format featuring eight district-based teams across Tamil Nadu. The property demands league identity architecture, sponsorship-ready positioning, and structured digital amplification to build audience engagement and competitive visibility.",
+        logo: "https://ui-avatars.com/api/?name=TCL&background=eab308&color=000&size=128&bold=true"
       },
       {
         name: "National Kickboxing Championship 2025",
         tagline: "1,000+ Athletes | Pan-India Participation",
-        description: "A large-scale national-level championship bringing together athletes from across India. The event requires structured communication governance, participation growth strategy, and high-volume digital deployment to ensure operational visibility and competitive credibility."
+        description: "A large-scale national-level championship bringing together athletes from across India. The event requires structured communication governance, participation growth strategy, and high-volume digital deployment to ensure operational visibility and competitive credibility.",
+        logo: "https://ui-avatars.com/api/?name=NKC+2025&background=f59e0b&color=fff&size=128&bold=true"
       },
       {
         name: "Track Asia Cup 2026 – Chennai",
         tagline: "International Athletic Event | 10 Asian Nations Participating",
-        description: "A landmark international event hosted in Chennai featuring participation from ten Asian countries. The property demands international-standard event positioning, multi-layered digital amplification, and structured stakeholder communication systems."
+        description: "A landmark international event hosted in Chennai featuring participation from ten Asian countries. The property demands international-standard event positioning, multi-layered digital amplification, and structured stakeholder communication systems.",
+        logo: "https://ui-avatars.com/api/?name=Asia+Cup&background=fb923c&color=fff&size=128&bold=true"
       }
     ]
   }
@@ -160,11 +173,22 @@ const ClientCard: React.FC<{
         </div>
 
         <div className="relative z-10">
-          <div className="flex items-start justify-between mb-3">
-            <h3 className="text-xl font-semibold text-neutral-300 group-hover:text-white transition-colors duration-300">
-              {client.name}
-            </h3>
-            <ChevronRight className="w-5 h-5 text-zinc-400 group-hover:text-white group-hover:translate-x-1 transition-all duration-300" />
+          <div className="flex items-center gap-4 mb-4">
+            <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden bg-white/5 backdrop-blur-sm border border-white/10 p-2">
+              <img 
+                src={client.logo} 
+                alt={`${client.name} logo`}
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-start justify-between gap-2">
+                <h3 className="text-xl font-semibold text-neutral-300 group-hover:text-white transition-colors duration-300">
+                  {client.name}
+                </h3>
+                <ChevronRight className="flex-shrink-0 w-5 h-5 text-zinc-400 group-hover:text-white group-hover:translate-x-1 transition-all duration-300" />
+              </div>
+            </div>
           </div>
           
           <p className="text-sm text-zinc-400 font-light tracking-tight leading-relaxed">
@@ -219,9 +243,18 @@ const ClientModal: React.FC<{
             </button>
 
             <div className="relative z-10">
-              <h2 className="text-3xl font-semibold tracking-tighter text-white mb-3">
-                {client.name}
-              </h2>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden bg-white/5 backdrop-blur-sm border border-white/10 p-3">
+                  <img 
+                    src={client.logo} 
+                    alt={`${client.name} logo`}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <h2 className="text-3xl font-semibold tracking-tighter text-white">
+                  {client.name}
+                </h2>
+              </div>
               <p className="text-sm tracking-[0.3em] uppercase font-light text-white/70 mb-6">
                 {client.tagline}
               </p>
@@ -251,9 +284,12 @@ const ClientCategory: React.FC<{ category: ClientCategory; index: number }> = ({
           whileInView={{ filter: 'blur(0px)', translateY: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: index * 0.1, duration: 0.8 }}
-          className="mb-12"
+          className={cn("mb-12", index % 2 === 1 && "text-right")}
         >
-          <div className="flex items-center gap-4 mb-6">
+          <div className={cn(
+            "flex items-center gap-4 mb-6",
+            index % 2 === 1 ? "flex-row-reverse justify-start" : "justify-start"
+          )}>
             <div className={cn(
               "p-3 rounded-xl bg-gradient-to-br backdrop-blur-sm",
               "dark:[border:1px_solid_rgba(255,255,255,.1)]",
@@ -265,7 +301,10 @@ const ClientCategory: React.FC<{ category: ClientCategory; index: number }> = ({
               {category.title}
             </h2>
           </div>
-          <p className="text-sm sm:text-base md:text-lg text-white/60 font-light tracking-tight max-w-4xl leading-relaxed">
+          <p className={cn(
+            "text-sm sm:text-base md:text-lg text-white/60 font-light tracking-tight max-w-4xl leading-relaxed",
+            index % 2 === 1 && "ml-auto"
+          )}>
             {category.subtitle}
           </p>
         </motion.div>
@@ -308,10 +347,7 @@ const ClientPage: React.FC = () => {
           />
         </div>
 
-        {/* Background Circles */}
-        <div className="absolute inset-0 opacity-30 pointer-events-none">
-          <BackgroundCircles variant="septenary" className="h-full" />
-        </div>
+        {/* Background Circles removed as per request */}
 
         {/* Radial gradients */}
         <div className="absolute inset-0 bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/8%),transparent)] pointer-events-none" />
