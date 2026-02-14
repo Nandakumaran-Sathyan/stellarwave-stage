@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Linkedin, Mail, Github } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import CircularGallery from "@/components/ui/CircularGallery";
 
 interface TeamMember {
     id: number;
@@ -91,6 +92,42 @@ export default function TeamsPage() {
                                 building structured growth systems that drive market leadership.
                             </p>
                         </motion.div>
+
+                        {/* Circular Gallery Hero Section */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.8, delay: 0.3 }}
+                            className="mb-20"
+                            style={{ height: '600px', position: 'relative' }}
+                        >
+                            <CircularGallery
+                                items={teamMembers.map(member => ({
+                                    image: member.image,
+                                    text: member.name
+                                }))}
+                                bend={6}
+                                textColor="#ffffff"
+                                borderRadius={0.09}
+                                scrollSpeed={1.7}
+                                scrollEase={0.05}
+                            />
+                            {/* Gradient fade to black at the bottom */}
+                            <div 
+                                className="absolute bottom-0 left-0 w-full h-48 pointer-events-none z-10"
+                                style={{
+                                    background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 70%, #000000 100%)'
+                                }}
+                            />
+                        </motion.div>
+
+                        {/* Team Title and Description */}
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Team</h2>
+                            <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
+                                A diverse group of passionate professionals, each bringing unique skills and experiences to drive innovation and excellence in every project we undertake.
+                            </p>
+                        </div>
 
                         {/* Team Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
