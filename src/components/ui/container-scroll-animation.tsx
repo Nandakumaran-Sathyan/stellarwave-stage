@@ -77,18 +77,51 @@ export const Card = ({
   translate: MotionValue<number>;
   children: React.ReactNode;
 }) => {
+  const [mouse, setMouse] = React.useState<{ x: number; y: number } | null>(null);
+  const cardRef = React.useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = cardRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    setMouse({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+  const handleMouseLeave = () => setMouse(null);
+
   return (
     <motion.div
+      ref={cardRef}
       style={{
         rotateX: rotate,
         scale,
         boxShadow:
           "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003",
+        cursor: mouse ? 'none' : 'default',
       }}
       className="max-w-sm sm:max-w-2xl md:max-w-4xl -mt-26 sm:-mt-16 md:-mt-12 mx-auto h-[22rem] sm:h-[32rem] md:h-[40rem] w-full border-4 border-[#6C6C6C] p-2 md:p-6 bg-[#222222] rounded-[20px] md:rounded-[30px] shadow-2xl"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
     >
-      <div className=" h-full w-full  overflow-hidden rounded-2xl bg-gray-100 dark:bg-zinc-900 md:rounded-2xl md:p-4 ">
+      <div className="h-full w-full overflow-hidden rounded-2xl bg-gray-100 dark:bg-zinc-900 md:rounded-2xl md:p-4 relative flex items-center justify-center">
         {children}
+        {mouse && (
+          <div
+            style={{
+              position: 'absolute',
+              left: mouse.x - 30,
+              top: mouse.y - 30,
+              width: 60,
+              height: 60,
+              pointerEvents: 'none',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, transparent 60%, #222 100%)',
+              mixBlendMode: 'difference',
+              zIndex: 20,
+            }}
+          />
+        )}
       </div>
     </motion.div>
   );

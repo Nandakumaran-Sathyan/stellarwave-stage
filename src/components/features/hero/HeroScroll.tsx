@@ -1,9 +1,12 @@
 "use client";
-import React from "react";
+import React, { useRef, useState } from "react";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import { BackgroundCircles } from "@/components/ui/background-circles";
+import CursorSpeakerVideo from "./CursorSpeakerVideo";
 
 export function HeroScroll() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [audioOn, setAudioOn] = useState(false);
   return (
     <div className="relative flex flex-col overflow-hidden">
       {/* Background Circles */}
@@ -25,11 +28,10 @@ export function HeroScroll() {
             </>
           }
         >
-          <img
-            src="/assets/tab-screen.png"
-            alt="hero"
-            className="mx-auto rounded-2xl object-cover h-full object-left-top"
-            draggable={false}
+          <CursorSpeakerVideo
+            videoRef={videoRef}
+            audioOn={audioOn}
+            setAudioOn={setAudioOn}
           />
         </ContainerScroll>
       </div>
