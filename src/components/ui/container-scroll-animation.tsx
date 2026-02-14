@@ -106,22 +106,7 @@ export const Card = ({
     >
       <div className="h-full w-full overflow-hidden rounded-2xl bg-gray-100 dark:bg-zinc-900 md:rounded-2xl md:p-4 relative flex items-center justify-center">
         {children}
-        {mouse && (
-          <div
-            style={{
-              position: 'absolute',
-              left: mouse.x - 30,
-              top: mouse.y - 30,
-              width: 60,
-              height: 60,
-              pointerEvents: 'none',
-              borderRadius: '50%',
-              background: 'radial-gradient(circle, transparent 60%, #222 100%)',
-              mixBlendMode: 'difference',
-              zIndex: 20,
-            }}
-          />
-        )}
+        {/* Removed negative blend circle cursor effect */}
       </div>
     </motion.div>
   );
