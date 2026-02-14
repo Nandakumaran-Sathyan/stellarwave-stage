@@ -19,8 +19,8 @@ const navItems = [
     icon: Users,
   },
   {
-    name: "Work",
-    url: "#work",
+    name: "Client",
+    url: "/client",
     icon: Award,
   },
   {

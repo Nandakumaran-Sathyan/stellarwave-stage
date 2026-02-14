@@ -63,8 +63,8 @@ const features = [
     background: (
       <img
         className="absolute inset-0 w-full h-full object-cover opacity-40"
-        src="https://images.unsplash.com/photo-1432888622747-4eb9a8f2c293?w=800&auto=format&fit=crop"
-        alt="Digital Marketing"
+        src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop"
+        alt="Authority & Market Control"
       />
     ),
     className: "lg:col-start-3 lg:col-end-3 lg:row-start-1 lg:row-end-2",

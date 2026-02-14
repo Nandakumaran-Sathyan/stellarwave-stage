@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import HomePage from '@/pages/HomePage';
 import ServicesPage from '@/pages/ServicesPage';
 import TeamsPage from '@/pages/TeamsPage';
+import ClientPage from '@/pages/ClientPage';
 import PageLoader from '@/components/features/common/PageLoader';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/teams" element={<TeamsPage />} />
+          <Route path="/client" element={<ClientPage />} />
         </Routes>
       </motion.div>
     </BrowserRouter>
