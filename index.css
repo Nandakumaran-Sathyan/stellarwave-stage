@@ -1,0 +1,7 @@
+@import url('./src/styles/tailwind.css');
+
+/* Add any global styles here */
+body {
+  background-color: #050505;
+  color: #fff;
+}
