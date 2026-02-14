@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { LucideIcon } from "lucide-react"
 import { useNavigate, useLocation } from "react-router-dom"
 import { cn } from "@/lib/utils"
+import ThemeToggle from "@/components/ui/ThemeToggle"
 
 interface NavItem {
   name: string
@@ -181,6 +182,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
               </button>
             )
           })}
+          <ThemeToggle />
         </motion.div>
       </div>
     </div>
