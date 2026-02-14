@@ -284,12 +284,9 @@ const ClientCategory: React.FC<{ category: ClientCategory; index: number }> = ({
           whileInView={{ filter: 'blur(0px)', translateY: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: index * 0.1, duration: 0.8 }}
-          className={cn("mb-12", index % 2 === 1 && "text-right")}
+          className="mb-12"
         >
-          <div className={cn(
-            "flex items-center gap-4 mb-6",
-            index % 2 === 1 ? "flex-row-reverse justify-start" : "justify-start"
-          )}>
+          <div className="flex items-center gap-4 mb-6 justify-start">
             <div className={cn(
               "p-3 rounded-xl bg-gradient-to-br backdrop-blur-sm",
               "dark:[border:1px_solid_rgba(255,255,255,.1)]",
@@ -301,10 +298,7 @@ const ClientCategory: React.FC<{ category: ClientCategory; index: number }> = ({
               {category.title}
             </h2>
           </div>
-          <p className={cn(
-            "text-sm sm:text-base md:text-lg text-white/60 font-light tracking-tight max-w-4xl leading-relaxed",
-            index % 2 === 1 && "ml-auto"
-          )}>
+          <p className="text-sm sm:text-base md:text-lg text-white/60 font-light tracking-tight max-w-4xl leading-relaxed">
             {category.subtitle}
           </p>
         </motion.div>
