@@ -88,11 +88,11 @@ const features = [
 
 export default function Services() {
   return (
-    <div id="services" className="w-full py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section id="services" className="relative w-full py-24 md:py-32 bg-white text-black dark:bg-black dark:text-white overflow-hidden transition-colors duration-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-4">Our Services</h2>
-          <p className="text-lg text-neutral-400 max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold mb-4">Our Services</h2>
+          <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
             Comprehensive solutions to elevate your brand and drive digital success
           </p>
         </div>
@@ -102,6 +102,6 @@ export default function Services() {
           ))}
         </BentoGrid>
       </div>
-    </div>
+    </section>
   );
 }

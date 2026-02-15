@@ -3,16 +3,16 @@ import { Building2, Zap, Rocket, Sparkles as SparklesIcon, Globe } from "lucide-
 
 export function Clients() {
   return (
-    <section id="clients" className="relative w-full overflow-hidden bg-black py-24 md:py-32">
+    <section id="clients" className="relative w-full overflow-hidden bg-white text-black dark:bg-black dark:text-white py-24 md:py-32 transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6 md:px-8">
         {/* Header */}
         <div className="mx-auto mb-16 w-full max-w-3xl text-center">
-          <h2 className="mb-4 text-3xl font-light tracking-tighter text-white sm:text-4xl md:text-5xl">
-            <span className="bg-gradient-to-r from-white to-zinc-300 bg-clip-text text-transparent">
+          <h2 className="mb-4 text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            <span className="bg-gradient-to-r from-black via-neutral-600 to-zinc-400 dark:from-white dark:via-zinc-300 dark:to-zinc-900 bg-clip-text text-transparent transition-colors duration-700">
               Make your brand unmistakable
             </span>
           </h2>
-          <p className="text-base sm:text-lg text-zinc-400 font-light tracking-tight md:text-xl">
+          <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-light tracking-tight md:text-xl">
             We help businesses stand out and grow in digital spaces.
           </p>
         </div>
@@ -76,7 +76,7 @@ export function Clients() {
         <Sparkles
           density={1200}
           className="absolute inset-x-0 bottom-0 h-full w-full [mask-image:radial-gradient(50%_50%,white,transparent_85%)]"
-          color="#ffffff"
+          color="black dark:white"
         />
       </div>
     </section>

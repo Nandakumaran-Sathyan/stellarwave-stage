@@ -8,7 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 
 const CTA: React.FC = () => {
   return (
-    <section className="py-24 relative z-20 bg-black" id="contact">
+    <section className="py-24 relative z-20 bg-white text-black dark:bg-black dark:text-white transition-colors duration-300" id="contact">
       <div className="mx-auto max-w-5xl px-4">
         <ContactCard
           title="Get in touch"

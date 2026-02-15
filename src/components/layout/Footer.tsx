@@ -3,7 +3,7 @@ import { Footer as FooterSection } from '@/components/ui/footer-section';
 
 const Footer: React.FC = () => {
   return (
-    <div className="bg-black relative z-20 pt-12">
+    <div className="bg-white text-black dark:bg-black dark:text-white relative z-20 pt-12 transition-colors duration-300">
       <FooterSection />
     </div>
   );

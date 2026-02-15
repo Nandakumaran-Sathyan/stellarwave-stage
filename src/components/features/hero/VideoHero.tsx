@@ -27,7 +27,7 @@ const VideoHero: React.FC = () => {
     return (
         <section
             id="video-hero"
-            className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden"
+            className="relative min-h-screen flex items-center justify-center bg-white text-black dark:bg-black dark:text-white overflow-hidden transition-colors duration-300"
         >
             <div className="absolute inset-0 flex items-center justify-center">
                 <video
@@ -44,7 +44,7 @@ const VideoHero: React.FC = () => {
             </div>
 
             {/* Optional overlay for better text visibility if needed */}
-            <div className="absolute inset-0 bg-black/10 pointer-events-none" />
+            <div className="absolute inset-0 bg-black/10 dark:bg-black/10 pointer-events-none" />
         </section>
     );
 };

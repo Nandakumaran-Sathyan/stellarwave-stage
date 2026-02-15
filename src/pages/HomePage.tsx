@@ -10,7 +10,7 @@ import Footer from "@/components/layout/Footer";
 
 export default function HomePage() {
     return (
-        <>
+        <div className="min-h-screen bg-white text-black dark:bg-[#050505] dark:text-white transition-colors duration-300">
             <Navbar />
             <main>
                 <VideoHero />
@@ -18,11 +18,11 @@ export default function HomePage() {
                 <Services />
                 <Clients />
                 {/* <Team /> */}
-                                <div id="contact">
-                                    <CTA />
-                                </div>
+                <div id="contact">
+                    <CTA />
+                </div>
             </main>
             <Footer />
-        </>
+        </div>
     );
 }
