@@ -5,6 +5,26 @@ const SESSION_KEY = 'stellar-hero-video-played';
 const VideoHero: React.FC = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [hasPlayed] = useState(() => sessionStorage.getItem(SESSION_KEY) === 'true');
+    const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+
+    useEffect(() => {
+        // Initial theme detection
+        const isDark = document.documentElement.classList.contains('dark');
+        setTheme(isDark ? 'dark' : 'light');
+
+        // Watch for theme changes
+        const observer = new MutationObserver(() => {
+            const isDark = document.documentElement.classList.contains('dark');
+            setTheme(isDark ? 'dark' : 'light');
+        });
+
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['class'],
+        });
+
+        return () => observer.disconnect();
+    }, []);
 
     useEffect(() => {
         const video = videoRef.current;
@@ -39,7 +59,7 @@ const VideoHero: React.FC = () => {
         return () => {
             video.removeEventListener('ended', handleEnded);
         };
-    }, [hasPlayed]);
+    }, [hasPlayed, theme]);
 
     return (
         <section
@@ -54,8 +74,9 @@ const VideoHero: React.FC = () => {
                     playsInline
                     loop={false}
                     autoPlay={!hasPlayed}
+                    key={theme}
                 >
-                    <source src="/assets/logo-hero.mp4" type="video/mp4" />
+                    <source src={theme === 'light' ? '/assets/logo-white.mp4' : '/assets/logo-hero.mp4'} type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
             </div>
