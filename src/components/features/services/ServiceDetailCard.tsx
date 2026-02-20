@@ -15,7 +15,7 @@ interface ServiceDetailCardProps {
     index: number;
 }
 
-export default function ServiceDetailCard({
+const ServiceDetailCard: React.FC<ServiceDetailCardProps> = ({
     id,
     Icon,
     name,
@@ -24,7 +24,7 @@ export default function ServiceDetailCard({
     features,
     technologies,
     index,
-}: ServiceDetailCardProps) {
+}) => {
     const isEven = index % 2 === 0;
 
     return (
@@ -33,7 +33,7 @@ export default function ServiceDetailCard({
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.4, delay: 0.05 }}
             className="relative mb-32 last:mb-0 scroll-mt-24"
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,7 +49,7 @@ export default function ServiceDetailCard({
                     >
                         <div className="relative aspect-square max-w-md mx-auto">
                             {/* Glow Effect Background */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent rounded-full blur-3xl" />
+                            <div className="absolute inset-0 bg-gradient-to-br from-black/15 dark:from-white/15 via-transparent to-transparent rounded-full blur-3xl" />
 
                             {/* Icon Container */}
                             <div className="relative z-10 flex items-center justify-center h-full">
@@ -65,9 +65,9 @@ export default function ServiceDetailCard({
                                     className="relative"
                                 >
                                     <Icon
-                                        className="h-48 w-48 md:h-64 md:w-64 text-white"
+                                        className="h-48 w-48 md:h-64 md:w-64 text-black dark:text-white"
                                         style={{
-                                            filter: "drop-shadow(0 0 40px rgba(255, 255, 255, 0.4))",
+                                            filter: "drop-shadow(0 0 40px rgba(131, 80, 232, 0.4))",
                                         }}
                                     />
                                     {/* Orbiting particles */}
@@ -83,7 +83,7 @@ export default function ServiceDetailCard({
                                         {[0, 1, 2].map((i) => (
                                             <div
                                                 key={i}
-                                                className="absolute h-2 w-2 bg-white rounded-full"
+                                                className="absolute h-2 w-2 bg-black dark:bg-white rounded-full"
                                                 style={{
                                                     top: "50%",
                                                     left: "50%",
@@ -97,8 +97,8 @@ export default function ServiceDetailCard({
 
                             {/* Decorative Circles */}
                             <div className="absolute inset-0 -z-10">
-                                <div className="absolute inset-0 border-2 border-white/10 rounded-full animate-pulse" />
-                                <div className="absolute inset-8 border border-white/5 rounded-full" />
+                                <div className="absolute inset-0 border-2 border-black/10 dark:border-white/10 rounded-full animate-pulse" />
+                                <div className="absolute inset-8 border border-black/5 dark:border-white/5 rounded-full" />
                             </div>
                         </div>
                     </motion.div>
@@ -109,26 +109,26 @@ export default function ServiceDetailCard({
                             initial={{ opacity: 0, x: isEven ? -50 : 50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
+                            transition={{ duration: 0.3, delay: 0.1 }}
                         >
                             {/* Title */}
-                            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                            <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-4">
                                 {name}
                             </h2>
 
                             {/* Tagline */}
-                            <p className="text-xl md:text-2xl text-gray-400 font-light mb-6 tracking-tight">
+                            <p className="text-xl md:text-2xl text-gray-500 dark:text-gray-400 font-medium mb-6 tracking-tight">
                                 {tagline}
                             </p>
 
                             {/* Description */}
-                            <p className="text-lg text-white/70 leading-relaxed mb-8">
+                            <p className="text-lg font-medium text-black/70 dark:text-white/70 leading-relaxed mb-8">
                                 {fullDescription}
                             </p>
 
                             {/* Features */}
                             <div className="mb-8">
-                                <h3 className="text-xl font-semibold text-white mb-4">
+                                <h3 className="text-xl font-semibold text-black dark:text-white mb-4">
                                     Key Features
                                 </h3>
                                 <ServiceFeatureList features={features} />
@@ -136,7 +136,7 @@ export default function ServiceDetailCard({
 
                             {/* Technologies */}
                             <div className="mb-8">
-                                <h3 className="text-xl font-semibold text-white mb-4">
+                                <h3 className="text-xl font-semibold text-black dark:text-white mb-4">
                                     Technologies & Tools
                                 </h3>
                                 <div className="flex flex-wrap gap-2">
@@ -147,7 +147,7 @@ export default function ServiceDetailCard({
                                             whileInView={{ opacity: 1, scale: 1 }}
                                             viewport={{ once: true }}
                                             transition={{ delay: i * 0.05 }}
-                                            className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-white/80 hover:bg-white/10 hover:border-white/30 transition-all duration-300"
+                                            className="px-4 py-2 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-full text-sm text-black/80 dark:text-white/80 hover:bg-black/10 dark:hover:bg-white/10 hover:border-black/30 dark:hover:border-white/30 transition-all duration-300"
                                         >
                                             {tech}
                                         </motion.span>
@@ -174,7 +174,9 @@ export default function ServiceDetailCard({
             </div>
 
             {/* Divider */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-black/20 dark:via-white/20 to-transparent" />
         </motion.div>
     );
-}
+};
+
+export default ServiceDetailCard;

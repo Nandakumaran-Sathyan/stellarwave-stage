@@ -24,7 +24,7 @@ export const PageLoader: React.FC<PageLoaderProps> = ({ onLoadingComplete }) => 
       initial={{ opacity: 1 }}
       animate={{ opacity: fadeOut ? 0 : 1 }}
       transition={{ duration: 0.5 }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black">
+      className="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-black transition-colors duration-300">
       <div className="flex flex-col items-center gap-8">
         {/* 3D Rotating Logo Container */}
         <div style={{ perspective: '1200px' }}>
@@ -44,7 +44,7 @@ export const PageLoader: React.FC<PageLoaderProps> = ({ onLoadingComplete }) => 
             <img
               src="/assets/logo-2.png"
               alt="StellarWave Logo"
-              className="w-32 h-32 object-contain"
+              className="w-32 h-32 object-contain dark:invert-0"
               style={{
                 filter: `
                   drop-shadow(0 0 30px rgba(220, 230, 240, 0.9))
@@ -57,7 +57,7 @@ export const PageLoader: React.FC<PageLoaderProps> = ({ onLoadingComplete }) => 
             />
           </motion.div>
         </div>
-        <p className="font-medium text-white">Destination : StellarWave</p>
+        <p className="font-medium text-black dark:text-white">Destination : StellarWave</p>
       </div>
     </motion.div>
   );

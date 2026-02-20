@@ -125,7 +125,7 @@ const servicesData = [
 
 export default function ServicesExpanded() {
     return (
-        <section className="relative w-full bg-black overflow-hidden">
+        <section className="relative w-full bg-white dark:bg-black overflow-hidden transition-colors duration-300">
             {/* Space Background Effects */}
             <div className="absolute inset-0 z-0">
                 <SpaceParticles
@@ -136,8 +136,8 @@ export default function ServicesExpanded() {
             </div>
 
             {/* Gradient Overlays */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#ffffff/8%,transparent_50%)] pointer-events-none" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,#ffffff/5%,transparent_50%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#000000/5%,transparent_50%)] dark:bg-[radial-gradient(ellipse_at_top,#ffffff/8%,transparent_50%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,#000000/3%,transparent_50%)] dark:bg-[radial-gradient(ellipse_at_bottom,#ffffff/5%,transparent_50%)] pointer-events-none" />
 
             {/* Content */}
             <div className="relative z-10">
@@ -158,13 +158,13 @@ export default function ServicesExpanded() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
+                            transition={{ duration: 0.3 }}
                             className="text-center mb-20"
                         >
-                            <h2 className="text-4xl md:text-6xl font-bold text-white mb-8">
+                            <h2 className="text-4xl md:text-6xl font-bold text-black dark:text-white mb-8">
                                 Growth Is Engineered.
                             </h2>
-                            <div className="space-y-4 text-xl md:text-2xl text-white/80 font-light">
+                            <div className="space-y-4 text-xl md:text-2xl text-black/80 dark:text-white/80 font-medium">
                                 <p>Markets reward clarity.</p>
                                 <p>They punish noise.</p>
                             </div>
@@ -175,14 +175,14 @@ export default function ServicesExpanded() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
+                            transition={{ duration: 0.3, delay: 0.05 }}
                             className="mb-16"
                         >
-                            <p className="text-lg md:text-xl text-white/70 leading-relaxed text-center max-w-4xl mx-auto mb-12">
+                            <p className="text-lg md:text-xl text-black/70 dark:text-white/70 leading-relaxed text-center max-w-4xl mx-auto font-medium mb-12">
                                 Stellar Wave designs structured growth systems for brands, institutions, and competitive ecosystems
                                 that intend to lead — not participate.
                             </p>
-                            <p className="text-lg md:text-xl text-white/70 leading-relaxed text-center max-w-4xl mx-auto">
+                            <p className="text-lg md:text-xl text-black/70 dark:text-white/70 leading-relaxed text-center max-w-4xl mx-auto font-medium">
                                 We operate where strategic direction, creative precision, and measurable performance converge.
                             </p>
                         </motion.div>
@@ -192,17 +192,17 @@ export default function ServicesExpanded() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
+                            transition={{ duration: 0.3, delay: 0.05 }}
                             className="grid md:grid-cols-3 gap-8 mb-20"
                         >
-                            <div className="text-center p-6 rounded-2xl bg-white/5 border border-white/10">
-                                <p className="text-lg text-white/60">No fragmented execution.</p>
+                            <div className="text-center p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
+                                <p className="text-lg font-medium text-black/60 dark:text-white/60">No fragmented execution.</p>
                             </div>
-                            <div className="text-center p-6 rounded-2xl bg-white/5 border border-white/10">
-                                <p className="text-lg text-white/60">No campaign dependency.</p>
+                            <div className="text-center p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
+                                <p className="text-lg font-medium text-black/60 dark:text-white/60">No campaign dependency.</p>
                             </div>
-                            <div className="text-center p-6 rounded-2xl bg-white/5 border border-white/10">
-                                <p className="text-lg text-white/60">No vanity metrics.</p>
+                            <div className="text-center p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
+                                <p className="text-lg font-medium text-black/60 dark:text-white/60">No vanity metrics.</p>
                             </div>
                         </motion.div>
 
@@ -211,10 +211,10 @@ export default function ServicesExpanded() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.4 }}
+                            transition={{ duration: 0.3, delay: 0.05 }}
                             className="text-center mb-24"
                         >
-                            <p className="text-2xl md:text-3xl text-white font-medium">
+                            <p className="text-2xl md:text-3xl text-black dark:text-white font-bold">
                                 Only structured, compounding growth.
                             </p>
                         </motion.div>
@@ -224,20 +224,20 @@ export default function ServicesExpanded() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.5 }}
+                            transition={{ duration: 0.3, delay: 0.05 }}
                             className="mb-20"
                         >
-                            <h3 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center">
+                            <h3 className="text-3xl md:text-4xl font-bold text-black dark:text-white mb-12 text-center">
                                 Our Philosophy
                             </h3>
                             <div className="grid md:grid-cols-2 gap-8 mb-12">
-                                <div className="p-8 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10">
-                                    <p className="text-xl text-white/90 mb-2">Visibility is rented.</p>
-                                    <p className="text-xl text-white font-medium">Authority is built.</p>
+                                <div className="p-8 rounded-2xl bg-gradient-to-br from-black/10 dark:from-white/10 to-black/5 dark:to-white/5 border border-black/10 dark:border-white/10">
+                                    <p className="text-xl font-medium text-black/90 dark:text-white/90 mb-2">Visibility is rented.</p>
+                                    <p className="text-xl text-black dark:text-white font-bold">Authority is built.</p>
                                 </div>
-                                <div className="p-8 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10">
-                                    <p className="text-xl text-white/90 mb-2">Campaigns create spikes.</p>
-                                    <p className="text-xl text-white font-medium">Systems create market control.</p>
+                                <div className="p-8 rounded-2xl bg-gradient-to-br from-black/10 dark:from-white/10 to-black/5 dark:to-white/5 border border-black/10 dark:border-white/10">
+                                    <p className="text-xl font-medium text-black/90 dark:text-white/90 mb-2">Campaigns create spikes.</p>
+                                    <p className="text-xl text-black dark:text-white font-bold">Systems create market control.</p>
                                 </div>
                             </div>
                         </motion.div>
@@ -247,13 +247,13 @@ export default function ServicesExpanded() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.6 }}
+                            transition={{ duration: 0.3, delay: 0.05 }}
                             className="mb-20"
                         >
-                            <p className="text-lg md:text-xl text-white/70 leading-relaxed text-center max-w-4xl mx-auto mb-8">
+                            <p className="text-lg md:text-xl text-black/70 dark:text-white/70 leading-relaxed text-center max-w-4xl mx-auto mb-8">
                                 We do not operate as a vendor.
                             </p>
-                            <p className="text-lg md:text-xl text-white/70 leading-relaxed text-center max-w-4xl mx-auto">
+                            <p className="text-lg md:text-xl text-black/70 dark:text-white/70 leading-relaxed text-center max-w-4xl mx-auto">
                                 We function as a strategic growth partner — aligning with founders, CXOs, and leadership teams to
                                 convert ambition into structured expansion.
                             </p>
@@ -264,16 +264,16 @@ export default function ServicesExpanded() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.7 }}
+                            transition={{ duration: 0.3, delay: 0.05 }}
                             className="text-center"
                         >
-                            <p className="text-lg text-white/60 mb-6">
+                            <p className="text-lg font-medium text-black/60 dark:text-white/60 mb-6">
                                 Every initiative is engineered around three principles:
                             </p>
                             <div className="flex flex-wrap justify-center gap-4 md:gap-8">
-                                <span className="text-2xl md:text-3xl font-bold text-white">Clarity.</span>
-                                <span className="text-2xl md:text-3xl font-bold text-white">Control.</span>
-                                <span className="text-2xl md:text-3xl font-bold text-white">Compounding Impact.</span>
+                                <span className="text-2xl md:text-3xl font-bold text-black dark:text-white">Clarity.</span>
+                                <span className="text-2xl md:text-3xl font-bold text-black dark:text-white">Control.</span>
+                                <span className="text-2xl md:text-3xl font-bold text-black dark:text-white">Compounding Impact.</span>
                             </div>
                         </motion.div>
                     </div>
@@ -281,22 +281,19 @@ export default function ServicesExpanded() {
 
                 {/* Service Detail Cards */}
                 <div className="py-20">
-                    {servicesData.map((service, index) => {
-                        const { id, Icon, name, tagline, fullDescription, features, technologies } = service;
-                        return (
-                            <ServiceDetailCard
-                                key={id}
-                                id={id}
-                                Icon={Icon}
-                                name={name}
-                                tagline={tagline}
-                                fullDescription={fullDescription}
-                                features={features}
-                                technologies={technologies}
-                                index={index}
-                            />
-                        );
-                    })}
+                    {servicesData.map((service, index) => (
+                        <ServiceDetailCard
+                            key={service.id}
+                            id={service.id}
+                            Icon={service.Icon}
+                            name={service.name}
+                            tagline={service.tagline}
+                            fullDescription={service.fullDescription}
+                            features={service.features}
+                            technologies={service.technologies}
+                            index={index}
+                        />
+                    ))}
                 </div>
 
                 {/* Bottom CTA Section */}
@@ -304,14 +301,14 @@ export default function ServicesExpanded() {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
+                    transition={{ duration: 0.4 }}
                     className="py-32 px-4 sm:px-6 lg:px-8 text-center"
                 >
                     <div className="max-w-4xl mx-auto">
-                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                        <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-6">
                             Ready to Transform Your Digital Presence?
                         </h2>
-                        <p className="text-lg md:text-xl text-white/70 mb-8 leading-relaxed">
+                        <p className="text-lg md:text-xl text-black/70 dark:text-white/70 mb-8 leading-relaxed">
                             Let's discuss how our services can help you achieve your business
                             goals and stand out in the digital space.
                         </p>
@@ -321,7 +318,7 @@ export default function ServicesExpanded() {
                                     .getElementById("contact")
                                     ?.scrollIntoView({ behavior: "smooth" });
                             }}
-                            className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-black bg-white hover:bg-gray-200 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
+                            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white dark:text-black bg-black dark:bg-white hover:bg-gray-800 dark:hover:bg-gray-200 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
                         >
                             Start Your Project
                         </button>

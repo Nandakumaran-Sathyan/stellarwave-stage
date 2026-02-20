@@ -2,6 +2,7 @@
 
 import { ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { SpaceParticles } from "@/components/ui/space-particles"
 
 interface HeroProps {
     eyebrow?: string
@@ -27,6 +28,15 @@ export function Hero({
       dark:bg-[linear-gradient(to_bottom,#000,#0000_30%,#898e8e_78%,#ffffff_99%_50%)] 
       rounded-b-xl"
         >
+            {/* Space Particles */}
+            <div className="absolute inset-0 z-0">
+                <SpaceParticles
+                    className="absolute inset-0"
+                    quantity={120}
+                    color="#ffffff"
+                />
+            </div>
+
             {/* Grid BG */}
             <div
                 className="absolute -z-10 inset-0 opacity-80 h-[600px] w-full 

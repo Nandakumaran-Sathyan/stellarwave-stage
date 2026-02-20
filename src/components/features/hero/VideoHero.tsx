@@ -1,28 +1,45 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+
+const SESSION_KEY = 'stellar-hero-video-played';
 
 const VideoHero: React.FC = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
+    const [hasPlayed] = useState(() => sessionStorage.getItem(SESSION_KEY) === 'true');
 
     useEffect(() => {
         const video = videoRef.current;
-        if (video) {
-            // Ensure video plays only once and pauses at the end
-            const handleEnded = () => {
+        if (!video) return;
+
+        if (hasPlayed) {
+            // Already played this session — show last frame
+            const seekToEnd = () => {
+                video.currentTime = video.duration;
                 video.pause();
             };
-
-            video.addEventListener('ended', handleEnded);
-
-            // Attempt to play the video
-            video.play().catch((error) => {
-                console.log('Video autoplay failed:', error);
-            });
-
-            return () => {
-                video.removeEventListener('ended', handleEnded);
-            };
+            if (video.readyState >= 1) {
+                seekToEnd();
+            } else {
+                video.addEventListener('loadedmetadata', seekToEnd, { once: true });
+                return () => video.removeEventListener('loadedmetadata', seekToEnd);
+            }
+            return;
         }
-    }, []);
+
+        // First visit: play once, then mark as played
+        const handleEnded = () => {
+            video.pause();
+            sessionStorage.setItem(SESSION_KEY, 'true');
+        };
+
+        video.addEventListener('ended', handleEnded);
+        video.play().catch((error) => {
+            console.log('Video autoplay failed:', error);
+        });
+
+        return () => {
+            video.removeEventListener('ended', handleEnded);
+        };
+    }, [hasPlayed]);
 
     return (
         <section
@@ -33,10 +50,10 @@ const VideoHero: React.FC = () => {
                 <video
                     ref={videoRef}
                     className="w-full h-full object-cover"
-                    autoPlay
                     muted
                     playsInline
                     loop={false}
+                    autoPlay={!hasPlayed}
                 >
                     <source src="/assets/logo-hero.mp4" type="video/mp4" />
                     Your browser does not support the video tag.

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Building2, ShoppingBag, Dumbbell, Shield, Trophy, ChevronRight, X } from "lucide-react";
-import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Aurora from "@/components/features/common/Aurora";
 import { BackgroundCircles } from "@/components/ui/background-circles";
@@ -137,9 +136,9 @@ const clientData: ClientCategory[] = [
   }
 ];
 
-const ClientCard: React.FC<{ 
-  client: Client; 
-  index: number; 
+const ClientCard: React.FC<{
+  client: Client;
+  index: number;
   gradient: string;
   onClick: () => void;
 }> = ({ client, index, gradient, onClick }) => {
@@ -154,7 +153,8 @@ const ClientCard: React.FC<{
     >
       <div className={cn(
         "relative overflow-hidden rounded-xl p-6 h-full",
-        "bg-black dark:[border:1px_solid_rgba(255,255,255,.1)]",
+        "bg-gray-100 dark:bg-black",
+        "border border-black/10 dark:border-white/10",
         "dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]",
         "transition-all duration-500 ease-out",
         "hover:scale-105 transform-gpu"
@@ -164,7 +164,7 @@ const ClientCard: React.FC<{
           "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500",
           gradient
         )} />
-        
+
         {/* Border glow on hover */}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
           <div className="absolute inset-0 rounded-xl" style={{
@@ -174,24 +174,24 @@ const ClientCard: React.FC<{
 
         <div className="relative z-10">
           <div className="flex items-center gap-4 mb-4">
-            <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden bg-white/5 backdrop-blur-sm border border-white/10 p-2">
-              <img 
-                src={client.logo} 
+            <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden bg-black/5 dark:bg-white/5 backdrop-blur-sm border border-black/10 dark:border-white/10 p-2">
+              <img
+                src={client.logo}
                 alt={`${client.name} logo`}
                 className="w-full h-full object-contain"
               />
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-start justify-between gap-2">
-                <h3 className="text-xl font-semibold text-neutral-300 group-hover:text-white transition-colors duration-300">
+                <h3 className="text-xl font-semibold text-neutral-700 dark:text-neutral-300 group-hover:text-black dark:group-hover:text-white transition-colors duration-300">
                   {client.name}
                 </h3>
-                <ChevronRight className="flex-shrink-0 w-5 h-5 text-zinc-400 group-hover:text-white group-hover:translate-x-1 transition-all duration-300" />
+                <ChevronRight className="flex-shrink-0 w-5 h-5 text-zinc-500 dark:text-zinc-400 group-hover:text-black dark:group-hover:text-white group-hover:translate-x-1 transition-all duration-300" />
               </div>
             </div>
           </div>
-          
-          <p className="text-sm text-zinc-400 font-light tracking-tight leading-relaxed">
+
+          <p className="text-sm text-zinc-500 dark:text-zinc-400 font-medium tracking-tight leading-relaxed">
             {client.tagline}
           </p>
         </div>
@@ -226,7 +226,8 @@ const ClientModal: React.FC<{
         >
           <div className={cn(
             "relative overflow-hidden rounded-2xl p-8",
-            "bg-black dark:[border:1px_solid_rgba(255,255,255,.1)]",
+            "bg-white dark:bg-black",
+            "border border-black/10 dark:border-white/10",
             "dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]"
           )}>
             {/* Gradient overlay */}
@@ -237,28 +238,28 @@ const ClientModal: React.FC<{
 
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-300"
+              className="absolute top-4 right-4 p-2 rounded-full bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 transition-colors duration-300"
             >
-              <X className="w-5 h-5 text-white" />
+              <X className="w-5 h-5 text-black dark:text-white" />
             </button>
 
             <div className="relative z-10">
               <div className="flex items-center gap-4 mb-6">
-                <div className="flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden bg-white/5 backdrop-blur-sm border border-white/10 p-3">
-                  <img 
-                    src={client.logo} 
+                <div className="flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden bg-black/5 dark:bg-white/5 backdrop-blur-sm border border-black/10 dark:border-white/10 p-3">
+                  <img
+                    src={client.logo}
                     alt={`${client.name} logo`}
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <h2 className="text-3xl font-semibold tracking-tighter text-white">
+                <h2 className="text-3xl font-semibold tracking-tighter text-black dark:text-white">
                   {client.name}
                 </h2>
               </div>
-              <p className="text-sm tracking-[0.3em] uppercase font-light text-white/70 mb-6">
+              <p className="text-sm tracking-[0.3em] uppercase font-medium text-black/70 dark:text-white/70 mb-6">
                 {client.tagline}
               </p>
-              <p className="text-base text-white/60 font-light tracking-tight leading-relaxed">
+              <p className="text-base text-black/60 dark:text-white/60 font-medium tracking-tight leading-relaxed">
                 {client.description}
               </p>
             </div>
@@ -289,16 +290,16 @@ const ClientCategory: React.FC<{ category: ClientCategory; index: number }> = ({
           <div className="flex items-center gap-4 mb-6 justify-start">
             <div className={cn(
               "p-3 rounded-xl bg-gradient-to-br backdrop-blur-sm",
-              "dark:[border:1px_solid_rgba(255,255,255,.1)]",
+              "border border-black/10 dark:border-white/10",
               category.gradient
             )}>
-              <Icon className="w-6 h-6 text-white" />
+              <Icon className="w-6 h-6 text-black dark:text-white" />
             </div>
-            <h2 className="text-3xl font-light tracking-tighter text-white sm:text-4xl md:text-5xl">
+            <h2 className="text-3xl font-medium tracking-tighter text-black dark:text-white sm:text-4xl md:text-5xl">
               {category.title}
             </h2>
           </div>
-          <p className="text-sm sm:text-base md:text-lg text-white/60 font-light tracking-tight max-w-4xl leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg text-black/60 dark:text-white/60 font-medium tracking-tight max-w-4xl leading-relaxed">
             {category.subtitle}
           </p>
         </motion.div>
@@ -330,22 +331,9 @@ const ClientCategory: React.FC<{ category: ClientCategory; index: number }> = ({
 const ClientPage: React.FC = () => {
   return (
     <>
-      <Navbar />
-      <main className="relative w-full min-h-screen overflow-hidden" style={{ backgroundColor: '#050505' }}>
-        {/* Aurora Background */}
-        <div className="absolute inset-0 pointer-events-none">
-          <Aurora
-            colorStops={["#093550", "#7f4148", "#a5827f"]}
-            amplitude={0.5}
-            blend={0.4}
-          />
-        </div>
+      <main className="relative w-full min-h-screen overflow-hidden bg-white dark:bg-[#050505] transition-colors duration-300">
+        {/* Background kept clean so global particles show through */}
 
-        {/* Background Circles removed as per request */}
-
-        {/* Radial gradients */}
-        <div className="absolute inset-0 bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/8%),transparent)] pointer-events-none" />
-        
         {/* Content */}
         <div className="relative z-10 pt-32 pb-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
@@ -356,17 +344,17 @@ const ClientPage: React.FC = () => {
               transition={{ duration: 0.8 }}
               className="text-center mb-24 md:mb-32"
             >
-              <p className="text-sm tracking-[0.3em] uppercase font-light text-white/70 mb-6">
+              <p className="text-sm tracking-[0.3em] uppercase font-medium text-black/70 dark:text-white/70 mb-6">
                 Trusted Across Diverse Growth Ecosystems
               </p>
-              
+
               <h1 className="text-3xl sm:text-5xl md:text-[6rem] font-semibold tracking-tighter mb-8">
-                <span className="bg-gradient-to-r from-white to-zinc-300 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-black to-zinc-600 dark:from-white dark:to-zinc-300 bg-clip-text text-transparent">
                   Our Client Constellation
                 </span>
               </h1>
-              
-              <p className="text-sm sm:text-base md:text-lg text-white/60 font-light tracking-tight max-w-4xl mx-auto leading-relaxed">
+
+              <p className="text-sm sm:text-base md:text-lg text-black/60 dark:text-white/60 font-medium tracking-tight max-w-4xl mx-auto leading-relaxed">
                 Stellar Wave partners with enterprises, consumer brands, performance institutions, and large-scale sporting properties that demand structured strategy and measurable execution. Our portfolio reflects cross-sector intelligence, disciplined deployment, and long-term partnership mindset.
               </p>
             </motion.div>
@@ -388,17 +376,18 @@ const ClientPage: React.FC = () => {
             >
               <div className={cn(
                 "inline-block px-8 py-8 rounded-2xl",
-                "bg-black dark:[border:1px_solid_rgba(255,255,255,.1)]",
+                "bg-gray-100 dark:bg-black",
+                "border border-black/10 dark:border-white/10",
                 "dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]",
                 "backdrop-blur-sm"
               )}>
-                <h2 className="text-2xl md:text-3xl font-light tracking-tighter text-white mb-3">
-                  <span className="bg-gradient-to-r from-white to-zinc-300 bg-clip-text text-transparent">
+                <h2 className="text-2xl md:text-3xl font-medium tracking-tighter text-black dark:text-white mb-3">
+                  <span className="bg-gradient-to-r from-black to-zinc-600 dark:from-white dark:to-zinc-300 bg-clip-text text-transparent">
                     Structured Systems. Measurable Impact.
                   </span>
                 </h2>
-                <h2 className="text-2xl md:text-3xl font-light tracking-tighter text-white">
-                  <span className="bg-gradient-to-r from-white to-zinc-300 bg-clip-text text-transparent">
+                <h2 className="text-2xl md:text-3xl font-medium tracking-tighter text-black dark:text-white">
+                  <span className="bg-gradient-to-r from-black to-zinc-600 dark:from-white dark:to-zinc-300 bg-clip-text text-transparent">
                     Scalable Ecosystems.
                   </span>
                 </h2>

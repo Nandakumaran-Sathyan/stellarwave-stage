@@ -1,7 +1,29 @@
 import { Sparkles } from "@/components/ui/sparkles"
 import { Building2, Zap, Rocket, Sparkles as SparklesIcon, Globe } from "lucide-react"
+import { useEffect, useState } from "react"
 
 export function Clients() {
+  const [theme, setTheme] = useState<"light" | "dark">("dark")
+
+  useEffect(() => {
+    // Initial theme detection
+    const isDark = document.documentElement.classList.contains("dark")
+    setTheme(isDark ? "dark" : "light")
+
+    // Watch for theme changes
+    const observer = new MutationObserver(() => {
+      const isDark = document.documentElement.classList.contains("dark")
+      setTheme(isDark ? "dark" : "light")
+    })
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <section id="clients" className="relative w-full overflow-hidden bg-white text-black dark:bg-black dark:text-white py-24 md:py-32 transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6 md:px-8">
@@ -12,7 +34,7 @@ export function Clients() {
               Make your brand unmistakable
             </span>
           </h2>
-          <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-light tracking-tight md:text-xl">
+          <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-medium tracking-tight md:text-xl">
             We help businesses stand out and grow in digital spaces.
           </p>
         </div>
@@ -25,42 +47,42 @@ export function Clients() {
               <div className="flex items-center justify-center text-zinc-400 transition-colors duration-300 hover:text-white">
                 <Building2 className="h-12 w-12 md:h-16 md:w-16" />
               </div>
-              
+
               <div className="flex items-center justify-center text-zinc-400 transition-colors duration-300 hover:text-white">
                 <Zap className="h-12 w-12 md:h-16 md:w-16" />
               </div>
-              
+
               <div className="flex items-center justify-center text-zinc-400 transition-colors duration-300 hover:text-white">
                 <Rocket className="h-12 w-12 md:h-16 md:w-16" />
               </div>
-              
+
               <div className="flex items-center justify-center text-zinc-400 transition-colors duration-300 hover:text-white">
                 <SparklesIcon className="h-12 w-12 md:h-16 md:w-16" />
               </div>
-              
+
               <div className="flex items-center justify-center text-zinc-400 transition-colors duration-300 hover:text-white">
                 <Globe className="h-12 w-12 md:h-16 md:w-16" />
               </div>
             </div>
-            
+
             {/* Duplicate set for seamless loop */}
             <div className="flex min-w-full shrink-0 items-center justify-around gap-6 px-2 sm:gap-8 sm:px-4 md:gap-12">
               <div className="flex items-center justify-center text-zinc-400 transition-colors duration-300 hover:text-white">
                 <Building2 className="h-12 w-12 md:h-16 md:w-16" />
               </div>
-              
+
               <div className="flex items-center justify-center text-zinc-400 transition-colors duration-300 hover:text-white">
                 <Zap className="h-12 w-12 md:h-16 md:w-16" />
               </div>
-              
+
               <div className="flex items-center justify-center text-zinc-400 transition-colors duration-300 hover:text-white">
                 <Rocket className="h-12 w-12 md:h-16 md:w-16" />
               </div>
-              
+
               <div className="flex items-center justify-center text-zinc-400 transition-colors duration-300 hover:text-white">
                 <SparklesIcon className="h-12 w-12 md:h-16 md:w-16" />
               </div>
-              
+
               <div className="flex items-center justify-center text-zinc-400 transition-colors duration-300 hover:text-white">
                 <Globe className="h-12 w-12 md:h-16 md:w-16" />
               </div>
@@ -71,12 +93,12 @@ export function Clients() {
 
       {/* Sparkles Effect */}
       <div className="relative -mt-32 h-96 w-full overflow-hidden [mask-image:radial-gradient(50%_50%,white,transparent)]">
-        <div className="absolute inset-0 before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_bottom_center,#ffffff,transparent_70%)] before:opacity-40" />
-        <div className="absolute -left-1/2 top-1/2 z-10 aspect-[1/0.7] w-[200%] rounded-[100%] border-t border-white/20 bg-zinc-900" />
+        <div className="absolute inset-0 before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_bottom_center,#8350e8,transparent_70%)] before:opacity-40 dark:before:bg-[radial-gradient(circle_at_bottom_center,#8350e8,transparent_70%)]" />
+        <div className="absolute -left-1/2 top-1/2 z-10 aspect-[1/0.7] w-[200%] rounded-[100%] border-t border-zinc-900/20 dark:border-white/20 bg-white dark:bg-zinc-900" />
         <Sparkles
           density={1200}
           className="absolute inset-x-0 bottom-0 h-full w-full [mask-image:radial-gradient(50%_50%,white,transparent_85%)]"
-          color="black dark:white"
+          color={theme === "dark" ? "#ffffff" : "#000000"}
         />
       </div>
     </section>

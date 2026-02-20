@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "@/components/layout/Navbar";
 import VideoHero from "@/components/features/hero/VideoHero";
 import HeroScroll from "@/components/features/hero/HeroScroll";
 import Services from "@/components/features/services/Services";
@@ -11,7 +10,6 @@ import Footer from "@/components/layout/Footer";
 export default function HomePage() {
     return (
         <div className="min-h-screen bg-white text-black dark:bg-[#050505] dark:text-white transition-colors duration-300">
-            <Navbar />
             <main>
                 <VideoHero />
                 <HeroScroll />

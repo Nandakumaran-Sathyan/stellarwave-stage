@@ -22,7 +22,7 @@ export default function ThemeToggle() {
   return (
     <button
       aria-label="Toggle theme"
-      className="ml-2 p-2 rounded-full bg-black/40 hover:bg-black/70 border border-white/10 transition-colors"
+      className="ml-2 p-2 rounded-full bg-black/10 hover:bg-black/20 border border-black/10 dark:bg-black/40 dark:hover:bg-black/70 dark:border-white/10 transition-colors duration-300"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       type="button"
     >

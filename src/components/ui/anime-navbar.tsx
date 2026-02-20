@@ -94,7 +94,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
     <div className="fixed top-5 left-0 right-0 z-[9999]">
       <div className="flex justify-center pt-6 px-4">
         <motion.div
-          className="flex items-center gap-3 bg-black/50 border border-white/10 backdrop-blur-lg py-2 px-2 rounded-full shadow-lg relative"
+          className="flex items-center gap-3 bg-white/80 border border-black/10 dark:bg-black/50 dark:border-white/10 backdrop-blur-lg py-2 px-2 rounded-full shadow-lg relative transition-colors duration-300"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{
@@ -105,7 +105,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
         >
           {logo && (
             <div className="flex items-center pl-2 pr-1">
-              <img src={logo} alt="Logo" className="h-8 w-auto object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
+              <img src={logo} alt="Logo" className="h-8 w-auto object-contain brightness-0 dark:brightness-0 dark:invert transition-all duration-300" />
             </div>
           )}
           {items.map((item) => {
@@ -121,8 +121,8 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
                 onMouseLeave={() => setHoveredTab(null)}
                 className={cn(
                   "relative cursor-pointer text-sm font-semibold px-6 py-3 rounded-full transition-all duration-300",
-                  "text-white/70 hover:text-white",
-                  isActive && "text-white"
+                  "text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white",
+                  isActive && "text-black dark:text-white"
                 )}
               >
                 {isActive && (
@@ -175,7 +175,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.8 }}
-                      className="absolute inset-0 bg-white/10 rounded-full -z-10"
+                      className="absolute inset-0 bg-black/10 dark:bg-white/10 rounded-full -z-10"
                     />
                   )}
                 </AnimatePresence>

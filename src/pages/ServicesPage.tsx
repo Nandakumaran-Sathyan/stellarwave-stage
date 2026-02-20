@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import Navbar from "@/components/layout/Navbar";
 import ServicesExpanded from "@/components/features/services/ServicesExpanded";
 import Footer from "@/components/layout/Footer";
 
@@ -25,7 +24,6 @@ export default function ServicesPage() {
 
     return (
         <>
-            <Navbar />
             <main>
                 <ServicesExpanded />
             </main>

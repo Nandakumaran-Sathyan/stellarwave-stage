@@ -19,7 +19,7 @@ export function ServiceFeatureList({ features, className = "" }: ServiceFeatureL
                     className="flex items-start gap-3"
                 >
                     <CheckCircle className="h-5 w-5 text-purple-400 flex-shrink-0 mt-0.5" />
-                    <span className="text-white/70 text-base leading-relaxed">{feature}</span>
+                    <span className="text-black/70 dark:text-white/70 text-base leading-relaxed">{feature}</span>
                 </motion.li>
             ))}
         </ul>

@@ -19,7 +19,7 @@ export function HeroScroll() {
         <ContainerScroll
           titleComponent={
             <>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-tight text-black dark:text-white text-center">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-medium tracking-tight text-black dark:text-white text-center">
                 We build brands that<br />
                 <span className="block text-3xl sm:text-5xl md:text-[6rem] font-semibold tracking-tighter mt-2 leading-tight md:leading-none">
                   Move the Digital Space
