@@ -1,124 +1,70 @@
 import React from "react";
 import { motion } from "framer-motion";
-import {
-    Target,
-    Megaphone,
-    Rocket,
-    Shield,
-    Trophy,
-} from "lucide-react";
 import ServiceDetailCard from "./ServiceDetailCard";
 import { SpaceParticles } from "@/components/ui/space-particles";
 import { Hero } from "@/components/ui/hero-1";
 
 const servicesData = [
     {
-        id: "service-marketing-strategy",
-        Icon: Target,
-        name: "Strategic Architecture",
-        tagline: "Before capital is deployed, risk must be reduced.",
+        id: "service-strategy",
+        imageUrl: "https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?w=600&auto=format&fit=crop&q=80",
+        name: "Strategy",
+        tagline: "Clarity before scale.",
         fullDescription:
-            "We design the strategic foundation that governs every execution decision — positioning, audience modeling, competitive mapping, and structured growth roadmaps. Execution without strategic control is volatility. We eliminate volatility.",
+            "Before campaigns, before content, before ads — we define direction. From brand strategy to go-to-market planning, we bring structure to ambition. Because growth without clarity becomes noise.",
         features: [
-            "Brand & positioning architecture",
-            "Competitive ecosystem intelligence",
-            "Audience segmentation frameworks",
-            "Communication strategy systems",
-            "3 / 6 / 12-month structured growth models",
-            "Campaign & funnel engineering",
+            "Your positioning in the market",
+            "Your competitive advantage",
+            "Your audience behaviour",
+            "Your communication framework",
+            "Your short- and long-term growth roadmap",
         ],
-        technologies: ["Strategic Planning", "Market Intelligence", "Growth Modeling", "Competitive Analysis", "Brand Architecture"],
+        technologies: ["Brand Strategy", "Go-to-Market Planning", "Growth Modeling", "Competitive Analysis", "Audience Research"],
     },
     {
-        id: "service-brand-design",
-        Icon: Megaphone,
-        name: "Communication & Influence Systems",
-        tagline: "Perception determines market power.",
+        id: "service-creative",
+        imageUrl: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&auto=format&fit=crop&q=80",
+        name: "Creative",
+        tagline: "Ideas that carry intent.",
         fullDescription:
-            "We build communication ecosystems that reinforce authority across digital, retail, institutional, and event environments. Creativity is not decoration. It is perception engineering.",
+            "Creativity is not decoration. It's how your brand is experienced. Every asset is aligned with your strategy — so your brand doesn't just look good, it communicates with purpose.",
         features: [
-            "Social & content governance systems",
-            "High-precision creative production",
-            "Motion & brand film assets",
-            "Retail & experiential branding",
-            "Campaign architecture",
-            "Sponsor & board-level presentations",
+            "Brand identity systems",
+            "Campaign concepts",
+            "Social media content",
+            "Short-form videos & brand films",
+            "Retail & experiential creatives",
+            "Presentation & sponsorship decks",
         ],
         technologies: [
             "Adobe Creative Suite",
             "Figma",
             "After Effects",
             "Premiere Pro",
-            "Cinema 4D",
+            "Brand Identity Architecture",
         ],
     },
     {
-        id: "service-web-development",
-        Icon: Rocket,
-        name: "Performance & Digital Infrastructure",
-        tagline: "Growth must be measurable. And scalable.",
+        id: "service-growth",
+        imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80",
+        name: "Growth",
+        tagline: "Measured. Scalable. Sustainable.",
         fullDescription:
-            "We architect digital performance systems that convert visibility into revenue, participation, and long-term market leverage. Every system operates under defined KPIs, reporting cadence, and optimization discipline. We do not 'run ads.' We build performance velocity.",
+            "Once direction and communication are aligned, we build momentum. We focus on outcomes — leads, conversions, authority, and long-term brand strength. Because visibility is temporary. Growth is engineered.",
         features: [
-            "Performance marketing (Meta & Google ecosystems)",
-            "Conversion architecture & funnel optimization",
-            "Retargeting intelligence",
-            "Analytics integration & reporting frameworks",
-            "Website & e-commerce systems",
-            "Custom digital platforms & mobile applications",
+            "Performance marketing (Meta, Google & digital platforms)",
+            "Conversion-focused funnels",
+            "Website & UI/UX systems",
+            "SEO & authority building",
+            "Influencer & PR initiatives",
+            "Marketing automation & CRM integration",
         ],
         technologies: [
             "React / Next.js",
-            "TypeScript",
-            "Node.js",
+            "Performance Marketing",
             "Google Analytics",
             "Meta Business Suite",
-        ],
-    },
-    {
-        id: "service-digital-marketing",
-        Icon: Shield,
-        name: "Authority & Market Control Systems",
-        tagline: "Short-term traction is easy. Sustained dominance is engineered.",
-        fullDescription:
-            "We design authority ecosystems that strengthen search visibility, influence conversation, and protect brand credibility. Brands that control narrative control markets.",
-        features: [
-            "Technical & strategic SEO frameworks",
-            "Long-form content authority models",
-            "Influencer & ambassador systems",
-            "PR strategy & media positioning",
-            "Online reputation monitoring",
-            "Crisis communication advisory",
-            "Automation & CRM integration",
-        ],
-        technologies: [
-            "SEMrush",
-            "Ahrefs",
-            "Google Search Console",
-            "HubSpot",
-            "Salesforce",
-        ],
-    },
-    {
-        id: "service-content-creation",
-        Icon: Trophy,
-        name: "Sporting & Institutional Growth Architecture",
-        tagline: "Competitive ecosystems require structural discipline.",
-        fullDescription:
-            "We specialize in building leagues, federations, championships, academies, and sporting properties with scalable digital and commercial systems. From regional platforms to national scale — we engineer sporting ecosystems for long-term relevance.",
-        features: [
-            "League & championship brand engineering",
-            "Sponsorship architecture & investment decks",
-            "Athlete & association positioning",
-            "Governance-aligned communication systems",
-            "Integrated digital amplification models",
-        ],
-        technologies: [
-            "Brand Strategy",
-            "Sponsorship Platforms",
-            "Digital Ecosystems",
-            "Event Management",
-            "Analytics & Reporting",
+            "SEO & Analytics Tools",
         ],
     },
 ];
@@ -143,138 +89,31 @@ export default function ServicesExpanded() {
             <div className="relative z-10">
                 {/* Hero Section */}
                 <Hero
-                    eyebrow="Growth Is Engineered"
-                    title="Markets reward clarity. They punish noise."
-                    subtitle="Stellar Wave designs structured growth systems for brands, institutions, and competitive ecosystems that intend to lead — not participate. We operate where strategic direction, creative precision, and measurable performance converge."
+                    eyebrow="WHAT WE DO"
+                    title="Strategy. Creative. Growth."
+                    subtitle="At Stellar Wave, we help brands move forward with clarity and control. Everything we do falls under three focused disciplines — designed to work together."
                     ctaLabel="View Services"
-                    ctaHref="#service-marketing-strategy"
+                    ctaHref="#service-strategy"
                 />
 
                 {/* Philosophy Section */}
                 <div className="py-20 px-4 sm:px-6 lg:px-8">
-                    <div className="max-w-5xl mx-auto">
-                        {/* Growth Is Engineered */}
+                    <div className="max-w-4xl mx-auto text-center">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.3 }}
-                            className="text-center mb-20"
                         >
-                            <h2 className="text-4xl md:text-6xl font-bold text-black dark:text-white mb-8">
-                                Growth Is Engineered.
+                            <h2 className="text-3xl md:text-5xl font-bold text-black dark:text-white mb-8">
+                                Three Disciplines. One System.
                             </h2>
-                            <div className="space-y-4 text-xl md:text-2xl text-black/80 dark:text-white/80 font-medium">
-                                <p>Markets reward clarity.</p>
-                                <p>They punish noise.</p>
-                            </div>
-                        </motion.div>
-
-                        {/* Mission Statement */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.3, delay: 0.05 }}
-                            className="mb-16"
-                        >
-                            <p className="text-lg md:text-xl text-black/70 dark:text-white/70 leading-relaxed text-center max-w-4xl mx-auto font-medium mb-12">
-                                Stellar Wave designs structured growth systems for brands, institutions, and competitive ecosystems
-                                that intend to lead — not participate.
+                            <p className="text-xl md:text-2xl text-black/70 dark:text-white/70 font-medium mb-4">
+                                We don't do isolated campaigns.
                             </p>
-                            <p className="text-lg md:text-xl text-black/70 dark:text-white/70 leading-relaxed text-center max-w-4xl mx-auto font-medium">
-                                We operate where strategic direction, creative precision, and measurable performance converge.
+                            <p className="text-xl md:text-2xl text-black/70 dark:text-white/70 font-medium">
+                                We build integrated systems that compound.
                             </p>
-                        </motion.div>
-
-                        {/* No's Section */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.3, delay: 0.05 }}
-                            className="grid md:grid-cols-3 gap-8 mb-20"
-                        >
-                            <div className="text-center p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
-                                <p className="text-lg font-medium text-black/60 dark:text-white/60">No fragmented execution.</p>
-                            </div>
-                            <div className="text-center p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
-                                <p className="text-lg font-medium text-black/60 dark:text-white/60">No campaign dependency.</p>
-                            </div>
-                            <div className="text-center p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
-                                <p className="text-lg font-medium text-black/60 dark:text-white/60">No vanity metrics.</p>
-                            </div>
-                        </motion.div>
-
-                        {/* Only Section */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.3, delay: 0.05 }}
-                            className="text-center mb-24"
-                        >
-                            <p className="text-2xl md:text-3xl text-black dark:text-white font-bold">
-                                Only structured, compounding growth.
-                            </p>
-                        </motion.div>
-
-                        {/* Our Philosophy */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.3, delay: 0.05 }}
-                            className="mb-20"
-                        >
-                            <h3 className="text-3xl md:text-4xl font-bold text-black dark:text-white mb-12 text-center">
-                                Our Philosophy
-                            </h3>
-                            <div className="grid md:grid-cols-2 gap-8 mb-12">
-                                <div className="p-8 rounded-2xl bg-gradient-to-br from-black/10 dark:from-white/10 to-black/5 dark:to-white/5 border border-black/10 dark:border-white/10">
-                                    <p className="text-xl font-medium text-black/90 dark:text-white/90 mb-2">Visibility is rented.</p>
-                                    <p className="text-xl text-black dark:text-white font-bold">Authority is built.</p>
-                                </div>
-                                <div className="p-8 rounded-2xl bg-gradient-to-br from-black/10 dark:from-white/10 to-black/5 dark:to-white/5 border border-black/10 dark:border-white/10">
-                                    <p className="text-xl font-medium text-black/90 dark:text-white/90 mb-2">Campaigns create spikes.</p>
-                                    <p className="text-xl text-black dark:text-white font-bold">Systems create market control.</p>
-                                </div>
-                            </div>
-                        </motion.div>
-
-                        {/* Strategic Partner */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.3, delay: 0.05 }}
-                            className="mb-20"
-                        >
-                            <p className="text-lg md:text-xl text-black/70 dark:text-white/70 leading-relaxed text-center max-w-4xl mx-auto mb-8">
-                                We do not operate as a vendor.
-                            </p>
-                            <p className="text-lg md:text-xl text-black/70 dark:text-white/70 leading-relaxed text-center max-w-4xl mx-auto">
-                                We function as a strategic growth partner — aligning with founders, CXOs, and leadership teams to
-                                convert ambition into structured expansion.
-                            </p>
-                        </motion.div>
-
-                        {/* Three Principles */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.3, delay: 0.05 }}
-                            className="text-center"
-                        >
-                            <p className="text-lg font-medium text-black/60 dark:text-white/60 mb-6">
-                                Every initiative is engineered around three principles:
-                            </p>
-                            <div className="flex flex-wrap justify-center gap-4 md:gap-8">
-                                <span className="text-2xl md:text-3xl font-bold text-black dark:text-white">Clarity.</span>
-                                <span className="text-2xl md:text-3xl font-bold text-black dark:text-white">Control.</span>
-                                <span className="text-2xl md:text-3xl font-bold text-black dark:text-white">Compounding Impact.</span>
-                            </div>
                         </motion.div>
                     </div>
                 </div>
@@ -285,7 +124,7 @@ export default function ServicesExpanded() {
                         <ServiceDetailCard
                             key={service.id}
                             id={service.id}
-                            Icon={service.Icon}
+                            imageUrl={service.imageUrl}
                             name={service.name}
                             tagline={service.tagline}
                             fullDescription={service.fullDescription}
@@ -306,11 +145,10 @@ export default function ServicesExpanded() {
                 >
                     <div className="max-w-4xl mx-auto">
                         <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-6">
-                            Ready to Transform Your Digital Presence?
+                            Three pillars. One integrated system.
                         </h2>
-                        <p className="text-lg md:text-xl text-black/70 dark:text-white/70 mb-8 leading-relaxed">
-                            Let's discuss how our services can help you achieve your business
-                            goals and stand out in the digital space.
+                        <p className="text-lg md:text-xl text-black/70 dark:text-white/70 mb-8 leading-relaxed font-medium">
+                            Built to help brands lead — not just participate.
                         </p>
                         <button
                             onClick={() => {

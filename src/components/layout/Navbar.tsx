@@ -14,7 +14,7 @@ const navItems = [
     icon: Briefcase,
   },
   {
-    name: "Teams",
+    name: "About Us",
     url: "/teams",
     icon: Users,
   },

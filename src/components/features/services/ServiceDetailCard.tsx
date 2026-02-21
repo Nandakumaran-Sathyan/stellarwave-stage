@@ -1,12 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { LucideIcon } from "lucide-react";
 import { ServiceFeatureList } from "@/components/ui/service-feature-list";
 import { StarButton } from "@/components/ui/star-button";
 
 interface ServiceDetailCardProps {
     id: string;
-    Icon: LucideIcon;
+    imageUrl: string;
     name: string;
     tagline: string;
     fullDescription: string;
@@ -17,7 +16,7 @@ interface ServiceDetailCardProps {
 
 const ServiceDetailCard: React.FC<ServiceDetailCardProps> = ({
     id,
-    Icon,
+    imageUrl,
     name,
     tagline,
     fullDescription,
@@ -47,60 +46,20 @@ const ServiceDetailCard: React.FC<ServiceDetailCardProps> = ({
                         whileHover={{ scale: 1.02 }}
                         transition={{ duration: 0.3 }}
                     >
-                        <div className="relative aspect-square max-w-md mx-auto">
-                            {/* Glow Effect Background */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-black/15 dark:from-white/15 via-transparent to-transparent rounded-full blur-3xl" />
-
-                            {/* Icon Container */}
-                            <div className="relative z-10 flex items-center justify-center h-full">
-                                <motion.div
-                                    animate={{
-                                        y: [0, -15, 0],
-                                    }}
-                                    transition={{
-                                        duration: 4,
-                                        repeat: Infinity,
-                                        ease: "easeInOut",
-                                    }}
-                                    className="relative"
-                                >
-                                    <Icon
-                                        className="h-48 w-48 md:h-64 md:w-64 text-black dark:text-white"
-                                        style={{
-                                            filter: "drop-shadow(0 0 40px rgba(131, 80, 232, 0.4))",
-                                        }}
-                                    />
-                                    {/* Orbiting particles */}
-                                    <motion.div
-                                        className="absolute -inset-4"
-                                        animate={{ rotate: 360 }}
-                                        transition={{
-                                            duration: 20,
-                                            repeat: Infinity,
-                                            ease: "linear",
-                                        }}
-                                    >
-                                        {[0, 1, 2].map((i) => (
-                                            <div
-                                                key={i}
-                                                className="absolute h-2 w-2 bg-black dark:bg-white rounded-full"
-                                                style={{
-                                                    top: "50%",
-                                                    left: "50%",
-                                                    transform: `rotate(${i * 120}deg) translateX(140px)`,
-                                                }}
-                                            />
-                                        ))}
-                                    </motion.div>
-                                </motion.div>
-                            </div>
-
-                            {/* Decorative Circles */}
-                            <div className="absolute inset-0 -z-10">
-                                <div className="absolute inset-0 border-2 border-black/10 dark:border-white/10 rounded-full animate-pulse" />
-                                <div className="absolute inset-8 border border-black/5 dark:border-white/5 rounded-full" />
-                            </div>
-                        </div>
+                        <motion.div
+                            animate={{ y: [0, -10, 0] }}
+                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                            className="w-full h-full"
+                        >
+                            <img
+                                src={imageUrl}
+                                alt={name}
+                                className="w-full h-[480px] lg:h-[560px] object-cover rounded-2xl"
+                                style={{
+                                    boxShadow: "0 0 60px rgba(131, 80, 232, 0.3)",
+                                }}
+                            />
+                        </motion.div>
                     </motion.div>
 
                     {/* Content Section */}
