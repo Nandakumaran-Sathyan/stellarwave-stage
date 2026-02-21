@@ -11,6 +11,7 @@ interface Client {
   tagline: string;
   description: string;
   logo: string;
+  logoPadding?: string;
 }
 
 interface ClientCategory {
@@ -32,13 +33,15 @@ const clientData: ClientCategory[] = [
         name: "Snowforce",
         tagline: "ERP Solutions for Infrastructure & Construction Enterprises",
         description: "Snowforce delivers enterprise resource planning solutions tailored for infrastructure and construction companies. Operating in a complex B2B ecosystem, the brand requires knowledge-led positioning, authority-driven communication, and structured digital visibility to align with long sales cycles and technical decision-making processes.",
-        logo: "https://ui-avatars.com/api/?name=Snowforce&background=8350e8&color=fff&size=128&bold=true"
+        logo: "/assets/Logo_s/snowforce.png",
+        logoPadding: "p-0"
       },
       {
         name: "TAV",
         tagline: "Australian Mid-Drive Motor Technology Manufacturer",
         description: "TAV is an Australian-based engineering company specializing in advanced mid-drive motor systems. Positioned within the evolving electric mobility ecosystem, the brand demands market education, technical credibility, and performance-focused communication frameworks to strengthen its global positioning.",
-        logo: "https://ui-avatars.com/api/?name=TAV&background=8350e8&color=fff&size=128&bold=true"
+        logo: "/assets/Logo_s/tav-electric.png",
+        logoPadding: "p-0"
       }
     ]
   },
@@ -52,19 +55,22 @@ const clientData: ClientCategory[] = [
         name: "Humming Bird",
         tagline: "Children's Magazines, Activity & Stress-Free Colouring Books",
         description: "Humming Bird creates educational and stress-relief content for children through thoughtfully designed magazines and activity books. The brand operates in a trust-driven parent-focused market, requiring engaging communication, product visibility, and consistent digital storytelling to strengthen brand recall and purchase intent.",
-        logo: "https://ui-avatars.com/api/?name=Humming+Bird&background=ec4899&color=fff&size=128&bold=true"
+        logo: "/assets/Logo_s/humming-bird.png",
+        logoPadding: "p-0"
       },
       {
         name: "Cycle Studio LLP",
         tagline: "Premium Bicycle Retail & Service Brand",
         description: "Cycle Studio LLP is a high-end bicycle retail and service outlet catering to enthusiasts and performance riders. Positioned in a niche lifestyle segment, the brand requires strong product positioning, retail branding clarity, and conversion-focused digital strategies to drive both store visits and service engagement.",
-        logo: "https://ui-avatars.com/api/?name=Cycle+Studio&background=a855f7&color=fff&size=128&bold=true"
+        logo: "/assets/Logo_s/cycle-studio.png",
+        logoPadding: "p-0"
       },
       {
         name: "Annanagar Auto Service",
         tagline: "Authorised HP Automotive Dealer",
         description: "Annanagar Auto Service is an authorised HP dealer operating in a competitive automotive service market. The brand requires structured local visibility, trust-building communication, and consistent customer engagement systems to strengthen regional market positioning.",
-        logo: "https://ui-avatars.com/api/?name=Annanagar+Auto&background=d946ef&color=fff&size=128&bold=true"
+        logo: "/assets/Logo_s/anna%20nagar%20auto%20service.png",
+        logoPadding: "p-2"
       }
     ]
   },
@@ -78,7 +84,8 @@ const clientData: ClientCategory[] = [
         name: "Spitfire Kickboxing Academy",
         tagline: "Professional Martial Arts & Competitive Training Institution",
         description: "Spitfire Kickboxing Academy trains athletes across multiple competitive levels. Operating in a performance-driven environment, the academy requires energetic digital positioning, disciplined communication cadence, and structured growth systems to strengthen athlete participation and brand authority.",
-        logo: "https://ui-avatars.com/api/?name=Spitfire&background=f97316&color=fff&size=128&bold=true"
+        logo: "/assets/Logo_s/national%20kick%20boxing.png",
+        logoPadding: "p-0"
       }
     ]
   },
@@ -92,19 +99,22 @@ const clientData: ClientCategory[] = [
         name: "TNCA",
         tagline: "Tamil Nadu Cycling Association | 60+ Years Legacy",
         description: "TNCA is a long-standing state-level cycling association (Under SDAT & CFI) responsible for athlete development and event governance. The institution requires structured digital communication systems, event visibility amplification, and stakeholder-aligned positioning to strengthen participation and institutional credibility.",
-        logo: "https://ui-avatars.com/api/?name=TNCA&background=3b82f6&color=fff&size=128&bold=true"
+        logo: "/assets/Logo_s/tamilnadu-cycle-association.png",
+        logoPadding: "p-0"
       },
       {
         name: "TNSKA",
         tagline: "Tamil Nadu Kickboxing Association | 1000+ Athletes",
         description: "TNSKA (Under WAKO India) oversees kickboxing development across Tamil Nadu, supporting athletes competing at state, national, and international levels. The association requires disciplined event communication, athlete engagement systems, and structured digital amplification to support large-scale participation.",
-        logo: "https://ui-avatars.com/api/?name=TNSKA&background=06b6d4&color=fff&size=128&bold=true"
+        logo: "/assets/Logo_s/tamilnadu-state-kickboxing.png",
+        logoPadding: "p-0"
       },
       {
         name: "TNAA",
         tagline: "Tamil Nadu Athletic Association",
         description: "TNAA governs athletics development within the state framework. Institutional positioning, event communication clarity, and consistent stakeholder visibility are critical to strengthening athlete outreach and ecosystem growth.",
-        logo: "https://ui-avatars.com/api/?name=TNAA&background=0ea5e9&color=fff&size=128&bold=true"
+        logo: "/assets/Logo_s/tamilnadu-athletic-association.png",
+        logoPadding: "p-0"
       }
     ]
   },
@@ -118,23 +128,27 @@ const clientData: ClientCategory[] = [
         name: "TCL – Tamil Nadu Cycling League",
         tagline: "State-Level Franchise Cycling League",
         description: "TCL operates as a competitive league format featuring eight district-based teams across Tamil Nadu. The property demands league identity architecture, sponsorship-ready positioning, and structured digital amplification to build audience engagement and competitive visibility.",
-        logo: "https://ui-avatars.com/api/?name=TCL&background=eab308&color=000&size=128&bold=true"
+        logo: "/assets/Logo_s/tcl.png",
+        logoPadding: "p-0"
       },
       {
         name: "National Kickboxing Championship 2025",
         tagline: "1,000+ Athletes | Pan-India Participation",
         description: "A large-scale national-level championship bringing together athletes from across India. The event requires structured communication governance, participation growth strategy, and high-volume digital deployment to ensure operational visibility and competitive credibility.",
-        logo: "https://ui-avatars.com/api/?name=NKC+2025&background=f59e0b&color=fff&size=128&bold=true"
+        logo: "/assets/Logo_s/national%20kick%20boxing.png",
+        logoPadding: "p-0"
       },
       {
         name: "Track Asia Cup 2026 – Chennai",
         tagline: "International Athletic Event | 10 Asian Nations Participating",
         description: "A landmark international event hosted in Chennai featuring participation from ten Asian countries. The property demands international-standard event positioning, multi-layered digital amplification, and structured stakeholder communication systems.",
-        logo: "https://ui-avatars.com/api/?name=Asia+Cup&background=fb923c&color=fff&size=128&bold=true"
+        logo: "/assets/Logo_s/track%20asia.png",
+        logoPadding: "p-0"
       }
     ]
   }
 ];
+
 
 const ClientCard: React.FC<{
   client: Client;
@@ -174,7 +188,7 @@ const ClientCard: React.FC<{
 
         <div className="relative z-10">
           <div className="flex items-center gap-4 mb-4">
-            <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden bg-black/5 dark:bg-white/5 backdrop-blur-sm border border-black/10 dark:border-white/10 p-2">
+            <div className={cn("flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden bg-black/5 dark:bg-white/5 backdrop-blur-sm border border-black/10 dark:border-white/10", client.logoPadding ?? "p-0")}>
               <img
                 src={client.logo}
                 alt={`${client.name} logo`}
@@ -245,7 +259,7 @@ const ClientModal: React.FC<{
 
             <div className="relative z-10">
               <div className="flex items-center gap-4 mb-6">
-                <div className="flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden bg-black/5 dark:bg-white/5 backdrop-blur-sm border border-black/10 dark:border-white/10 p-3">
+                <div className={cn("flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden bg-black/5 dark:bg-white/5 backdrop-blur-sm border border-black/10 dark:border-white/10", client.logoPadding ?? "p-0")}>
                   <img
                     src={client.logo}
                     alt={`${client.name} logo`}
