@@ -2,6 +2,7 @@ import {
   Target,
   Palette,
   TrendingUp,
+  Trophy,
 } from "lucide-react";
 
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
@@ -52,6 +53,21 @@ const features = [
     ),
     className: "lg:col-span-1 lg:row-span-1",
   },
+  {
+    Icon: Trophy,
+    name: "Competitive Sporting Ecosystems",
+    description: "And One More Thing. Beyond strategy, creativity, and growth systems — we operate inside competitive sporting ecosystems. We build and amplify leagues, championships, athlete positioning, sponsorship decks, and event amplification systems. When the environment demands adrenaline and precision — we deliver both.",
+    href: "/services#service-sports",
+    cta: "Explore Sporting Ecosystems",
+    background: (
+      <img
+        className="absolute inset-0 w-full h-full object-cover opacity-40"
+        src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1600&auto=format&fit=crop"
+        alt="Competitive Sporting Ecosystems"
+      />
+    ),
+    className: "lg:col-span-3 lg:row-span-1",
+  },
 ];
 
 export default function Services() {
@@ -61,7 +77,7 @@ export default function Services() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Our Services</h2>
           <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-            Strategy. Creative. Growth. Three focused disciplines — designed to work together.
+            Strategy. Creative. Growth. And one more — four disciplines working as one integrated system.
           </p>
         </div>
         <BentoGrid>
