@@ -33,7 +33,7 @@ export const PageLoader: React.FC<PageLoaderProps> = ({ onLoadingComplete }) => 
               rotateY: [0, 360]
             }}
             transition={{
-              duration: 2,
+              duration: 4,
               repeat: Infinity,
               ease: "linear"
             }}

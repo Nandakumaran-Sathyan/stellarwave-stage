@@ -1,16 +1,45 @@
 import { Sparkles } from "@/components/ui/sparkles"
-import { Building2, Zap, Rocket, Sparkles as SparklesIcon, Globe } from "lucide-react"
 import { useEffect, useState } from "react"
+
+const logos = [
+  { src: "/assets/Logo_s/snowforce.png", alt: "Snowforce" },
+  { src: "/assets/Logo_s/tav-electric.png", alt: "TAV Electric" },
+  { src: "/assets/Logo_s/humming-bird.png", alt: "Humming Bird" },
+  { src: "/assets/Logo_s/cycle-studio.png", alt: "Cycle Studio" },
+  { src: "/assets/Logo_s/anna%20nagar%20auto%20service.png", alt: "Annanagar Auto Service", invert: true },
+  { src: "/assets/Logo_s/tamilnadu-cycle-association.png", alt: "TNCA" },
+  { src: "/assets/Logo_s/tamilnadu-state-kickboxing.png", alt: "TNSKA" },
+  { src: "/assets/Logo_s/tamilnadu-athletic-association.png", alt: "TNAA" },
+  { src: "/assets/Logo_s/tcl.png", alt: "TCL" },
+  { src: "/assets/Logo_s/national%20kick%20boxing.png", alt: "National Kickboxing" },
+  { src: "/assets/Logo_s/track%20asia.png", alt: "Track Asia Cup" },
+];
+
+const LogoStrip = () => (
+  <div className="flex min-w-full shrink-0 items-center justify-around gap-8 px-4">
+    {logos.map((logo) => (
+      <div key={logo.alt} className="flex-shrink-0 h-12 md:h-16 flex items-center justify-center">
+        <img
+          src={logo.src}
+          alt={logo.alt}
+          className={[
+            "h-full w-auto max-w-[120px] object-contain",
+            "grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300",
+            logo.invert ? "dark:invert" : "",
+          ].join(" ")}
+        />
+      </div>
+    ))}
+  </div>
+);
 
 export function Clients() {
   const [theme, setTheme] = useState<"light" | "dark">("dark")
 
   useEffect(() => {
-    // Initial theme detection
     const isDark = document.documentElement.classList.contains("dark")
     setTheme(isDark ? "dark" : "light")
 
-    // Watch for theme changes
     const observer = new MutationObserver(() => {
       const isDark = document.documentElement.classList.contains("dark")
       setTheme(isDark ? "dark" : "light")
@@ -41,52 +70,9 @@ export function Clients() {
 
         {/* Logos Carousel */}
         <div className="relative mx-auto max-w-7xl overflow-hidden">
-          <div className="flex animate-[scroll_30s_linear_infinite] hover:[animation-play-state:paused]">
-            {/* First set of logos */}
-            <div className="flex min-w-full shrink-0 items-center justify-around gap-6 px-2 sm:gap-8 sm:px-4 md:gap-12">
-              <div className="flex items-center justify-center text-zinc-400 transition-colors duration-300 hover:text-white">
-                <Building2 className="h-12 w-12 md:h-16 md:w-16" />
-              </div>
-
-              <div className="flex items-center justify-center text-zinc-400 transition-colors duration-300 hover:text-white">
-                <Zap className="h-12 w-12 md:h-16 md:w-16" />
-              </div>
-
-              <div className="flex items-center justify-center text-zinc-400 transition-colors duration-300 hover:text-white">
-                <Rocket className="h-12 w-12 md:h-16 md:w-16" />
-              </div>
-
-              <div className="flex items-center justify-center text-zinc-400 transition-colors duration-300 hover:text-white">
-                <SparklesIcon className="h-12 w-12 md:h-16 md:w-16" />
-              </div>
-
-              <div className="flex items-center justify-center text-zinc-400 transition-colors duration-300 hover:text-white">
-                <Globe className="h-12 w-12 md:h-16 md:w-16" />
-              </div>
-            </div>
-
-            {/* Duplicate set for seamless loop */}
-            <div className="flex min-w-full shrink-0 items-center justify-around gap-6 px-2 sm:gap-8 sm:px-4 md:gap-12">
-              <div className="flex items-center justify-center text-zinc-400 transition-colors duration-300 hover:text-white">
-                <Building2 className="h-12 w-12 md:h-16 md:w-16" />
-              </div>
-
-              <div className="flex items-center justify-center text-zinc-400 transition-colors duration-300 hover:text-white">
-                <Zap className="h-12 w-12 md:h-16 md:w-16" />
-              </div>
-
-              <div className="flex items-center justify-center text-zinc-400 transition-colors duration-300 hover:text-white">
-                <Rocket className="h-12 w-12 md:h-16 md:w-16" />
-              </div>
-
-              <div className="flex items-center justify-center text-zinc-400 transition-colors duration-300 hover:text-white">
-                <SparklesIcon className="h-12 w-12 md:h-16 md:w-16" />
-              </div>
-
-              <div className="flex items-center justify-center text-zinc-400 transition-colors duration-300 hover:text-white">
-                <Globe className="h-12 w-12 md:h-16 md:w-16" />
-              </div>
-            </div>
+          <div className="flex animate-[scroll_20s_linear_infinite] hover:[animation-play-state:paused]">
+            <LogoStrip />
+            <LogoStrip />
           </div>
         </div>
       </div>
