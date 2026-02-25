@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import Lenis from "lenis";
+import { useMotionValue } from "framer-motion";
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
     const lenisRef = useRef<Lenis | null>(null);
@@ -8,8 +9,8 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     useEffect(() => {
         const lenis = new Lenis({
-            duration: 1.4,
-            easing: (t: number) => 1 - Math.pow(1 - t, 4), // quartic ease-out — silky smooth
+            duration: 1.2,
+            easing: (t: number) => 1 - Math.pow(1 - t, 4),
             smoothWheel: true,
             touchMultiplier: 1.5,
             infinite: false,
@@ -18,12 +19,19 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
         lenisRef.current = lenis;
 
+        // Sync Lenis scroll position to window.scrollY so
+        // position:sticky and framer-motion useScroll both work correctly
+        lenis.on("scroll", ({ scroll }: { scroll: number }) => {
+            // Keep document scroll in sync so sticky elements can see the right position
+            document.documentElement.dataset.scroll = String(Math.round(scroll));
+        });
+
         function raf(time: number) {
             lenis.raf(time);
             requestAnimationFrame(raf);
         }
 
-        requestAnimationFrame(raf);
+        const id = requestAnimationFrame(raf);
 
         return () => {
             lenis.destroy();

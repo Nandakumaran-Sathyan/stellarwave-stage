@@ -180,27 +180,17 @@ export default function TeamsPage() {
                             transition={{ duration: 0.6 }}
                             className="text-center mb-16"
                         >
-                            <p className="uppercase tracking-widest text-sm font-semibold text-black/40 dark:text-white/40 mb-4">
+                            <p className="uppercase tracking-widest text-md font-semibold text-black/40 dark:text-white/40 mb-4">
                                 The People
                             </p>
                             <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-black dark:text-white mb-6">
                                 Meet Our Team
                             </h2>
                             <p className="text-xl text-black/70 dark:text-white/70 max-w-3xl mx-auto">
-                                A collective of strategists, creators, and engineers dedicated to
-                                building structured growth systems that drive market leadership.
-                            </p>
-                        </motion.div>
 
-
-
-                        {/* Team Title and Description */}
-                        <div className="text-center mb-16">
-                            <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-4">Team</h2>
-                            <p className="text-lg md:text-xl text-black/70 dark:text-white/70 max-w-2xl mx-auto">
                                 A diverse group of passionate professionals, each bringing unique skills and experiences to drive innovation and excellence in every project we undertake.
                             </p>
-                        </div>
+                        </motion.div>
 
                         {/* Team Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

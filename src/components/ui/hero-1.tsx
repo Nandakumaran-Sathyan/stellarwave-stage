@@ -115,7 +115,7 @@ export function Hero({
             {/* Clients-style curved arc + glow + sparkles at bottom */}
             <div className="relative mt-16 h-80 w-full overflow-hidden [mask-image:radial-gradient(50%_50%,white,transparent)]">
                 {/* Purple radial glow */}
-                <div className="absolute inset-0 before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_bottom_center,#8350e8,transparent_70%)] before:opacity-40 dark:before:bg-[radial-gradient(circle_at_bottom_center,#8350e8,transparent_70%)]" />
+                <div className="absolute inset-0 before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_bottom_center,#8350e8,transparent_70%)] before:opacity-80 dark:before:bg-[radial-gradient(circle_at_bottom_center,#8350e8,transparent_70%)] dark:before:opacity-80" />
                 {/* Curved arc border */}
                 <div className="absolute -left-1/2 top-1/2 z-10 aspect-[1/0.7] w-[200%] rounded-[100%] border-t border-zinc-900/20 dark:border-white/10 bg-white dark:bg-black" />
                 {/* Sparkles */}

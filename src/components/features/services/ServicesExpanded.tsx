@@ -1,13 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion";
-import ServiceDetailCard from "./ServiceDetailCard";
+import { Timeline } from "@/components/ui/timeline";
 import { SpaceParticles } from "@/components/ui/space-particles";
 import { Hero } from "@/components/ui/hero-1";
 
 const servicesData = [
     {
         id: "service-strategy",
-        imageUrl: "https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?w=600&auto=format&fit=crop&q=80",
+        imageUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=80",
         name: "Strategy",
         tagline: "Clarity before scale.",
         fullDescription:
@@ -91,11 +91,93 @@ const servicesData = [
     },
 ];
 
+/* ── Service content rendered inside each timeline entry ── */
+const ServiceContent: React.FC<{
+    service: typeof servicesData[0];
+    showDivider?: boolean;
+}> = ({ service, showDivider }) => (
+    <div id={service.id}>
+        {/* "And One More Thing" divider — only before 4th service */}
+        {showDivider && (
+            <div className="mb-16">
+                <p className="text-2xl uppercase tracking-widest font-semibold text-black/40 dark:text-white/40 mb-6">
+                    And One More Thing.
+                </p>
+                <h2 className="text-4xl md:text-6xl font-bold text-black dark:text-white mb-6 leading-tight">
+                    Beyond strategy, creativity,<br className="hidden md:block" /> and growth systems
+                </h2>
+                <p className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-black to-zinc-500 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent">
+                    we operate inside{" "}
+                    <span className="text-gray-500 dark:text-gray-400">COMPETITIVE SPORTING ECOSYSTEMS.</span>
+                </p>
+            </div>
+        )}
+
+        {/* Service image */}
+        <motion.img
+            src={service.imageUrl}
+            alt={service.name}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="w-full h-64 md:h-80 object-cover rounded-2xl mb-8"
+            style={{ boxShadow: "0 0 60px rgba(131, 80, 232, 0.3)" }}
+        />
+
+        {/* Tagline */}
+        <p className="text-xl md:text-2xl font-semibold italic text-black/70 dark:text-white/70 mb-6">
+            {service.tagline}
+        </p>
+
+        {/* Description */}
+        <p className="text-base md:text-lg text-black/60 dark:text-white/60 font-medium leading-relaxed mb-8">
+            {service.fullDescription}
+        </p>
+
+        {/* Features */}
+        <div className="mb-8 space-y-3">
+            {service.features.map((feature) => (
+                <div key={feature} className="flex items-start gap-3">
+                    <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-purple-500" />
+                    <span className="text-sm md:text-base text-black/70 dark:text-white/70 font-medium">{feature}</span>
+                </div>
+            ))}
+        </div>
+
+        {/* Technology tags */}
+        <div className="flex flex-wrap gap-2">
+            {service.technologies.map((tech) => (
+                <span
+                    key={tech}
+                    className="px-3 py-1 text-xs font-semibold rounded-full border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 text-black/70 dark:text-white/70"
+                >
+                    {tech}
+                </span>
+            ))}
+        </div>
+    </div>
+);
+
+/* ── Build timeline data ── */
+const timelineData = [
+    ...servicesData.slice(0, 3).map((service, i) => ({
+        title: `0${i + 1} — ${service.name}`,
+        id: service.id,
+        content: <ServiceContent service={service} />,
+    })),
+    {
+        title: `04 — ${servicesData[3].name}`,
+        id: servicesData[3].id,
+        content: <ServiceContent service={servicesData[3]} showDivider />,
+    },
+];
+
 export default function ServicesExpanded() {
     return (
-        <section className="relative w-full bg-white dark:bg-black overflow-hidden transition-colors duration-300">
-            {/* Space Background Effects */}
-            <div className="absolute inset-0 z-0">
+        <section className="relative w-full bg-white dark:bg-black transition-colors duration-300">
+            {/* Space Background Effects — overflow-hidden only here so sticky works */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
                 <SpaceParticles
                     className="absolute inset-0"
                     quantity={150}
@@ -137,60 +219,9 @@ export default function ServicesExpanded() {
                     </div>
                 </div>
 
-                {/* Service Detail Cards — first 3 */}
-                <div className="py-20">
-                    {servicesData.slice(0, 3).map((service, index) => (
-                        <ServiceDetailCard
-                            key={service.id}
-                            id={service.id}
-                            imageUrl={service.imageUrl}
-                            name={service.name}
-                            tagline={service.tagline}
-                            fullDescription={service.fullDescription}
-                            features={service.features}
-                            technologies={service.technologies}
-                            index={index}
-                        />
-                    ))}
-                </div>
-
-                {/* "And One More Thing" transition */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="pb-30 px-4 sm:px-6 lg:px-8 text-center"
-                >
-                    <div className="max-w-4xl mx-auto">
-                        <p className="text-sm uppercase tracking-widest font-semibold text-black/40 dark:text-white/40 mb-6">
-                            And One More Thing.
-                        </p>
-                        <h2 className="text-4xl md:text-6xl font-bold text-black dark:text-white mb-6 leading-tight">
-                            Beyond strategy, creativity,<br className="hidden md:block" /> and growth systems
-                        </h2>
-                        <p className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-black to-zinc-500 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent">
-                            we operate inside{" "}
-                            <span className="text-gray-500 dark:text-gray-400">COMPETITIVE SPORTING ECOSYSTEMS.</span>
-                        </p>
-                    </div>
-                </motion.div>
-
-                {/* 4th card — Competitive Sporting Ecosystems */}
-                <div className="pb-20">
-                    {servicesData.slice(3).map((service, index) => (
-                        <ServiceDetailCard
-                            key={service.id}
-                            id={service.id}
-                            imageUrl={service.imageUrl}
-                            name={service.name}
-                            tagline={service.tagline}
-                            fullDescription={service.fullDescription}
-                            features={service.features}
-                            technologies={service.technologies}
-                            index={3 + index}
-                        />
-                    ))}
+                {/* Timeline — one entry per service */}
+                <div className="px-4 sm:px-6">
+                    <Timeline data={timelineData} />
                 </div>
 
                 {/* Bottom CTA Section */}
