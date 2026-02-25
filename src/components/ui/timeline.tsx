@@ -40,12 +40,13 @@ const TimelineItem = ({ item }: { item: TimelineEntry }) => {
         >
             {/* ── Left: sticky title — grid makes this rock-solid ── */}
             <div
-                className="hidden md:block sticky top-28 h-fit"
+                className="hidden md:block sticky top-28 h-fit z-10"
                 style={{ alignSelf: "start" }}
             >
                 {/* Dot — centred on the vertical line (line at left-8 = 32px)
             wrapper: absolute left-3, w-10 → centre = 12 + 20 = 32px ✓   */}
-                <div className="h-10 absolute left-3 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center">
+                {/* h-14 w-14 = 56px, left-1 = 4px → centre = 4+28 = 32px = left-8 ✓ */}
+                <div className="h-14 w-14 absolute left-1 -top-2 rounded-full bg-white dark:bg-black flex items-center justify-center">
                     <div className="h-4 w-4 rounded-full bg-neutral-200 dark:bg-neutral-800 border-2 border-purple-500" />
                 </div>
 
@@ -97,10 +98,10 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                     </div>
                 ))}
 
-                {/* Scroll-driven vertical line — left-8 (32px) bisects each dot */}
+                {/* Scroll-driven vertical line — left-8 (32px) bisects each dot, z-0 so dots render above */}
                 <div
                     style={{ height: height + "px" }}
-                    className="absolute left-8 top-0 w-[2px]
+                    className="absolute left-8 top-0 w-[2px] z-0
             bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))]
             from-transparent from-[0%] via-neutral-200 dark:via-neutral-700 to-transparent to-[99%]
             [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
