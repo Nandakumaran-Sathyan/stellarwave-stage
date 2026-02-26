@@ -121,58 +121,50 @@ function FoundersCard() {
       {/* Content: Pavithra left, Aravind right */}
       <div className="absolute inset-0 flex items-end justify-between p-7 z-10">
         {/* Pavithra — left aligned */}
-        <motion.div
-          animate={{ y: hovered ? -6 : 0 }}
-          transition={{ duration: 0.35, ease: 'easeOut' }}
-          className="flex flex-col items-start"
-        >
+        <div className="flex flex-col items-start max-w-xs">
           <p className="text-[11px] uppercase tracking-widest text-white/50 mb-1">
             {FOUNDERS.pavithra.role}
           </p>
           <h3 className="text-xl font-semibold tracking-tight text-white">
             {FOUNDERS.pavithra.name}
           </h3>
-          <AnimatePresence>
+          <AnimatePresence mode="popLayout">
             {hovered && (
               <motion.p
                 className="text-sm text-white/65 leading-relaxed mt-2 max-w-xs"
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 6 }}
-                transition={{ duration: 0.3, delay: 0.05 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
                 {FOUNDERS.pavithra.bio}
               </motion.p>
             )}
           </AnimatePresence>
-        </motion.div>
+        </div>
 
         {/* Aravind — right aligned */}
-        <motion.div
-          animate={{ y: hovered ? -6 : 0 }}
-          transition={{ duration: 0.35, ease: 'easeOut' }}
-          className="flex flex-col items-end text-right"
-        >
+        <div className="flex flex-col items-end text-right max-w-xs">
           <p className="text-[11px] uppercase tracking-widest text-white/50 mb-1">
             {FOUNDERS.aravind.role}
           </p>
           <h3 className="text-xl font-semibold tracking-tight text-white">
             {FOUNDERS.aravind.name}
           </h3>
-          <AnimatePresence>
+          <AnimatePresence mode="popLayout">
             {hovered && (
               <motion.p
                 className="text-sm text-white/65 leading-relaxed mt-2 max-w-xs"
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 6 }}
-                transition={{ duration: 0.3, delay: 0.05 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
                 {FOUNDERS.aravind.bio}
               </motion.p>
             )}
           </AnimatePresence>
-        </motion.div>
+        </div>
       </div>
     </motion.div>
   );
@@ -238,24 +230,18 @@ function TeamCard({ member }: { member: TeamMember; key?: React.Key }) {
 
       {/* Content */}
       <div className="absolute inset-0 flex flex-col justify-end p-6 z-10">
-        <motion.div
-          animate={{ y: hovered ? -8 : 0 }}
-          transition={{ duration: 0.35, ease: 'easeOut' }}
-        >
-          <p className="text-xs uppercase tracking-widest text-white/50 mb-1">{member.role}</p>
-          <h3 className="text-xl font-semibold tracking-tight text-white leading-snug">
-            {member.name}
-          </h3>
-        </motion.div>
-
-        <AnimatePresence>
+        <p className="text-xs uppercase tracking-widest text-white/50 mb-1">{member.role}</p>
+        <h3 className="text-xl font-semibold tracking-tight text-white leading-snug">
+          {member.name}
+        </h3>
+        <AnimatePresence mode="popLayout">
           {hovered && (
             <motion.p
               className="text-sm text-white/70 leading-relaxed mt-3"
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 8 }}
-              transition={{ duration: 0.3, delay: 0.05 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               {member.bio}
             </motion.p>
