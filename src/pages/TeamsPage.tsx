@@ -1,68 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Linkedin, Mail, Github } from "lucide-react";
 import Footer from "@/components/layout/Footer";
 import { GLSLHills } from "@/components/ui/glsl-hills";
+import KineticTeamHybrid from "@/components/ui/kinetic-team-hybrid";
 
-interface TeamMember {
-    id: number;
-    name: string;
-    role: string;
-    bio: string;
-    image: string;
-    linkedin?: string;
-    email?: string;
-    github?: string;
-}
 
-const teamMembers: TeamMember[] = [
-    {
-        id: 1,
-        name: "Sarah Chen",
-        role: "Chief Executive Officer",
-        bio: "Visionary leader with 15+ years in strategic growth and brand development.",
-        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
-        linkedin: "#",
-        email: "sarah@stellarwave.com",
-    },
-    {
-        id: 2,
-        name: "Marcus Rodriguez",
-        role: "Creative Director",
-        bio: "Award-winning designer specializing in brand identity and digital experiences.",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
-        linkedin: "#",
-        email: "marcus@stellarwave.com",
-    },
-    {
-        id: 3,
-        name: "Aisha Patel",
-        role: "Head of Strategy",
-        bio: "Data-driven strategist focused on market intelligence and growth modeling.",
-        image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=400&fit=crop",
-        linkedin: "#",
-        email: "aisha@stellarwave.com",
-    },
-    {
-        id: 4,
-        name: "James Wilson",
-        role: "Lead Developer",
-        bio: "Full-stack engineer building scalable digital platforms and performance systems.",
-        image: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400&h=400&fit=crop",
-        linkedin: "#",
-        github: "#",
-        email: "james@stellarwave.com",
-    },
-    {
-        id: 5,
-        name: "Elena Volkov",
-        role: "Performance Marketing Lead",
-        bio: "Growth specialist driving measurable results across digital ecosystems.",
-        image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop",
-        linkedin: "#",
-        email: "elena@stellarwave.com",
-    },
-];
 
 export default function TeamsPage() {
     return (
@@ -173,101 +115,8 @@ export default function TeamsPage() {
                             </motion.div>
                         </motion.div>
 
-                        {/* ── MEET THE TEAM ── */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                            className="text-center mb-16"
-                        >
-                            <p className="uppercase tracking-widest text-md font-semibold text-black/40 dark:text-white/40 mb-4">
-                                The People
-                            </p>
-                            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-black dark:text-white mb-6">
-                                Meet Our Team
-                            </h2>
-                            <p className="text-xl text-black/70 dark:text-white/70 max-w-3xl mx-auto">
-
-                                A diverse group of passionate professionals, each bringing unique skills and experiences to drive innovation and excellence in every project we undertake.
-                            </p>
-                        </motion.div>
-
-                        {/* Team Grid */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {teamMembers.map((member, index) => (
-                                <motion.div
-                                    key={member.id}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.4, delay: index * 0.05 }}
-                                    className="group relative"
-                                >
-                                    <div className="relative bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl p-6 hover:bg-black/10 dark:hover:bg-white/10 transition-all duration-300 hover:border-black/20 dark:hover:border-white/20 overflow-hidden">
-                                        {/* Hover Glow Effect */}
-                                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent" />
-                                        </div>
-
-                                        {/* Content */}
-                                        <div className="relative z-10">
-                                            {/* Image */}
-                                            <div className="mb-6 overflow-hidden rounded-xl">
-                                                <img
-                                                    src={member.image}
-                                                    alt={member.name}
-                                                    loading="lazy"
-                                                    width={400}
-                                                    height={400}
-                                                    className="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500"
-                                                />
-                                            </div>
-
-                                            {/* Info */}
-                                            <h3 className="text-2xl font-bold text-black dark:text-white mb-2">
-                                                {member.name}
-                                            </h3>
-                                            <p className="text-primary font-medium mb-3">
-                                                {member.role}
-                                            </p>
-                                            <p className="text-black/60 dark:text-white/60 text-sm mb-6 leading-relaxed">
-                                                {member.bio}
-                                            </p>
-
-                                            {/* Social Links */}
-                                            <div className="flex gap-3">
-                                                {member.linkedin && (
-                                                    <a
-                                                        href={member.linkedin}
-                                                        className="p-2 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 rounded-lg transition-all duration-300"
-                                                        aria-label="LinkedIn"
-                                                    >
-                                                        <Linkedin size={18} className="text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white" />
-                                                    </a>
-                                                )}
-                                                {member.email && (
-                                                    <a
-                                                        href={`mailto:${member.email}`}
-                                                        className="p-2 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 rounded-lg transition-all duration-300"
-                                                        aria-label="Email"
-                                                    >
-                                                        <Mail size={18} className="text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white" />
-                                                    </a>
-                                                )}
-                                                {member.github && (
-                                                    <a
-                                                        href={member.github}
-                                                        className="p-2 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 rounded-lg transition-all duration-300"
-                                                        aria-label="GitHub"
-                                                    >
-                                                        <Github size={18} className="text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white" />
-                                                    </a>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
+                        {/* ── MEET THE TEAM — Orbital Constellation ── */}
+                        <KineticTeamHybrid />
                     </div>
                 </div>
             </main>

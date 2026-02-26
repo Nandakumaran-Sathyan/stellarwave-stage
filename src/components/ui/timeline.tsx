@@ -98,18 +98,82 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                     </div>
                 ))}
 
-                {/* Scroll-driven vertical line — left-8 (32px) bisects each dot, z-0 so dots render above */}
+                {/* ── Comet scroll tracker ── */}
                 <div
                     style={{ height: height + "px" }}
                     className="absolute left-8 top-0 w-[2px] z-0
-            bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))]
-            from-transparent from-[0%] via-neutral-200 dark:via-neutral-700 to-transparent to-[99%]
-            [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
+                        bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))]
+                        from-transparent from-[0%] via-neutral-200/30 dark:via-neutral-700/30 to-transparent to-[99%]
+                        [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
                 >
+                    {/* Comet tail — cosmic gradient trail */}
                     <motion.div
                         style={{ height: heightTransform, opacity: opacityTransform }}
-                        className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t from-purple-500 via-blue-500 to-transparent from-[0%] via-[10%] rounded-full"
-                    />
+                        className="absolute inset-x-0 top-0 w-[2px] rounded-full overflow-visible"
+                    >
+                        {/* Main nebula tail — long multi-color gradient */}
+                        <div
+                            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[3px] rounded-full"
+                            style={{
+                                height: "500px",
+                                background: "linear-gradient(to top, #ffffff 0%, #e879f9 8%, #a855f7 18%, #7c3aed 30%, #6366f1 45%, #3b82f6 60%, #06b6d4 75%, rgba(6,182,212,0.1) 90%, transparent 100%)",
+                            }}
+                        />
+
+                        {/* Aurora glow — wide soft color wash */}
+                        <div
+                            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[24px] rounded-full"
+                            style={{
+                                height: "400px",
+                                background: "linear-gradient(to top, rgba(232,121,249,0.35), rgba(139,92,246,0.25) 25%, rgba(99,102,241,0.15) 50%, rgba(6,182,212,0.08) 75%, transparent 100%)",
+                                filter: "blur(8px)",
+                            }}
+                        />
+
+                        {/* Outer nebula haze — ultra-wide ambient glow */}
+                        <div
+                            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[40px] rounded-full"
+                            style={{
+                                height: "250px",
+                                background: "linear-gradient(to top, rgba(168,85,247,0.2), rgba(59,130,246,0.1) 40%, transparent 100%)",
+                                filter: "blur(14px)",
+                            }}
+                        />
+
+                        {/* ── Comet head — celestial body ── */}
+                        <motion.div
+                            className="absolute -bottom-4 left-1/2 -translate-x-1/2"
+                            animate={{ scale: [1, 1.15, 1] }}
+                            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                            {/* Distant corona — outermost ring */}
+                            <motion.div
+                                className="absolute -inset-6 rounded-full"
+                                animate={{ rotate: 360 }}
+                                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                                style={{
+                                    background: "conic-gradient(from 0deg, rgba(6,182,212,0.3), rgba(139,92,246,0.15), rgba(232,121,249,0.3), rgba(99,102,241,0.15), rgba(6,182,212,0.3))",
+                                    filter: "blur(8px)",
+                                }}
+                            />
+                            {/* Inner halo */}
+                            <div
+                                className="absolute -inset-3 rounded-full"
+                                style={{
+                                    background: "radial-gradient(circle, rgba(232,121,249,0.5) 0%, rgba(139,92,246,0.3) 30%, rgba(59,130,246,0.1) 60%, transparent 80%)",
+                                    filter: "blur(5px)",
+                                }}
+                            />
+                            {/* Bright core */}
+                            <div
+                                className="h-8 w-8 rounded-full"
+                                style={{
+                                    background: "radial-gradient(circle, #ffffff 0%, #f0abfc 25%, #a78bfa 50%, #7c3aed 75%, rgba(124,58,237,0.3) 100%)",
+                                    boxShadow: "0 0 6px 3px rgba(255,255,255,0.6), 0 0 14px 5px rgba(232,121,249,0.5), 0 0 28px 10px rgba(139,92,246,0.4), 0 0 50px 18px rgba(99,102,241,0.2), 0 0 80px 30px rgba(6,182,212,0.1)",
+                                }}
+                            />
+                        </motion.div>
+                    </motion.div>
                 </div>
             </div>
         </div>

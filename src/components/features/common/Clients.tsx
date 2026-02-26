@@ -1,5 +1,5 @@
 import { Sparkles } from "@/components/ui/sparkles"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 const logos = [
   { src: "/assets/Logo_s/snowforce.png", alt: "Snowforce" },
@@ -15,23 +15,82 @@ const logos = [
   { src: "/assets/Logo_s/track%20asia.png", alt: "Track Asia Cup" },
 ];
 
-const LogoStrip = () => (
-  <div className="flex min-w-full shrink-0 items-center justify-around gap-8 px-4">
-    {logos.map((logo) => (
-      <div key={logo.alt} className="flex-shrink-0 h-12 md:h-16 flex items-center justify-center">
+function InfiniteMarquee() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const isPausedRef = useRef(false);
+
+  const handleMouseEnter = () => { isPausedRef.current = true; };
+  const handleMouseLeave = () => { isPausedRef.current = false; };
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    let animationId: number;
+    let scrollPos = 0;
+
+    const step = () => {
+      if (!isPausedRef.current) {
+        scrollPos += 0.5;
+        const firstStrip = scrollContainer.firstElementChild as HTMLElement;
+        if (firstStrip && scrollPos >= firstStrip.offsetWidth) {
+          scrollPos -= firstStrip.offsetWidth;
+        }
+        scrollContainer.style.transform = `translateX(-${scrollPos}px)`;
+      }
+      animationId = requestAnimationFrame(step);
+    };
+
+    animationId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(animationId);
+  }, []);
+
+  const renderLogos = () =>
+    logos.map((logo, i) => (
+      <div
+        key={`${logo.alt}-${i}`}
+        className="flex-shrink-0 h-24 md:h-32 flex items-center justify-center mx-6"
+      >
         <img
           src={logo.src}
           alt={logo.alt}
-          className={[
-            "h-full w-auto max-w-[120px] object-contain",
-            "grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300",
-            logo.invert ? "dark:invert" : "",
-          ].join(" ")}
+          draggable={false}
+          className="h-full w-auto max-w-[240px] object-contain select-none"
+          style={{
+            filter: logo.invert ? "grayscale(100%) invert(1)" : "grayscale(100%)",
+            opacity: 0.5,
+            transition: "filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease",
+          }}
+          onMouseEnter={(e) => {
+            const img = e.currentTarget;
+            img.style.filter = "grayscale(0%)";
+            img.style.opacity = "1";
+            img.style.transform = "scale(1.15)";
+          }}
+          onMouseLeave={(e) => {
+            const img = e.currentTarget;
+            img.style.filter = logo.invert ? "grayscale(100%) invert(1)" : "grayscale(100%)";
+            img.style.opacity = "0.5";
+            img.style.transform = "scale(1)";
+          }}
         />
       </div>
-    ))}
-  </div>
-);
+    ));
+
+  return (
+    <div
+      className="relative mx-auto max-w-7xl overflow-hidden"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div ref={scrollRef} className="flex will-change-transform" style={{ width: "max-content" }}>
+        <div className="flex shrink-0">{renderLogos()}</div>
+        <div className="flex shrink-0">{renderLogos()}</div>
+        <div className="flex shrink-0">{renderLogos()}</div>
+      </div>
+    </div>
+  );
+}
 
 export function Clients() {
   const [theme, setTheme] = useState<"light" | "dark">("dark")
@@ -69,12 +128,7 @@ export function Clients() {
         </div>
 
         {/* Logos Carousel */}
-        <div className="relative mx-auto max-w-7xl overflow-hidden">
-          <div className="flex animate-[scroll_20s_linear_infinite] hover:[animation-play-state:paused]">
-            <LogoStrip />
-            <LogoStrip />
-          </div>
-        </div>
+        <InfiniteMarquee />
       </div>
 
       {/* Sparkles Effect */}

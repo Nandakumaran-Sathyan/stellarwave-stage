@@ -75,8 +75,25 @@
   }
 
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-50%);
   }
+}
+
+/* Logo carousel hover effects */
+.logo-carousel-img {
+  filter: grayscale(100%);
+  opacity: 0.5;
+  transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+.logo-carousel-img.inverted {
+  filter: grayscale(100%) invert(1);
+}
+
+.logo-carousel-img:hover {
+  filter: grayscale(0%) !important;
+  opacity: 1 !important;
+  transform: scale(1.1);
 }
 
 :root {
