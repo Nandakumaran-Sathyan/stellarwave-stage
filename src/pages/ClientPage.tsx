@@ -352,26 +352,38 @@ const ClientPage: React.FC = () => {
         <div className="relative z-10 pt-32 pb-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             {/* Hero Section */}
-            <motion.div
-              initial={{ opacity: 0, translateY: 20 }}
-              animate={{ opacity: 1, translateY: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-center mb-24 md:mb-32"
-            >
-              <p className="text-sm tracking-[0.3em] uppercase font-medium text-black/70 dark:text-white/70 mb-6">
-                Trusted Across Diverse Growth Ecosystems
-              </p>
+            <div className="relative mb-24 md:mb-32">
+              {/* Aurora background — full viewport width */}
+              <div className="pointer-events-none absolute -top-32 -bottom-8 left-1/2 -translate-x-1/2 w-screen opacity-70">
+                <Aurora
+                  colorStops={["#7c3aed", "#a855f7", "#4f46e5"]}
+                  amplitude={0.9}
+                  blend={0.5}
+                  speed={0.5}
+                />
+              </div>
 
-              <h1 className="text-3xl sm:text-5xl md:text-[6rem] font-semibold tracking-tighter mb-8">
-                <span className="bg-gradient-to-r from-black to-zinc-600 dark:from-white dark:to-zinc-300 bg-clip-text text-transparent">
-                  Our Client Constellation
-                </span>
-              </h1>
+              <motion.div
+                initial={{ opacity: 0, translateY: 20 }}
+                animate={{ opacity: 1, translateY: 0 }}
+                transition={{ duration: 0.8 }}
+                className="relative z-10 text-center"
+              >
+                <p className="text-sm tracking-[0.3em] uppercase font-medium text-black/70 dark:text-white/70 mb-6">
+                  Trusted Across Diverse Growth Ecosystems
+                </p>
 
-              <p className="text-sm sm:text-base md:text-lg text-black/60 dark:text-white/60 font-medium tracking-tight max-w-4xl mx-auto leading-relaxed">
-                Stellar Wave partners with enterprises, consumer brands, performance institutions, and large-scale sporting properties that demand structured strategy and measurable execution. Our portfolio reflects cross-sector intelligence, disciplined deployment, and long-term partnership mindset.
-              </p>
-            </motion.div>
+                <h1 className="text-3xl sm:text-5xl md:text-[6rem] font-semibold tracking-tighter mb-8">
+                  <span className="bg-gradient-to-r from-black to-zinc-600 dark:from-white dark:to-zinc-300 bg-clip-text text-transparent">
+                    Our Client Constellation
+                  </span>
+                </h1>
+
+                <p className="text-sm sm:text-base md:text-lg text-black/60 dark:text-white/60 font-medium tracking-tight max-w-4xl mx-auto leading-relaxed">
+                  Stellar Wave partners with enterprises, consumer brands, performance institutions, and large-scale sporting properties that demand structured strategy and measurable execution. Our portfolio reflects cross-sector intelligence, disciplined deployment, and long-term partnership mindset.
+                </p>
+              </motion.div>
+            </div>
 
             {/* Client Categories */}
             <div className="mt-16">
