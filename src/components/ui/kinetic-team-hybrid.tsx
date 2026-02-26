@@ -26,7 +26,7 @@ const FOUNDERS = {
     bio: 'Driven by growth — not just numbers, but meaningful expansion. From sports ecosystems to enterprise collaborations, his focus has been on building systems that last.',
   },
   // Shared couple image for the founders card
-  image: 'https://media.istockphoto.com/id/1470845982/photo/love-diversity-and-couple-hug-on-vacation-holiday-or-summer-trip-romantic-relax-smile-and.jpg?s=1024x1024&w=is&k=20&c=xEemo8jTCeJSTZ78XpvluGn46rC4jsM9_719bBV7-ls=',
+  image: '/assets/team/founders.webp',
 };
 
 const TEAM: TeamMember[] = [
@@ -35,7 +35,7 @@ const TEAM: TeamMember[] = [
     name: 'Sivakumar SN',
     role: 'UI/UX Designer',
     bio: 'Translating complex ideas into intuitive interfaces. Every pixel is intentional, and every interaction is crafted to feel effortless.',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop',
+    image: '/assets/team/aravind.webp',
     colSpan: 'md:col-span-1',
     rowSpan: 'md:row-span-1',
   },
@@ -44,16 +44,16 @@ const TEAM: TeamMember[] = [
     name: 'Nandakumaran Sathyan',
     role: 'AI Automation',
     bio: 'Building intelligent systems that make brands operate smarter. Specialising in automation pipelines that eliminate friction and multiply impact.',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop',
+    image: '/assets/team/pavithra.webp',
     colSpan: 'md:col-span-1',
     rowSpan: 'md:row-span-1',
   },
   {
     id: 'SW-005',
-    name: 'Riley Davis',
+    name: 'Swathi',
     role: 'Creative Director',
     bio: 'Shaping the visual and conceptual direction of every campaign. Bringing cohesion to creativity so every piece of content feels unmistakably on-brand.',
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop',
+    image: '/assets/team/swathi.webp',
     colSpan: 'md:col-span-1',
     rowSpan: 'md:row-span-1',
   },
