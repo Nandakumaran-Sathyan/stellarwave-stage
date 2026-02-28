@@ -361,16 +361,16 @@ export default function KineticTeamHybrid() {
             /* Mobile: two individual founder cards */
             <>
               <MobileFounderCard
-                name={FOUNDERS.pavithra.name}
-                role={FOUNDERS.pavithra.role}
-                bio={FOUNDERS.pavithra.bio}
-                image={FOUNDERS.pavithra.image}
-              />
-              <MobileFounderCard
                 name={FOUNDERS.aravind.name}
                 role={FOUNDERS.aravind.role}
                 bio={FOUNDERS.aravind.bio}
                 image={FOUNDERS.aravind.image}
+              />
+              <MobileFounderCard
+                name={FOUNDERS.pavithra.name}
+                role={FOUNDERS.pavithra.role}
+                bio={FOUNDERS.pavithra.bio}
+                image={FOUNDERS.pavithra.image}
               />
             </>
           ) : (

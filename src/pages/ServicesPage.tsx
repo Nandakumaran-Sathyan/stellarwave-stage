@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import ServicesExpanded from "@/components/features/services/ServicesExpanded";
 import Footer from "@/components/layout/Footer";
 
@@ -24,6 +25,11 @@ export default function ServicesPage() {
 
     return (
         <>
+            <Helmet>
+                <title>Strategy, Creative & Growth Services — Stellar Wave Chennai</title>
+                <meta name="description" content="Explore Stellar Wave's three core disciplines: Brand Strategy, Creative Content, and Performance Growth. We build communication frameworks that drive measurable results across digital platforms." />
+                <link rel="canonical" href="https://stellarwave.in/services" />
+            </Helmet>
             <main>
                 <ServicesExpanded />
             </main>

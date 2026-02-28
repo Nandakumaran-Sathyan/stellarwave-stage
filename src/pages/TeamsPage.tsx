@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import Footer from "@/components/layout/Footer";
 import { GLSLHills } from "@/components/ui/glsl-hills";
 import KineticTeamHybrid from "@/components/ui/kinetic-team-hybrid";
@@ -9,6 +10,11 @@ import KineticTeamHybrid from "@/components/ui/kinetic-team-hybrid";
 export default function TeamsPage() {
     return (
         <>
+            <Helmet>
+                <title>Meet the Team — Stellar Wave Digital Marketing Agency</title>
+                <meta name="description" content="Meet the people behind Stellar Wave — a Chennai-based digital marketing agency. Founded by Aravind Sunil and Pavithra Saravanan, our team combines strategy, creativity, and technology." />
+                <link rel="canonical" href="https://stellarwave.in/teams" />
+            </Helmet>
             <main className="relative w-full bg-white dark:bg-black min-h-screen overflow-hidden transition-colors duration-300">
                 {/* Background Effects */}
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#f5f5f5,transparent_50%)] dark:bg-[radial-gradient(ellipse_at_top,#1a1a1a,transparent_50%)] pointer-events-none" />

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Building2, ShoppingBag, Dumbbell, Shield, Trophy, ChevronRight, X } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import Footer from "@/components/layout/Footer";
 import Aurora from "@/components/features/common/Aurora";
 import { BackgroundCircles } from "@/components/ui/background-circles";
@@ -377,6 +378,11 @@ const ClientCategory: React.FC<{ category: ClientCategory; index: number }> = ({
 const ClientPage: React.FC = () => {
   return (
     <>
+      <Helmet>
+        <title>Our Client Constellation — Stellar Wave Digital Marketing</title>
+        <meta name="description" content="Stellar Wave partners with enterprises, sports institutions, consumer brands, and large-scale sporting properties across India. Explore our client portfolio and the growth systems we've built." />
+        <link rel="canonical" href="https://stellarwave.in/client" />
+      </Helmet>
       <main className="relative w-full min-h-screen overflow-hidden bg-white dark:bg-[#050505] transition-colors duration-300">
         {/* Background kept clean so global particles show through */}
 
