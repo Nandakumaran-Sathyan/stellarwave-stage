@@ -68,14 +68,16 @@
           "priceRange": "$$",
           "address": {
             "@type": "PostalAddress",
+            "streetAddress": "10th Floor, Gee Gee Crystals, 91, Dr Radha Krishnan Salai, Mylapore",
             "addressLocality": "Chennai",
             "addressRegion": "Tamil Nadu",
+            "postalCode": "600004",
             "addressCountry": "IN"
           },
           "geo": {
             "@type": "GeoCoordinates",
-            "latitude": 13.0827,
-            "longitude": 80.2707
+            "latitude": 13.0352,
+            "longitude": 80.2689
           },
           "areaServed": [
             { "@type": "City", "name": "Chennai" },
@@ -112,8 +114,20 @@
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
 
-    <!-- Video Preload for Hero -->
-    <link rel="preload" href="/assets/logo-hero.mp4" as="video" type="video/mp4" />
+    <!-- Responsive Video Preload: mobile on narrow screens, desktop on wide -->
+    <script>
+        (function () {
+            var src = window.innerWidth < 768
+                ? '/assets/logo-hero-mobile.mp4'
+                : '/assets/logo-hero.mp4';
+            var link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'video';
+            link.type = 'video/mp4';
+            link.href = src;
+            document.head.appendChild(link);
+        })();
+    </script>
 
     <style>
         body {
