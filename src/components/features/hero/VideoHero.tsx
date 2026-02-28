@@ -6,30 +6,23 @@ const VideoHero: React.FC = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [hasPlayed] = useState(() => sessionStorage.getItem(SESSION_KEY) === 'true');
     const [theme, setTheme] = useState<'light' | 'dark'>('dark');
-    const [isMobile, setIsMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState(() =>
+        typeof window !== 'undefined' ? window.innerWidth < 768 : false
+    );
 
+    /* ── 1. Theme + resize watchers ── */
     useEffect(() => {
-        // Initial theme and mobile detection
         const isDark = document.documentElement.classList.contains('dark');
         setTheme(isDark ? 'dark' : 'light');
         setIsMobile(window.innerWidth < 768);
 
-        // Watch for theme changes
         const observer = new MutationObserver(() => {
-            const isDark = document.documentElement.classList.contains('dark');
-            setTheme(isDark ? 'dark' : 'light');
+            setTheme(document.documentElement.classList.contains('dark') ? 'dark' : 'light');
         });
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
-        // Watch for resize
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
         window.addEventListener('resize', handleResize);
-
-        observer.observe(document.documentElement, {
-            attributes: true,
-            attributeFilter: ['class'],
-        });
 
         return () => {
             observer.disconnect();
@@ -37,12 +30,26 @@ const VideoHero: React.FC = () => {
         };
     }, []);
 
+    /* ── 2. Playback logic ── */
     useEffect(() => {
         const video = videoRef.current;
         if (!video) return;
 
+        const tryPlay = () => {
+            video.play().catch(() => {
+                // Autoplay blocked — wait for first touch/click then play
+                const unlock = () => {
+                    video.play().catch(() => { });
+                    document.removeEventListener('touchstart', unlock);
+                    document.removeEventListener('click', unlock);
+                };
+                document.addEventListener('touchstart', unlock, { once: true });
+                document.addEventListener('click', unlock, { once: true });
+            });
+        };
+
         if (hasPlayed) {
-            // Already played this session — show last frame
+            // Already played — seek to last frame
             const seekToEnd = () => {
                 video.currentTime = video.duration;
                 video.pause();
@@ -56,21 +63,31 @@ const VideoHero: React.FC = () => {
             return;
         }
 
-        // First visit: play once, then mark as played
+        // First visit — play once then mark done
         const handleEnded = () => {
             video.pause();
             sessionStorage.setItem(SESSION_KEY, 'true');
         };
-
         video.addEventListener('ended', handleEnded);
-        video.play().catch((error) => {
-            console.log('Video autoplay failed:', error);
-        });
+
+        // Wait until enough data is available before playing (critical for mobile)
+        if (video.readyState >= 3) {
+            tryPlay();
+        } else {
+            video.addEventListener('canplay', tryPlay, { once: true });
+        }
 
         return () => {
             video.removeEventListener('ended', handleEnded);
+            video.removeEventListener('canplay', tryPlay);
         };
-    }, [hasPlayed, theme]);
+    }, [hasPlayed, theme, isMobile]);
+
+    const videoSrc = isMobile
+        ? '/assets/logo-hero-mobile.mp4'
+        : theme === 'light'
+            ? '/assets/logo-white.mp4'
+            : '/assets/logo-hero.mp4';
 
     return (
         <section
@@ -84,18 +101,15 @@ const VideoHero: React.FC = () => {
                     muted
                     playsInline
                     loop={false}
+                    preload="auto"
                     autoPlay={!hasPlayed}
                     key={`${theme}-${isMobile}`}
                 >
-                    <source
-                        src={isMobile ? '/assets/logo-hero-mobile.mp4' : (theme === 'light' ? '/assets/logo-white.mp4' : '/assets/logo-hero.mp4')}
-                        type="video/mp4"
-                    />
+                    <source src={videoSrc} type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
             </div>
 
-            {/* Optional overlay for better text visibility if needed */}
             <div className="absolute inset-0 bg-black/10 dark:bg-black/10 pointer-events-none" />
         </section>
     );
