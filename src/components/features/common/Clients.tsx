@@ -31,7 +31,7 @@ function InfiniteMarquee() {
 
     const step = () => {
       if (!isPausedRef.current) {
-        scrollPos += 0.5;
+        scrollPos += 2.0;
         const firstStrip = scrollContainer.firstElementChild as HTMLElement;
         if (firstStrip && scrollPos >= firstStrip.offsetWidth) {
           scrollPos -= firstStrip.offsetWidth;
@@ -49,13 +49,13 @@ function InfiniteMarquee() {
     logos.map((logo, i) => (
       <div
         key={`${logo.alt}-${i}`}
-        className="flex-shrink-0 h-24 md:h-32 flex items-center justify-center mx-6"
+        className="flex-shrink-0 h-14 md:h-20 flex items-center justify-center mx-10"
       >
         <img
           src={logo.src}
           alt={logo.alt}
           draggable={false}
-          className="h-full w-auto max-w-[240px] object-contain select-none"
+          className="h-full w-auto max-w-[160px] object-contain select-none"
           style={{
             filter: logo.invert ? "grayscale(100%) invert(1)" : "grayscale(100%)",
             opacity: 0.5,

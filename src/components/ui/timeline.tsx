@@ -98,80 +98,137 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                     </div>
                 ))}
 
-                {/* ── Comet scroll tracker ── */}
+                {/* ── Comet scroll tracker — Desktop only ── */}
                 <div
                     style={{ height: height + "px" }}
                     className="hidden md:block absolute left-8 top-0 w-[2px] z-0
                         bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))]
-                        from-transparent from-[0%] via-neutral-200/30 dark:via-neutral-700/30 to-transparent to-[99%]
+                        from-transparent from-[0%] via-neutral-200/20 dark:via-neutral-700/20 to-transparent to-[99%]
                         [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
                 >
-                    {/* Comet tail — cosmic gradient trail */}
                     <motion.div
                         style={{ height: heightTransform, opacity: opacityTransform }}
                         className="absolute inset-x-0 top-0 w-[2px] rounded-full overflow-visible"
                     >
-                        {/* Main nebula tail — long multi-color gradient */}
+                        {/* Core beam */}
                         <div
-                            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[3px] rounded-full"
+                            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[2px] rounded-full"
+                            style={{
+                                height: "600px",
+                                background: "linear-gradient(to top, #ffffff 0%, #f0abfc 5%, #e879f9 12%, #a855f7 22%, #7c3aed 35%, #6366f1 50%, #3b82f6 65%, #06b6d4 80%, rgba(6,182,212,0.05) 95%, transparent 100%)",
+                            }}
+                        />
+                        {/* Inner glow */}
+                        <div
+                            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[10px] rounded-full"
                             style={{
                                 height: "500px",
-                                background: "linear-gradient(to top, #ffffff 0%, #e879f9 8%, #a855f7 18%, #7c3aed 30%, #6366f1 45%, #3b82f6 60%, #06b6d4 75%, rgba(6,182,212,0.1) 90%, transparent 100%)",
+                                background: "linear-gradient(to top, rgba(255,255,255,0.6) 0%, rgba(232,121,249,0.4) 10%, rgba(168,85,247,0.3) 30%, rgba(99,102,241,0.15) 60%, transparent 100%)",
+                                filter: "blur(4px)",
                             }}
                         />
-
-                        {/* Aurora glow — wide soft color wash */}
+                        {/* Wide aurora wash */}
                         <div
-                            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[24px] rounded-full"
+                            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[32px] rounded-full"
                             style={{
-                                height: "400px",
-                                background: "linear-gradient(to top, rgba(232,121,249,0.35), rgba(139,92,246,0.25) 25%, rgba(99,102,241,0.15) 50%, rgba(6,182,212,0.08) 75%, transparent 100%)",
-                                filter: "blur(8px)",
+                                height: "420px",
+                                background: "linear-gradient(to top, rgba(232,121,249,0.45), rgba(139,92,246,0.3) 20%, rgba(99,102,241,0.2) 45%, rgba(6,182,212,0.1) 70%, transparent 100%)",
+                                filter: "blur(10px)",
                             }}
                         />
-
-                        {/* Outer nebula haze — ultra-wide ambient glow */}
+                        {/* Outer nebula haze */}
                         <div
-                            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[40px] rounded-full"
+                            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[56px] rounded-full"
                             style={{
-                                height: "250px",
-                                background: "linear-gradient(to top, rgba(168,85,247,0.2), rgba(59,130,246,0.1) 40%, transparent 100%)",
-                                filter: "blur(14px)",
+                                height: "280px",
+                                background: "linear-gradient(to top, rgba(168,85,247,0.25), rgba(59,130,246,0.12) 45%, transparent 100%)",
+                                filter: "blur(18px)",
                             }}
                         />
 
-                        {/* ── Comet head — celestial body ── */}
+                        {/* ── Comet head — cosmic crystal diamond ── */}
                         <motion.div
-                            className="absolute -bottom-4 left-1/2 -translate-x-1/2"
-                            animate={{ scale: [1, 1.15, 1] }}
-                            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute -bottom-5 left-1/2 -translate-x-1/2"
+                            animate={{ scale: [1, 1.12, 1] }}
+                            transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
                         >
-                            {/* Distant corona — outermost ring */}
+                            {/* Outer corona — slow conic rotate */}
                             <motion.div
-                                className="absolute -inset-6 rounded-full"
+                                className="absolute -inset-8 rounded-full"
                                 animate={{ rotate: 360 }}
-                                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
                                 style={{
-                                    background: "conic-gradient(from 0deg, rgba(6,182,212,0.3), rgba(139,92,246,0.15), rgba(232,121,249,0.3), rgba(99,102,241,0.15), rgba(6,182,212,0.3))",
-                                    filter: "blur(8px)",
+                                    background: "conic-gradient(from 0deg, rgba(6,182,212,0.35), rgba(139,92,246,0.18), rgba(232,121,249,0.35), rgba(99,102,241,0.18), rgba(6,182,212,0.35))",
+                                    filter: "blur(10px)",
                                 }}
                             />
-                            {/* Inner halo */}
+                            {/* Inner orbital ring — counter-rotate */}
+                            <motion.div
+                                className="absolute -inset-4 rounded-full border border-purple-400/30"
+                                animate={{ rotate: -360 }}
+                                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                                style={{ filter: "blur(1px)" }}
+                            />
+                            {/* Tilted orbital ring */}
+                            <motion.div
+                                className="absolute -inset-6 rounded-full border border-fuchsia-400/20"
+                                animate={{ rotate: 360 }}
+                                transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
+                                style={{ transform: "scaleY(0.35)", filter: "blur(1px)" }}
+                            />
+                            {/* Inner radial halo */}
                             <div
                                 className="absolute -inset-3 rounded-full"
                                 style={{
-                                    background: "radial-gradient(circle, rgba(232,121,249,0.5) 0%, rgba(139,92,246,0.3) 30%, rgba(59,130,246,0.1) 60%, transparent 80%)",
-                                    filter: "blur(5px)",
+                                    background: "radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(232,121,249,0.4) 30%, rgba(139,92,246,0.2) 60%, transparent 80%)",
+                                    filter: "blur(4px)",
                                 }}
                             />
-                            {/* Bright core */}
-                            <div
-                                className="h-8 w-8 rounded-full"
+                            {/* Diamond / crystal core */}
+                            <motion.div
+                                className="relative h-5 w-5"
+                                animate={{ rotate: [0, 45, 0] }}
+                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                                 style={{
-                                    background: "radial-gradient(circle, #ffffff 0%, #f0abfc 25%, #a78bfa 50%, #7c3aed 75%, rgba(124,58,237,0.3) 100%)",
-                                    boxShadow: "0 0 6px 3px rgba(255,255,255,0.6), 0 0 14px 5px rgba(232,121,249,0.5), 0 0 28px 10px rgba(139,92,246,0.4), 0 0 50px 18px rgba(99,102,241,0.2), 0 0 80px 30px rgba(6,182,212,0.1)",
+                                    background: "radial-gradient(circle at 35% 35%, #ffffff 0%, #f0abfc 30%, #a78bfa 60%, #7c3aed 100%)",
+                                    borderRadius: "4px",
+                                    boxShadow: "0 0 8px 4px rgba(255,255,255,0.7), 0 0 18px 7px rgba(232,121,249,0.6), 0 0 36px 12px rgba(139,92,246,0.45), 0 0 60px 20px rgba(99,102,241,0.25), 0 0 100px 36px rgba(6,182,212,0.12)",
                                 }}
                             />
+                            {/* Floating sparks */}
+                            {([
+                                { x: -14, y: -8, delay: 0, size: 3, color: "rgba(232,121,249,0.9)" },
+                                { x: 16, y: -12, delay: 0.4, size: 2, color: "rgba(255,255,255,0.9)" },
+                                { x: -18, y: 4, delay: 0.8, size: 2, color: "rgba(139,92,246,0.9)" },
+                                { x: 12, y: 6, delay: 1.2, size: 3, color: "rgba(6,182,212,0.9)" },
+                                { x: -6, y: -18, delay: 1.6, size: 2, color: "rgba(99,102,241,0.9)" },
+                                { x: 20, y: -4, delay: 2.0, size: 2, color: "rgba(232,121,249,0.7)" },
+                            ] as const).map((spark, i) => (
+                                <motion.div
+                                    key={i}
+                                    className="absolute rounded-full"
+                                    style={{
+                                        width: spark.size,
+                                        height: spark.size,
+                                        left: "50%",
+                                        top: "50%",
+                                        background: spark.color,
+                                        boxShadow: `0 0 4px 2px ${spark.color}`,
+                                    }}
+                                    animate={{
+                                        x: [0, spark.x, 0],
+                                        y: [0, spark.y, 0],
+                                        opacity: [0, 1, 0],
+                                        scale: [0.5, 1.2, 0.5],
+                                    }}
+                                    transition={{
+                                        duration: 2.4,
+                                        delay: spark.delay,
+                                        repeat: Infinity,
+                                        ease: "easeInOut",
+                                    }}
+                                />
+                            ))}
                         </motion.div>
                     </motion.div>
                 </div>
