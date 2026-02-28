@@ -7,7 +7,9 @@ import Team from "@/components/features/team/Team";
 import CTA from "@/components/features/common/CTA";
 import Footer from "@/components/layout/Footer";
 
+
 export default function HomePage() {
+
     return (
         <div className="min-h-screen bg-white text-black dark:bg-[#050505] dark:text-white transition-colors duration-300">
             <main>

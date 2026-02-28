@@ -6,11 +6,13 @@ const VideoHero: React.FC = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [hasPlayed] = useState(() => sessionStorage.getItem(SESSION_KEY) === 'true');
     const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-        // Initial theme detection
+        // Initial theme and mobile detection
         const isDark = document.documentElement.classList.contains('dark');
         setTheme(isDark ? 'dark' : 'light');
+        setIsMobile(window.innerWidth < 768);
 
         // Watch for theme changes
         const observer = new MutationObserver(() => {
@@ -18,12 +20,21 @@ const VideoHero: React.FC = () => {
             setTheme(isDark ? 'dark' : 'light');
         });
 
+        // Watch for resize
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        window.addEventListener('resize', handleResize);
+
         observer.observe(document.documentElement, {
             attributes: true,
             attributeFilter: ['class'],
         });
 
-        return () => observer.disconnect();
+        return () => {
+            observer.disconnect();
+            window.removeEventListener('resize', handleResize);
+        };
     }, []);
 
     useEffect(() => {
@@ -74,9 +85,12 @@ const VideoHero: React.FC = () => {
                     playsInline
                     loop={false}
                     autoPlay={!hasPlayed}
-                    key={theme}
+                    key={`${theme}-${isMobile}`}
                 >
-                    <source src={theme === 'light' ? '/assets/logo-white.mp4' : '/assets/logo-hero.mp4'} type="video/mp4" />
+                    <source
+                        src={isMobile ? '/assets/logo-hero-mobile.mp4' : (theme === 'light' ? '/assets/logo-white.mp4' : '/assets/logo-hero.mp4')}
+                        type="video/mp4"
+                    />
                     Your browser does not support the video tag.
                 </video>
             </div>

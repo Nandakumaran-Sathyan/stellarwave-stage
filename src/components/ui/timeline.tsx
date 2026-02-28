@@ -59,7 +59,7 @@ const TimelineItem = ({ item }: { item: TimelineEntry }) => {
             </div>
 
             {/* ── Right: scrollable content ── */}
-            <div className="pl-10 md:pl-0 w-full">
+            <div className="w-full">
                 {/* Mobile title */}
                 <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-400 dark:text-neutral-500">
                     {item.title}
@@ -101,7 +101,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                 {/* ── Comet scroll tracker ── */}
                 <div
                     style={{ height: height + "px" }}
-                    className="absolute left-8 top-0 w-[2px] z-0
+                    className="hidden md:block absolute left-8 top-0 w-[2px] z-0
                         bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))]
                         from-transparent from-[0%] via-neutral-200/30 dark:via-neutral-700/30 to-transparent to-[99%]
                         [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"

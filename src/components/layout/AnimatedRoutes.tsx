@@ -4,6 +4,7 @@ import { AnimatePresence } from "framer-motion";
 import HomePage from "@/pages/HomePage";
 import ServicesPage from "@/pages/ServicesPage";
 import PageTransition from "@/components/ui/PageTransition";
+import ContactRedirect from "@/components/features/common/ContactRedirect";
 
 const TeamsPage = React.lazy(() => import("@/pages/TeamsPage"));
 const ClientPage = React.lazy(() => import("@/pages/ClientPage"));
@@ -14,6 +15,7 @@ const ROUTE_ORDER: Record<string, number> = {
     "/services": 1,
     "/teams": 2,
     "/client": 3,
+    "/contact": 0, // Maps to Home index for transition logic
 };
 
 function getRouteIndex(pathname: string): number {
@@ -42,6 +44,7 @@ export default function AnimatedRoutes() {
                             <Route path="/services" element={<ServicesPage />} />
                             <Route path="/teams" element={<TeamsPage />} />
                             <Route path="/client" element={<ClientPage />} />
+                            <Route path="/contact" element={<ContactRedirect />} />
                         </Routes>
                     </Suspense>
                 </PageTransition>

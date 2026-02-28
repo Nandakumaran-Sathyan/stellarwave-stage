@@ -3,16 +3,16 @@ import { useEffect, useRef, useState } from "react"
 
 const logos = [
   { src: "/assets/Logo_s/snowforce.png", alt: "Snowforce" },
-  { src: "/assets/Logo_s/tav-electric.png", alt: "TAV Electric" },
-  { src: "/assets/Logo_s/humming-bird.png", alt: "Humming Bird" },
+  { src: "/assets/Logo_s/tav.png", alt: "TAV Electric" },
+  { src: "/assets/Logo_s/The-hummingbird.png", alt: "Humming Bird" },
   { src: "/assets/Logo_s/cycle-studio.png", alt: "Cycle Studio" },
-  { src: "/assets/Logo_s/anna%20nagar%20auto%20service.png", alt: "Annanagar Auto Service", invert: true },
-  { src: "/assets/Logo_s/tamilnadu-cycle-association.png", alt: "TNCA" },
-  { src: "/assets/Logo_s/tamilnadu-state-kickboxing.png", alt: "TNSKA" },
-  { src: "/assets/Logo_s/tamilnadu-athletic-association.png", alt: "TNAA" },
+  { src: "/assets/Logo_s/annanagarautoservice.png", alt: "Annanagar Auto Service", invert: true },
+  { src: "/assets/Logo_s/tn-cycling-assosciation.png", alt: "TNCA" },
+  { src: "/assets/Logo_s/tn-state-kickbozing.png", alt: "TNSKA" },
+  { src: "/assets/Logo_s/TAA.png", alt: "TNAA" },
   { src: "/assets/Logo_s/tcl.png", alt: "TCL" },
-  { src: "/assets/Logo_s/national%20kick%20boxing.png", alt: "National Kickboxing" },
-  { src: "/assets/Logo_s/track%20asia.png", alt: "Track Asia Cup" },
+  { src: "/assets/Logo_s/national-kick-boxing.png", alt: "National Kickboxing" },
+  { src: "/assets/Logo_s/track-asia.png", alt: "Track Asia Cup" },
 ];
 
 function InfiniteMarquee() {

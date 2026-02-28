@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
@@ -62,13 +62,16 @@ const TEAM: TeamMember[] = [
 /* ---------- Founders Card (full-width row) ---------- */
 
 function FoundersCard() {
-  const [hovered, setHovered] = useState(false);
+  const [active, setActive] = useState(false);
+  const hovered = active;
+  const lastPointerType = useRef<string>('mouse');
 
   return (
     <motion.div
-      className="relative overflow-hidden rounded-2xl col-span-1 md:col-span-3"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      className="relative overflow-hidden rounded-2xl col-span-1 md:col-span-3 h-[300px] sm:h-[380px] md:h-full cursor-pointer select-none"
+      onPointerEnter={(e) => { lastPointerType.current = e.pointerType; if (e.pointerType === 'mouse') setActive(true); }}
+      onPointerLeave={(e) => { if (e.pointerType === 'mouse') setActive(false); }}
+      onClick={() => { if (lastPointerType.current !== 'mouse') setActive((v) => !v); }}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -79,7 +82,7 @@ function FoundersCard() {
         <img
           src={FOUNDERS.image}
           alt="Founders"
-          className="w-full h-full object-cover object-top transition-transform duration-700 ease-out"
+          className="w-full h-full object-cover object-center transition-transform duration-700 ease-out"
           style={{ transform: hovered ? 'scale(1.04)' : 'scale(1)' }}
         />
         {/* Bottom gradient for text */}
@@ -173,17 +176,20 @@ function FoundersCard() {
 /* ---------- Regular Team Card ---------- */
 
 function TeamCard({ member }: { member: TeamMember; key?: React.Key }) {
-  const [hovered, setHovered] = useState(false);
+  const [active, setActive] = useState(false);
+  const hovered = active;
+  const lastPointerType = useRef<string>('mouse');
 
   return (
     <motion.div
       className={cn(
-        'relative overflow-hidden rounded-2xl col-span-1',
+        'relative overflow-hidden rounded-2xl col-span-1 h-[260px] sm:h-[300px] md:h-full cursor-pointer select-none',
         member.colSpan,
         member.rowSpan,
       )}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      onPointerEnter={(e) => { lastPointerType.current = e.pointerType; if (e.pointerType === 'mouse') setActive(true); }}
+      onPointerLeave={(e) => { if (e.pointerType === 'mouse') setActive(false); }}
+      onClick={() => { if (lastPointerType.current !== 'mouse') setActive((v) => !v); }}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -194,7 +200,7 @@ function TeamCard({ member }: { member: TeamMember; key?: React.Key }) {
         <img
           src={member.image}
           alt={member.name}
-          className="w-full h-full object-cover object-top transition-transform duration-700 ease-out"
+          className="w-full h-full object-cover object-center transition-transform duration-700 ease-out"
           style={{ transform: hovered ? 'scale(1.06)' : 'scale(1)' }}
         />
         <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
@@ -255,6 +261,14 @@ function TeamCard({ member }: { member: TeamMember; key?: React.Key }) {
 /* ---------- Main Component ---------- */
 
 export default function KineticTeamHybrid() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
   return (
     <div className="relative w-full bg-neutral-100 dark:bg-neutral-950 px-4 py-20 md:px-8 lg:px-12 overflow-hidden transition-colors duration-300">
       {/* Grid background */}
@@ -295,7 +309,7 @@ export default function KineticTeamHybrid() {
         {/* Bento grid */}
         <div
           className="grid grid-cols-1 md:grid-cols-3 gap-4"
-          style={{ gridTemplateRows: '420px 360px' }}
+          style={isMobile ? undefined : { gridTemplateRows: '420px 360px' }}
         >
           {/* Row 1 — founders full-width */}
           <FoundersCard />

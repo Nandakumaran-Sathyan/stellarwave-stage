@@ -40,7 +40,7 @@ const clientData: ClientCategory[] = [
         name: "TAV",
         tagline: "Australian Mid-Drive Motor Technology Manufacturer",
         description: "TAV is an Australian-based engineering company specializing in advanced mid-drive motor systems. Positioned within the evolving electric mobility ecosystem, the brand demands market education, technical credibility, and performance-focused communication frameworks to strengthen its global positioning.",
-        logo: "/assets/Logo_s/tav-electric.png",
+        logo: "/assets/Logo_s/tav.png",
         logoPadding: "p-0"
       }
     ]
@@ -55,7 +55,7 @@ const clientData: ClientCategory[] = [
         name: "Humming Bird",
         tagline: "Children's Magazines, Activity & Stress-Free Colouring Books",
         description: "Humming Bird creates educational and stress-relief content for children through thoughtfully designed magazines and activity books. The brand operates in a trust-driven parent-focused market, requiring engaging communication, product visibility, and consistent digital storytelling to strengthen brand recall and purchase intent.",
-        logo: "/assets/Logo_s/humming-bird.png",
+        logo: "/assets/Logo_s/The-hummingbird.png",
         logoPadding: "p-0"
       },
       {
@@ -69,7 +69,7 @@ const clientData: ClientCategory[] = [
         name: "Annanagar Auto Service",
         tagline: "Authorised HP Automotive Dealer",
         description: "Annanagar Auto Service is an authorised HP dealer operating in a competitive automotive service market. The brand requires structured local visibility, trust-building communication, and consistent customer engagement systems to strengthen regional market positioning.",
-        logo: "/assets/Logo_s/anna%20nagar%20auto%20service.png",
+        logo: "/assets/Logo_s/annanagarautoservice.png",
         logoPadding: "p-2"
       }
     ]
@@ -84,7 +84,7 @@ const clientData: ClientCategory[] = [
         name: "Spitfire Kickboxing Academy",
         tagline: "Professional Martial Arts & Competitive Training Institution",
         description: "Spitfire Kickboxing Academy trains athletes across multiple competitive levels. Operating in a performance-driven environment, the academy requires energetic digital positioning, disciplined communication cadence, and structured growth systems to strengthen athlete participation and brand authority.",
-        logo: "/assets/Logo_s/national%20kick%20boxing.png",
+        logo: "/assets/Logo_s/national-kick-boxing.png",
         logoPadding: "p-0"
       }
     ]
@@ -99,21 +99,21 @@ const clientData: ClientCategory[] = [
         name: "TNCA",
         tagline: "Tamil Nadu Cycling Association | 60+ Years Legacy",
         description: "TNCA is a long-standing state-level cycling association (Under SDAT & CFI) responsible for athlete development and event governance. The institution requires structured digital communication systems, event visibility amplification, and stakeholder-aligned positioning to strengthen participation and institutional credibility.",
-        logo: "/assets/Logo_s/tamilnadu-cycle-association.png",
+        logo: "/assets/Logo_s/tn-cycling-assosciation.png",
         logoPadding: "p-0"
       },
       {
         name: "TNSKA",
         tagline: "Tamil Nadu Kickboxing Association | 1000+ Athletes",
         description: "TNSKA (Under WAKO India) oversees kickboxing development across Tamil Nadu, supporting athletes competing at state, national, and international levels. The association requires disciplined event communication, athlete engagement systems, and structured digital amplification to support large-scale participation.",
-        logo: "/assets/Logo_s/tamilnadu-state-kickboxing.png",
+        logo: "/assets/Logo_s/tn-state-kickbozing.png",
         logoPadding: "p-0"
       },
       {
         name: "TNAA",
         tagline: "Tamil Nadu Athletic Association",
         description: "TNAA governs athletics development within the state framework. Institutional positioning, event communication clarity, and consistent stakeholder visibility are critical to strengthening athlete outreach and ecosystem growth.",
-        logo: "/assets/Logo_s/tamilnadu-athletic-association.png",
+        logo: "/assets/Logo_s/TAA.png",
         logoPadding: "p-0"
       }
     ]
@@ -135,14 +135,14 @@ const clientData: ClientCategory[] = [
         name: "National Kickboxing Championship 2025",
         tagline: "1,000+ Athletes | Pan-India Participation",
         description: "A large-scale national-level championship bringing together athletes from across India. The event requires structured communication governance, participation growth strategy, and high-volume digital deployment to ensure operational visibility and competitive credibility.",
-        logo: "/assets/Logo_s/national%20kick%20boxing.png",
+        logo: "/assets/Logo_s/national-kick-boxing.png",
         logoPadding: "p-0"
       },
       {
         name: "Track Asia Cup 2026 – Chennai",
         tagline: "International Athletic Event | 10 Asian Nations Participating",
         description: "A landmark international event hosted in Chennai featuring participation from ten Asian countries. The property demands international-standard event positioning, multi-layered digital amplification, and structured stakeholder communication systems.",
-        logo: "/assets/Logo_s/track%20asia.png",
+        logo: "/assets/Logo_s/track-asia.png",
         logoPadding: "p-0"
       }
     ]

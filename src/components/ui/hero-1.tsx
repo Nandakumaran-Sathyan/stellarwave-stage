@@ -41,7 +41,7 @@ export function Hero({
     return (
         <section
             id="hero"
-            className="relative mx-auto w-full pt-40 px-6 text-center md:px-8 
+            className="relative mx-auto w-full pt-24 md:pt-40 px-6 text-center md:px-8 
       min-h-[calc(100vh-40px)] overflow-hidden 
       bg-[linear-gradient(to_bottom,#fff,#ffffff_50%,#e8e8e8_88%)]  
       dark:bg-[linear-gradient(to_bottom,#000_0%,#111_60%,#000_100%)]
@@ -84,8 +84,8 @@ export function Hero({
             <h1
                 className="text-balance 
         bg-gradient-to-br from-black from-30% to-black/40 
-        bg-clip-text py-6 text-5xl font-semibold leading-none tracking-tighter 
-        text-transparent sm:text-6xl md:text-7xl lg:text-8xl 
+        bg-clip-text py-6 text-4xl font-semibold leading-none tracking-tighter 
+        text-transparent sm:text-5xl md:text-7xl lg:text-8xl 
         dark:from-white dark:to-white/40"
             >
                 {title}
@@ -94,8 +94,8 @@ export function Hero({
             {/* Subtitle */}
             <p
                 className="mb-12 text-balance 
-        text-lg tracking-tight text-gray-600 dark:text-gray-400 
-        md:text-xl max-w-4xl mx-auto"
+        text-base md:text-xl tracking-tight text-gray-600 dark:text-gray-400 
+        max-w-4xl mx-auto"
             >
                 {subtitle}
             </p>
