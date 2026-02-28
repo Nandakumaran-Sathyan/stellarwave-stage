@@ -8,11 +8,11 @@ const logos = [
   { src: "/assets/Logo_s/cycle-studio.png", alt: "Cycle Studio" },
   { src: "/assets/Logo_s/annanagarautoservice.png", alt: "Annanagar Auto Service", invert: true },
   { src: "/assets/Logo_s/tn-cycling-assosciation.png", alt: "TNCA" },
-  { src: "/assets/Logo_s/tn-state-kickbozing.png", alt: "TNSKA" },
+  { src: "/assets/Logo_s/tn-state-kickbozing.png", alt: "TNSKA", whiteSrc: "/assets/Logo_s/tn-state-kickbozing-white.jpeg" },
   { src: "/assets/Logo_s/TAA.png", alt: "TNAA" },
   { src: "/assets/Logo_s/tcl.png", alt: "TCL" },
-  { src: "/assets/Logo_s/national-kick-boxing.png", alt: "National Kickboxing" },
-  { src: "/assets/Logo_s/track-asia.png", alt: "Track Asia Cup" },
+  { src: "/assets/Logo_s/national-kick-boxing.png", alt: "National Kickboxing", whiteSrc: "/assets/Logo_s/national-kick-boxing-white.jpeg" },
+  { src: "/assets/Logo_s/track-asia.png", alt: "Track Asia Cup", whiteSrc: "/assets/Logo_s/track-asia-white.JPG" },
 ];
 
 function InfiniteMarquee({ theme }: { theme: 'light' | 'dark' }) {
@@ -46,41 +46,45 @@ function InfiniteMarquee({ theme }: { theme: 'light' | 'dark' }) {
   }, []);
 
   const renderLogos = () =>
-    logos.map((logo, i) => (
-      <div
-        key={`${logo.alt}-${i}`}
-        className="flex-shrink-0 h-14 md:h-20 flex items-center justify-center mx-10"
-      >
-        <img
-          src={logo.src}
-          alt={logo.alt}
-          draggable={false}
-          className="h-full w-auto max-w-[160px] object-contain select-none"
-          style={{
-            // Logo is white by default (invert:true) → invert in light, stay as-is in dark
-            filter: logo.invert
-              ? (theme === 'light' ? 'grayscale(100%) invert(1)' : 'grayscale(100%)')
-              : 'grayscale(100%)',
-            opacity: 0.5,
-            transition: 'filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease',
-          }}
-          onMouseEnter={(e) => {
-            const img = e.currentTarget;
-            img.style.filter = "grayscale(0%)";
-            img.style.opacity = "1";
-            img.style.transform = "scale(1.15)";
-          }}
-          onMouseLeave={(e) => {
-            const img = e.currentTarget;
-            img.style.filter = logo.invert
-              ? (theme === 'light' ? 'grayscale(100%) invert(1)' : 'grayscale(100%)')
-              : 'grayscale(100%)';
-            img.style.opacity = '0.5';
-            img.style.transform = 'scale(1)';
-          }}
-        />
-      </div>
-    ));
+    logos.map((logo, i) => {
+      // Use white variant in dark mode if available
+      const activeSrc = (theme === 'dark' && logo.whiteSrc) ? logo.whiteSrc : logo.src;
+      return (
+        <div
+          key={`${logo.alt}-${i}`}
+          className="flex-shrink-0 h-14 md:h-20 flex items-center justify-center mx-10"
+        >
+          <img
+            src={activeSrc}
+            alt={logo.alt}
+            draggable={false}
+            className="h-full w-auto max-w-[160px] object-contain select-none"
+            style={{
+              // Logo is white by default (invert:true) → invert in light, stay as-is in dark
+              filter: logo.invert
+                ? (theme === 'light' ? 'grayscale(100%) invert(1)' : 'grayscale(100%)')
+                : 'grayscale(100%)',
+              opacity: 0.5,
+              transition: 'filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease',
+            }}
+            onMouseEnter={(e) => {
+              const img = e.currentTarget;
+              img.style.filter = "grayscale(0%)";
+              img.style.opacity = "1";
+              img.style.transform = "scale(1.15)";
+            }}
+            onMouseLeave={(e) => {
+              const img = e.currentTarget;
+              img.style.filter = logo.invert
+                ? (theme === 'light' ? 'grayscale(100%) invert(1)' : 'grayscale(100%)')
+                : 'grayscale(100%)';
+              img.style.opacity = '0.5';
+              img.style.transform = 'scale(1)';
+            }}
+          />
+        </div>
+      );
+    });
 
   return (
     <div
