@@ -195,7 +195,7 @@ export default function ServicesExpanded() {
                 <Hero
                     eyebrow="WHAT WE DO"
                     title="Strategy. Creative. Growth."
-                    subtitle="At Stellar Wave, we help brands move forward with clarity, personality, and measurable momentum. Everything we do is built around four core disciplines — working together as one integrated system."
+                    subtitle="At Stellar Wave, we help brands move forward with clarity, personality, and measurable momentum. Everything we do is built around three core disciplines — working together as one integrated system."
                     ctaLabel="View Services"
                     ctaHref="#service-strategy"
                 />
@@ -210,10 +210,10 @@ export default function ServicesExpanded() {
                             transition={{ duration: 0.3 }}
                         >
                             <h2 className="text-3xl md:text-5xl font-bold text-black dark:text-white mb-8">
-                                Four disciplines. One integrated mindset.
+                                Three disciplines. One integrated mindset.
                             </h2>
                             <p className="text-xl md:text-2xl text-black/70 dark:text-white/70 font-medium">
-                                Built to help brands — and ecosystems — lead.
+                                Built to help brands and ecosystems lead.
                             </p>
                         </motion.div>
                     </div>
@@ -234,10 +234,10 @@ export default function ServicesExpanded() {
                 >
                     <div className="max-w-4xl mx-auto">
                         <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-6">
-                            Four disciplines. One integrated mindset.
+                            Three disciplines. One integrated mindset.
                         </h2>
                         <p className="text-lg md:text-xl text-black/70 dark:text-white/70 mb-8 leading-relaxed font-medium">
-                            Built to help brands — and ecosystems — lead.
+                            Built to help brands and ecosystems lead.
                         </p>
                         <button
                             onClick={() => {

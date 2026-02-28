@@ -15,7 +15,7 @@ const logos = [
   { src: "/assets/Logo_s/track-asia.png", alt: "Track Asia Cup" },
 ];
 
-function InfiniteMarquee() {
+function InfiniteMarquee({ theme }: { theme: 'light' | 'dark' }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const isPausedRef = useRef(false);
 
@@ -57,9 +57,12 @@ function InfiniteMarquee() {
           draggable={false}
           className="h-full w-auto max-w-[160px] object-contain select-none"
           style={{
-            filter: logo.invert ? "grayscale(100%) invert(1)" : "grayscale(100%)",
+            // Logo is white by default (invert:true) → invert in light, stay as-is in dark
+            filter: logo.invert
+              ? (theme === 'light' ? 'grayscale(100%) invert(1)' : 'grayscale(100%)')
+              : 'grayscale(100%)',
             opacity: 0.5,
-            transition: "filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease",
+            transition: 'filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease',
           }}
           onMouseEnter={(e) => {
             const img = e.currentTarget;
@@ -69,9 +72,11 @@ function InfiniteMarquee() {
           }}
           onMouseLeave={(e) => {
             const img = e.currentTarget;
-            img.style.filter = logo.invert ? "grayscale(100%) invert(1)" : "grayscale(100%)";
-            img.style.opacity = "0.5";
-            img.style.transform = "scale(1)";
+            img.style.filter = logo.invert
+              ? (theme === 'light' ? 'grayscale(100%) invert(1)' : 'grayscale(100%)')
+              : 'grayscale(100%)';
+            img.style.opacity = '0.5';
+            img.style.transform = 'scale(1)';
           }}
         />
       </div>
@@ -128,7 +133,7 @@ export function Clients() {
         </div>
 
         {/* Logos Carousel */}
-        <InfiniteMarquee />
+        <InfiniteMarquee theme={theme} />
       </div>
 
       {/* Sparkles Effect */}

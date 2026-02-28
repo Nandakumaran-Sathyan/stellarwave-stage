@@ -22,7 +22,7 @@ const FOUNDERS = {
   },
   aravind: {
     name: 'Aravind Sunil',
-    role: 'Co-founder',
+    role: 'Founder',
     bio: 'Driven by growth — not just numbers, but meaningful expansion. From sports ecosystems to enterprise collaborations, his focus has been on building systems that last.',
   },
   // Shared couple image for the founders card
