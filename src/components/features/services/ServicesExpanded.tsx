@@ -125,8 +125,13 @@ const ServiceContent: React.FC<{
             style={{ boxShadow: "0 0 60px rgba(131, 80, 232, 0.3)" }}
         />
 
-        {/* Tagline */}
-        <p className="text-xl md:text-2xl font-semibold italic text-black/70 dark:text-white/70 mb-6">
+        {/* Tagline — gradient in both themes */}
+        <p className="text-2xl md:text-3xl font-bold italic mb-6
+            text-transparent bg-clip-text
+            bg-gradient-to-r from-purple-600 via-fuchsia-500 to-indigo-600
+            dark:from-white dark:via-purple-200 dark:to-purple-400
+            [filter:drop-shadow(0_0_14px_rgba(139,92,246,0.35))]
+            dark:[filter:drop-shadow(0_0_18px_rgba(167,139,250,0.5))]">
             {service.tagline}
         </p>
 

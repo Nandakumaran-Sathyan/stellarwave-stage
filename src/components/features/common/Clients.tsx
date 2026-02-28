@@ -12,6 +12,7 @@ const logos = [
   { src: "/assets/Logo_s/TAA.png", alt: "TNAA" },
   { src: "/assets/Logo_s/tcl.png", alt: "TCL" },
   { src: "/assets/Logo_s/national-kick-boxing.png", alt: "National Kickboxing", whiteSrc: "/assets/Logo_s/national-kick-boxing-white.jpeg" },
+  { src: "/assets/Logo_s/spitfire.JPG", alt: "Spitfire Boxing" },
   { src: "/assets/Logo_s/track-asia.png", alt: "Track Asia Cup", whiteSrc: "/assets/Logo_s/track-asia-white.JPG" },
 ];
 
@@ -60,9 +61,9 @@ function InfiniteMarquee({ theme }: { theme: 'light' | 'dark' }) {
             draggable={false}
             className="h-full w-auto max-w-[160px] object-contain select-none"
             style={{
-              // Logo is white by default (invert:true) → invert in light, stay as-is in dark
+              // Logo is black by default (invert:true) → show as-is in light, invert in dark
               filter: logo.invert
-                ? (theme === 'light' ? 'grayscale(100%) invert(1)' : 'grayscale(100%)')
+                ? (theme === 'dark' ? 'grayscale(100%) invert(1)' : 'grayscale(100%)')
                 : 'grayscale(100%)',
               opacity: 0.5,
               transition: 'filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease',
@@ -76,7 +77,7 @@ function InfiniteMarquee({ theme }: { theme: 'light' | 'dark' }) {
             onMouseLeave={(e) => {
               const img = e.currentTarget;
               img.style.filter = logo.invert
-                ? (theme === 'light' ? 'grayscale(100%) invert(1)' : 'grayscale(100%)')
+                ? (theme === 'dark' ? 'grayscale(100%) invert(1)' : 'grayscale(100%)')
                 : 'grayscale(100%)';
               img.style.opacity = '0.5';
               img.style.transform = 'scale(1)';

@@ -1,7 +1,7 @@
 import React from 'react';
 import type { ComponentProps, ReactNode } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { FacebookIcon, InstagramIcon, LinkedinIcon, YoutubeIcon } from 'lucide-react';
+import { InstagramIcon, LinkedinIcon, MailIcon } from 'lucide-react';
 
 interface FooterLink {
 	title: string;
@@ -14,84 +14,66 @@ interface FooterSection {
 	links: FooterLink[];
 }
 
-const footerLinks: FooterSection[] = [
-	{
-		label: 'Product',
-		links: [
-			{ title: 'Features', href: '#services' },
-			{ title: 'Pricing', href: '#pricing' },
-			{ title: 'Testimonials', href: '#team' },
-			{ title: 'Integration', href: '/' },
-		],
-	},
-	{
-		label: 'Company',
-		links: [
-			{ title: 'FAQs', href: '/faqs' },
-			{ title: 'About Us', href: '#team' },
-			{ title: 'Privacy Policy', href: '/privacy' },
-			{ title: 'Terms of Services', href: '/terms' },
-		],
-	},
-	{
-		label: 'Resources',
-		links: [
-			{ title: 'Blog', href: '/blog' },
-			{ title: 'Changelog', href: '/changelog' },
-			{ title: 'Brand', href: '/brand' },
-			{ title: 'Help', href: '/help' },
-		],
-	},
-	{
-		label: 'Social Links',
-		links: [
-			{ title: 'Facebook', href: '#', icon: FacebookIcon },
-			{ title: 'Instagram', href: '#', icon: InstagramIcon },
-			{ title: 'Youtube', href: '#', icon: YoutubeIcon },
-			{ title: 'LinkedIn', href: '#', icon: LinkedinIcon },
-		],
-	},
+const socialLinks = [
+	{ title: 'LinkedIn', href: 'https://www.linkedin.com/company/stellar-wave/', icon: LinkedinIcon },
+	{ title: 'Instagram', href: 'https://www.instagram.com/stellarwave_marketing/', icon: InstagramIcon },
+	{ title: 'Email', href: 'mailto:info@stellarwave.in', icon: MailIcon },
 ];
 
 export function Footer() {
 	return (
-		<footer className="md:rounded-t-6xl relative w-full max-w-6xl mx-auto flex flex-col items-center justify-center rounded-t-4xl border-t border-black/10 dark:border-white/10 bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.black/5%),transparent)] dark:bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/8%),transparent)] px-6 py-12 lg:py-16">
+		<footer className="md:rounded-t-6xl relative w-full max-w-6xl mx-auto rounded-t-4xl border-t border-black/10 dark:border-white/10 bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.black/5%),transparent)] dark:bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/8%),transparent)] px-6 py-12 lg:py-16">
 			<div className="bg-foreground/20 absolute top-0 right-1/2 left-1/2 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full blur" />
 
-			<div className="grid w-full gap-8 xl:grid-cols-3 xl:gap-8">
-				<AnimatedContainer className="space-y-4">
+			<div className="flex flex-col xl:flex-row items-center xl:items-end justify-between gap-10">
+
+				{/* Left — logo + copyright */}
+				<AnimatedContainer className="flex flex-col gap-4 items-center xl:items-start">
 					<img
 						src="/assets/logo-2.png"
 						alt="Stellar Wave Logo"
 						className="h-8 w-auto object-contain invert dark:invert-0"
 					/>
-					<p className="text-muted-foreground mt-8 text-sm md:mt-0">
-						© {new Date().getFullYear()} Stellar Wave. All rights reserved.
+					<p className="text-muted-foreground text-sm text-center xl:text-left">
+						© {new Date().getFullYear()} Stellar Wave.<br className="hidden xl:block" /> All rights reserved.
 					</p>
 				</AnimatedContainer>
 
-				<div className="mt-10 grid grid-cols-2 gap-8 md:grid-cols-4 xl:col-span-2 xl:mt-0">
-					{footerLinks.map((section, index) => (
-						<AnimatedContainer key={section.label} delay={0.1 + index * 0.1}>
-							<div className="mb-10 md:mb-0">
-								<h3 className="text-xs text-black dark:text-white">{section.label}</h3>
-								<ul className="text-muted-foreground mt-4 space-y-2 text-sm">
-									{section.links.map((link) => (
-										<li key={link.title}>
-											<a
-												href={link.href}
-												className="hover:text-foreground inline-flex items-center transition-all duration-300 text-slate-500 dark:text-slate-400 hover:text-black dark:hover:text-white"
-											>
-												{link.icon && <link.icon className="me-1 size-4" />}
-												{link.title}
-											</a>
-										</li>
-									))}
-								</ul>
-							</div>
-						</AnimatedContainer>
-					))}
-				</div>
+				{/* Centre — big gradient brand name */}
+				<AnimatedContainer delay={0.15} className="flex-1 flex items-center justify-center">
+					<span
+						className="font-black uppercase tracking-tighter leading-none text-center select-none
+							text-transparent bg-clip-text
+							bg-gradient-to-r from-purple-500 via-fuchsia-400 to-indigo-500
+							dark:from-purple-300 dark:via-fuchsia-200 dark:to-indigo-300"
+						style={{ fontSize: 'clamp(2rem, 6vw, 5rem)' }}
+					>
+						STELLARWAVE.IN
+					</span>
+				</AnimatedContainer>
+
+				{/* Right — social links */}
+				<AnimatedContainer delay={0.25} className="flex flex-col items-center xl:items-end gap-3">
+					<h3 className="text-xs font-semibold uppercase tracking-widest text-black/50 dark:text-white/50">
+						Connect
+					</h3>
+					<ul className="flex flex-col items-center xl:items-end gap-2">
+						{socialLinks.map((link) => (
+							<li key={link.title}>
+								<a
+									href={link.href}
+									target={link.href.startsWith('http') ? '_blank' : undefined}
+									rel="noreferrer"
+									className="inline-flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 hover:text-black dark:hover:text-white transition-colors duration-300"
+								>
+									{link.icon && <link.icon className="size-4" />}
+									{link.title}
+								</a>
+							</li>
+						))}
+					</ul>
+				</AnimatedContainer>
+
 			</div>
 		</footer>
 	);

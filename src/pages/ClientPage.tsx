@@ -11,6 +11,8 @@ interface Client {
   tagline: string;
   description: string;
   logo: string;
+  logoDark?: string;       // explicit white-variant file for dark mode
+  invertInDark?: boolean;  // CSS invert for logos that are dark-coloured by default
   logoPadding?: string;
 }
 
@@ -70,6 +72,7 @@ const clientData: ClientCategory[] = [
         tagline: "Authorised HP Automotive Dealer",
         description: "Annanagar Auto Service is an authorised HP dealer operating in a competitive automotive service market. The brand requires structured local visibility, trust-building communication, and consistent customer engagement systems to strengthen regional market positioning.",
         logo: "/assets/Logo_s/annanagarautoservice.png",
+        invertInDark: true,
         logoPadding: "p-2"
       }
     ]
@@ -81,10 +84,10 @@ const clientData: ClientCategory[] = [
     gradient: "from-orange-500/20 to-red-500/20",
     clients: [
       {
-        name: "Spitfire Kickboxing Academy",
-        tagline: "Professional Martial Arts & Competitive Training Institution",
+        name: "Spitfire Boxing Club",
+        tagline: "Professional Martial Arts \u0026 Competitive Training Institution",
         description: "Spitfire Kickboxing Academy trains athletes across multiple competitive levels. Operating in a performance-driven environment, the academy requires energetic digital positioning, disciplined communication cadence, and structured growth systems to strengthen athlete participation and brand authority.",
-        logo: "/assets/Logo_s/national-kick-boxing.png",
+        logo: "/assets/Logo_s/spitfire.JPG",
         logoPadding: "p-0"
       }
     ]
@@ -107,6 +110,7 @@ const clientData: ClientCategory[] = [
         tagline: "Tamil Nadu Kickboxing Association | 1000+ Athletes",
         description: "TNSKA (Under WAKO India) oversees kickboxing development across Tamil Nadu, supporting athletes competing at state, national, and international levels. The association requires disciplined event communication, athlete engagement systems, and structured digital amplification to support large-scale participation.",
         logo: "/assets/Logo_s/tn-state-kickbozing.png",
+        logoDark: "/assets/Logo_s/tn-state-kickbozing-white.jpeg",
         logoPadding: "p-0"
       },
       {
@@ -136,6 +140,7 @@ const clientData: ClientCategory[] = [
         tagline: "1,000+ Athletes | Pan-India Participation",
         description: "A large-scale national-level championship bringing together athletes from across India. The event requires structured communication governance, participation growth strategy, and high-volume digital deployment to ensure operational visibility and competitive credibility.",
         logo: "/assets/Logo_s/national-kick-boxing.png",
+        logoDark: "/assets/Logo_s/national-kick-boxing-white.jpeg",
         logoPadding: "p-0"
       },
       {
@@ -143,6 +148,7 @@ const clientData: ClientCategory[] = [
         tagline: "International Athletic Event | 10 Asian Nations Participating",
         description: "A landmark international event hosted in Chennai featuring participation from ten Asian countries. The property demands international-standard event positioning, multi-layered digital amplification, and structured stakeholder communication systems.",
         logo: "/assets/Logo_s/track-asia.png",
+        logoDark: "/assets/Logo_s/track-asia-white.JPG",
         logoPadding: "p-0"
       }
     ]
@@ -156,6 +162,18 @@ const ClientCard: React.FC<{
   gradient: string;
   onClick: () => void;
 }> = ({ client, index, gradient, onClick }) => {
+  const [isDark, setIsDark] = React.useState(
+    () => document.documentElement.classList.contains('dark')
+  );
+  React.useEffect(() => {
+    const obs = new MutationObserver(() =>
+      setIsDark(document.documentElement.classList.contains('dark'))
+    );
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => obs.disconnect();
+  }, []);
+  const activeLogo = (isDark && client.logoDark) ? client.logoDark : client.logo;
+  const logoFilter = client.invertInDark && isDark ? 'invert(1)' : undefined;
   return (
     <motion.div
       initial={{ filter: 'blur(4px)', translateY: -8, opacity: 0 }}
@@ -190,9 +208,10 @@ const ClientCard: React.FC<{
           <div className="flex items-center gap-4 mb-4">
             <div className={cn("flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden bg-black/5 dark:bg-white/5 backdrop-blur-sm border border-black/10 dark:border-white/10", client.logoPadding ?? "p-0")}>
               <img
-                src={client.logo}
+                src={activeLogo}
                 alt={`${client.name} logo`}
                 className="w-full h-full object-contain"
+                style={logoFilter ? { filter: logoFilter } : undefined}
               />
             </div>
             <div className="flex-1 min-w-0">
@@ -219,7 +238,19 @@ const ClientModal: React.FC<{
   onClose: () => void;
   gradient: string;
 }> = ({ client, onClose, gradient }) => {
+  const [isDark, setIsDark] = React.useState(
+    () => document.documentElement.classList.contains('dark')
+  );
+  React.useEffect(() => {
+    const obs = new MutationObserver(() =>
+      setIsDark(document.documentElement.classList.contains('dark'))
+    );
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => obs.disconnect();
+  }, []);
   if (!client) return null;
+  const activeLogo = (isDark && client.logoDark) ? client.logoDark : client.logo;
+  const logoFilter = client.invertInDark && isDark ? 'invert(1)' : undefined;
 
   return (
     <AnimatePresence>
@@ -261,9 +292,10 @@ const ClientModal: React.FC<{
               <div className="flex items-center gap-4 mb-6">
                 <div className={cn("flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden bg-black/5 dark:bg-white/5 backdrop-blur-sm border border-black/10 dark:border-white/10", client.logoPadding ?? "p-0")}>
                   <img
-                    src={client.logo}
+                    src={activeLogo}
                     alt={`${client.name} logo`}
                     className="w-full h-full object-contain"
+                    style={logoFilter ? { filter: logoFilter } : undefined}
                   />
                 </div>
                 <h2 className="text-3xl font-semibold tracking-tighter text-black dark:text-white">

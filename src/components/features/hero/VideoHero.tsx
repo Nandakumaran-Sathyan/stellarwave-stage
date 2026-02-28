@@ -5,29 +5,17 @@ const SESSION_KEY = 'stellar-hero-video-played';
 const VideoHero: React.FC = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [hasPlayed] = useState(() => sessionStorage.getItem(SESSION_KEY) === 'true');
-    const [theme, setTheme] = useState<'light' | 'dark'>('dark');
     const [isMobile, setIsMobile] = useState(() =>
         typeof window !== 'undefined' ? window.innerWidth < 768 : false
     );
 
-    /* ── 1. Theme + resize watchers ── */
+    /* ── 1. Resize watcher ── */
     useEffect(() => {
-        const isDark = document.documentElement.classList.contains('dark');
-        setTheme(isDark ? 'dark' : 'light');
         setIsMobile(window.innerWidth < 768);
-
-        const observer = new MutationObserver(() => {
-            setTheme(document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-        });
-        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
         const handleResize = () => setIsMobile(window.innerWidth < 768);
         window.addEventListener('resize', handleResize);
-
-        return () => {
-            observer.disconnect();
-            window.removeEventListener('resize', handleResize);
-        };
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
     /* ── 2. Playback logic ── */
@@ -81,13 +69,11 @@ const VideoHero: React.FC = () => {
             video.removeEventListener('ended', handleEnded);
             video.removeEventListener('canplay', tryPlay);
         };
-    }, [hasPlayed, theme, isMobile]);
+    }, [hasPlayed, isMobile]);
 
     const videoSrc = isMobile
         ? '/assets/logo-hero-mobile.mp4'
-        : theme === 'light'
-            ? '/assets/logo-white.mp4'
-            : '/assets/logo-hero.mp4';
+        : '/assets/logo-hero.mp4';
 
     return (
         <section
@@ -103,7 +89,7 @@ const VideoHero: React.FC = () => {
                     loop={false}
                     preload="auto"
                     autoPlay={!hasPlayed}
-                    key={`${theme}-${isMobile}`}
+                    key={isMobile ? 'mobile' : 'desktop'}
                 >
                     <source src={videoSrc} type="video/mp4" />
                     Your browser does not support the video tag.
