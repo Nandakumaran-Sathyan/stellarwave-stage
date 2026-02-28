@@ -8,12 +8,12 @@ const logos = [
   { src: "/assets/Logo_s/cycle-studio.png", alt: "Cycle Studio" },
   { src: "/assets/Logo_s/annanagarautoservice.png", alt: "Annanagar Auto Service", invert: true },
   { src: "/assets/Logo_s/tn-cycling-assosciation.png", alt: "TNCA" },
-  { src: "/assets/Logo_s/tn-state-kickbozing.png", alt: "TNSKA", whiteSrc: "/assets/Logo_s/tn-state-kickbozing-white.jpeg" },
+  { src: "/assets/Logo_s/tn-state-kickbozing.png", alt: "TNSKA", whiteSrc: "/assets/Logo_s/tn-state-kickbozing-white.png" },
   { src: "/assets/Logo_s/TAA.png", alt: "TNAA" },
   { src: "/assets/Logo_s/tcl.png", alt: "TCL" },
-  { src: "/assets/Logo_s/national-kick-boxing.png", alt: "National Kickboxing", whiteSrc: "/assets/Logo_s/national-kick-boxing-white.jpeg" },
-  { src: "/assets/Logo_s/spitfire.JPG", alt: "Spitfire Boxing" },
-  { src: "/assets/Logo_s/track-asia.png", alt: "Track Asia Cup", whiteSrc: "/assets/Logo_s/track-asia-white.JPG" },
+  { src: "/assets/Logo_s/national-kick-boxing.png", alt: "National Kickboxing", whiteSrc: "/assets/Logo_s/national-kick-boxing-white.png" },
+  { src: "/assets/Logo_s/spitfire.png", alt: "Spitfire Boxing" },
+  { src: "/assets/Logo_s/track-asia.png", alt: "Track Asia Cup", whiteSrc: "/assets/Logo_s/track-asia-white.png" },
 ];
 
 function InfiniteMarquee({ theme }: { theme: 'light' | 'dark' }) {

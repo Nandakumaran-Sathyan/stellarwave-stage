@@ -87,7 +87,7 @@ const clientData: ClientCategory[] = [
         name: "Spitfire Boxing Club",
         tagline: "Professional Martial Arts \u0026 Competitive Training Institution",
         description: "Spitfire Kickboxing Academy trains athletes across multiple competitive levels. Operating in a performance-driven environment, the academy requires energetic digital positioning, disciplined communication cadence, and structured growth systems to strengthen athlete participation and brand authority.",
-        logo: "/assets/Logo_s/spitfire.JPG",
+        logo: "/assets/Logo_s/spitfire.png",
         logoPadding: "p-0"
       }
     ]
@@ -110,7 +110,7 @@ const clientData: ClientCategory[] = [
         tagline: "Tamil Nadu Kickboxing Association | 1000+ Athletes",
         description: "TNSKA (Under WAKO India) oversees kickboxing development across Tamil Nadu, supporting athletes competing at state, national, and international levels. The association requires disciplined event communication, athlete engagement systems, and structured digital amplification to support large-scale participation.",
         logo: "/assets/Logo_s/tn-state-kickbozing.png",
-        logoDark: "/assets/Logo_s/tn-state-kickbozing-white.jpeg",
+        logoDark: "/assets/Logo_s/tn-state-kickbozing-white.png",
         logoPadding: "p-0"
       },
       {
@@ -140,7 +140,7 @@ const clientData: ClientCategory[] = [
         tagline: "1,000+ Athletes | Pan-India Participation",
         description: "A large-scale national-level championship bringing together athletes from across India. The event requires structured communication governance, participation growth strategy, and high-volume digital deployment to ensure operational visibility and competitive credibility.",
         logo: "/assets/Logo_s/national-kick-boxing.png",
-        logoDark: "/assets/Logo_s/national-kick-boxing-white.jpeg",
+        logoDark: "/assets/Logo_s/national-kick-boxing-white.png",
         logoPadding: "p-0"
       },
       {
@@ -148,7 +148,7 @@ const clientData: ClientCategory[] = [
         tagline: "International Athletic Event | 10 Asian Nations Participating",
         description: "A landmark international event hosted in Chennai featuring participation from ten Asian countries. The property demands international-standard event positioning, multi-layered digital amplification, and structured stakeholder communication systems.",
         logo: "/assets/Logo_s/track-asia.png",
-        logoDark: "/assets/Logo_s/track-asia-white.JPG",
+        logoDark: "/assets/Logo_s/track-asia-white.png",
         logoPadding: "p-0"
       }
     ]

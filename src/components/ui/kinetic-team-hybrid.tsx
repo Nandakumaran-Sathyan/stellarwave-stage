@@ -19,13 +19,15 @@ const FOUNDERS = {
     name: 'Pavithra Saravanan',
     role: 'Co-founder',
     bio: 'The emotional intelligence behind the brand. With a deep eye for aesthetics and storytelling, she ensures every strategy carries clarity, warmth, and identity.',
+    image: '/assets/team/pavithra.webp',
   },
   aravind: {
     name: 'Aravind Sunil',
     role: 'Founder',
     bio: 'Driven by growth — not just numbers, but meaningful expansion. From sports ecosystems to enterprise collaborations, his focus has been on building systems that last.',
+    image: '/assets/team/aravind.webp',
   },
-  // Shared couple image for the founders card
+  // Shared couple image for desktop founders card
   image: '/assets/team/founders.webp',
 };
 
@@ -35,7 +37,7 @@ const TEAM: TeamMember[] = [
     name: 'Sivakumar SN',
     role: 'UI/UX Designer',
     bio: 'Translating complex ideas into intuitive interfaces. Every pixel is intentional, and every interaction is crafted to feel effortless.',
-    image: '/assets/team/aravind.webp',
+    image: '/assets/team/sivakumar.jpg',
     colSpan: 'md:col-span-1',
     rowSpan: 'md:row-span-1',
   },
@@ -44,7 +46,7 @@ const TEAM: TeamMember[] = [
     name: 'Nandakumaran Sathyan',
     role: 'AI Automation',
     bio: 'Building intelligent systems that make brands operate smarter. Specialising in automation pipelines that eliminate friction and multiply impact.',
-    image: '/assets/team/pavithra.webp',
+    image: '/assets/team/nanda.jpeg',
     colSpan: 'md:col-span-1',
     rowSpan: 'md:row-span-1',
   },
@@ -168,6 +170,49 @@ function FoundersCard() {
             )}
           </AnimatePresence>
         </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ---------- Mobile Founder Card (individual portrait) ---------- */
+
+function MobileFounderCard({ name, role, bio, image }: { name: string; role: string; bio: string; image: string }) {
+  const [active, setActive] = useState(false);
+  const lastPointerType = useRef<string>('mouse');
+
+  return (
+    <motion.div
+      className="relative overflow-hidden rounded-2xl col-span-1 h-[280px] cursor-pointer select-none"
+      onPointerEnter={(e) => { lastPointerType.current = e.pointerType; if (e.pointerType === 'mouse') setActive(true); }}
+      onPointerLeave={(e) => { if (e.pointerType === 'mouse') setActive(false); }}
+      onClick={() => { if (lastPointerType.current !== 'mouse') setActive((v) => !v); }}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="absolute inset-0 w-full h-full">
+        <img src={image} alt={name}
+          className="w-full h-full object-cover object-center transition-transform duration-700 ease-out"
+          style={{ transform: active ? 'scale(1.06)' : 'scale(1)' }} />
+        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+      </div>
+      <motion.div className="absolute inset-0 rounded-2xl pointer-events-none"
+        animate={{ boxShadow: active ? 'inset 0 0 0 1px rgba(131,80,232,0.5), 0 0 40px rgba(131,80,232,0.15)' : 'inset 0 0 0 1px rgba(255,255,255,0.08)' }}
+        transition={{ duration: 0.3 }} />
+      <div className="absolute inset-0 flex flex-col justify-end p-6 z-10">
+        <p className="text-xs uppercase tracking-widest text-white/50 mb-1">{role}</p>
+        <h3 className="text-xl font-semibold tracking-tight text-white leading-snug">{name}</h3>
+        <AnimatePresence mode="popLayout">
+          {active && (
+            <motion.p className="text-sm text-white/70 leading-relaxed mt-3"
+              initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.3 }}>
+              {bio}
+            </motion.p>
+          )}
+        </AnimatePresence>
       </div>
     </motion.div>
   );
@@ -311,8 +356,27 @@ export default function KineticTeamHybrid() {
           className="grid grid-cols-1 md:grid-cols-3 gap-4"
           style={isMobile ? undefined : { gridTemplateRows: '420px 360px' }}
         >
-          {/* Row 1 — founders full-width */}
-          <FoundersCard />
+          {/* Row 1 — founders */}
+          {isMobile ? (
+            /* Mobile: two individual founder cards */
+            <>
+              <MobileFounderCard
+                name={FOUNDERS.pavithra.name}
+                role={FOUNDERS.pavithra.role}
+                bio={FOUNDERS.pavithra.bio}
+                image={FOUNDERS.pavithra.image}
+              />
+              <MobileFounderCard
+                name={FOUNDERS.aravind.name}
+                role={FOUNDERS.aravind.role}
+                bio={FOUNDERS.aravind.bio}
+                image={FOUNDERS.aravind.image}
+              />
+            </>
+          ) : (
+            /* Desktop: shared couple card */
+            <FoundersCard />
+          )}
 
           {/* Row 2 — rest of the team */}
           {TEAM.map((member) => (
