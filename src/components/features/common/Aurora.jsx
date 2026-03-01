@@ -103,7 +103,10 @@ void main() {
   float midPoint = 0.20;
   float auroraAlpha = smoothstep(midPoint - uBlend * 0.5, midPoint + uBlend * 0.5, intensity);
   
-  vec3 auroraColor = intensity * rampColor;
+  vec3 auroraColor = rampColor;
+  
+  // Optionally add a subtle core brightness mapping (white core, colored edges):
+  auroraColor = mix(rampColor, vec3(1.0), smoothstep(0.8, 1.5, intensity));
   
   fragColor = vec4(auroraColor * auroraAlpha, auroraAlpha);
 }
