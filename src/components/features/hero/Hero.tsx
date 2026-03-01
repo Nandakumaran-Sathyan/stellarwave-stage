@@ -29,11 +29,11 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/20 to-transparent dark:from-black/30 dark:via-black/20 dark:to-transparent pointer-events-none z-10" />
       {/* Logo centered with gradient overlay */}
       <div className="relative z-20 flex flex-col items-center w-full gap-8 md:gap-12">
-        {/* Text above logo */}
+        {/* Text above logo (Main H1 for SEO) */}
         <div className="text-center space-y-2 md:space-y-3">
-          <p className="text-sm sm:text-base md:text-lg text-black/70 dark:text-white/70 tracking-[0.3em] uppercase font-medium">
+          <h1 className="text-sm sm:text-base md:text-lg text-black/70 dark:text-white/70 tracking-[0.3em] uppercase font-medium">
             Riding the Wave of Digital Excellence
-          </p>
+          </h1>
         </div>
 
         <div className="relative w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl flex items-center justify-center aspect-[2/1] sm:aspect-[3/1] md:aspect-[4/1]">
