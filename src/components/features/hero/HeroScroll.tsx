@@ -15,7 +15,7 @@ export function HeroScroll() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10">
+      <div className="relative z-10 -mt-16 -mb-16 md:mt-0 md:mb-0">
         <ContainerScroll
           titleComponent={
             <>

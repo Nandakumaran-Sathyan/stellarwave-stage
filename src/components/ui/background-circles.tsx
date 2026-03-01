@@ -108,7 +108,7 @@ export function BackgroundCircles({
             )}
         >
             <AnimatedGrid />
-            <motion.div className="absolute h-[400px] w-[400px] md:h-[600px] md:w-[600px] lg:h-[700px] lg:w-[700px]">
+            <motion.div className="absolute h-[200px] w-[200px] sm:h-[300px] sm:w-[300px] md:h-[600px] md:w-[600px] lg:h-[700px] lg:w-[700px]">
                 {[0, 1, 2].map((i) => (
                     <motion.div
                         key={i}
