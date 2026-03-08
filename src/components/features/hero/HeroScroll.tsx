@@ -24,6 +24,9 @@ export function HeroScroll() {
                 <span className="block text-3xl sm:text-5xl md:text-[6rem] font-semibold tracking-tighter mt-2 leading-tight md:leading-none">
                   Move the Digital Space
                 </span>
+                <span className="sr-only">
+                  Stellar Wave is a digital marketing agency in Chennai specialising in brand strategy, creative content, performance marketing, and sports ecosystem marketing.
+                </span>
               </h1>
             </>
           }

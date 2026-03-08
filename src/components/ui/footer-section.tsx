@@ -40,16 +40,25 @@ export function Footer() {
 				</AnimatedContainer>
 
 				{/* Centre — big gradient brand name */}
-				<AnimatedContainer delay={0.15} className="flex-1 flex items-center justify-center">
+				<AnimatedContainer delay={0.15} className="flex-1 flex flex-col items-center justify-center gap-4">
 					<span
 						className="font-black uppercase tracking-tighter leading-none text-center select-none
-							text-transparent bg-clip-text
-							bg-gradient-to-r from-purple-500 via-fuchsia-400 to-indigo-500
-							dark:from-purple-300 dark:via-fuchsia-200 dark:to-indigo-300"
+						text-transparent bg-clip-text
+						bg-gradient-to-r from-purple-500 via-fuchsia-400 to-indigo-500
+						dark:from-purple-300 dark:via-fuchsia-200 dark:to-indigo-300"
 						style={{ fontSize: 'clamp(2rem, 6vw, 5rem)' }}
 					>
 						STELLARWAVE.IN
 					</span>
+					{/* NAP block for Local SEO */}
+					<address className="not-italic text-center text-xs text-black/40 dark:text-white/40 leading-relaxed">
+						<strong className="block text-black/60 dark:text-white/60 text-sm not-italic">Digital Marketing Agency in Chennai</strong>
+						10th Floor, Gee Gee Crystals, 91, Dr Radha Krishnan Salai,<br />
+						Mylapore, Chennai, Tamil Nadu 600004<br />
+						<a href="tel:+918124179141" className="hover:text-black dark:hover:text-white transition-colors">+91 81241 79141</a>
+						{' · '}
+						<a href="mailto:info@stellarwave.in" className="hover:text-black dark:hover:text-white transition-colors">info@stellarwave.in</a>
+					</address>
 				</AnimatedContainer>
 
 				{/* Right — social links */}

@@ -26,8 +26,8 @@ export default function ServicesPage() {
     return (
         <>
             <Helmet>
-                <title>Strategy, Creative & Growth Services — Stellar Wave Chennai</title>
-                <meta name="description" content="Explore Stellar Wave's three core disciplines: Brand Strategy, Creative Content, and Performance Growth. We build communication frameworks that drive measurable results across digital platforms." />
+                <title>Digital Marketing Services in Chennai — Brand Strategy, Creative &amp; Growth | Stellar Wave</title>
+                <meta name="description" content="Explore Stellar Wave's digital marketing services in Chennai — Brand Strategy, Creative Content, Performance Marketing, and Sports Ecosystem Marketing. We build structured systems that drive measurable growth." />
                 <link rel="canonical" href="https://stellarwave.in/services" />
             </Helmet>
             <main>

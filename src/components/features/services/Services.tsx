@@ -77,7 +77,7 @@ export default function Services() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Our Services</h2>
           <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-            Strategy. Creative. Growth. - Three disciplines working as one integrated system.
+            Strategy. Creative. Growth. — Three disciplines working as one integrated system for brands across Chennai and India.
           </p>
         </div>
         <BentoGrid>
