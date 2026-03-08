@@ -61,8 +61,8 @@ const CTA: React.FC = () => {
           description="If you have any questions regarding our Services or need help, please fill out the form here. We do our best to respond within 1 business day."
           contactInfo={[
             { icon: MailIcon, label: 'Email', value: 'info@stellarwave.in' },
-            { icon: PhoneIcon, label: 'Phone', value: '+91 98765 43210' },
-            { icon: MapPinIcon, label: 'Address', value: 'Chennai, India', className: 'col-span-2' },
+            { icon: PhoneIcon, label: 'Phone', value: '+91 81241 79141' },
+            { icon: MapPinIcon, label: 'Address', value: '10th Floor, Gee Gee Crystals, 91, Dr Radha Krishnan Salai, Mylapore, Chennai, Tamil Nadu 600004', className: 'col-span-2' },
           ]}
         >
           {status === 'success' ? (
@@ -95,7 +95,7 @@ const CTA: React.FC = () => {
               <div className="flex flex-col gap-2">
                 <Label htmlFor="phone">Phone</Label>
                 <Input
-                  id="phone" name="phone" type="tel" placeholder="+91 98765 43210"
+                  id="phone" name="phone" type="tel" placeholder="+91 81241 79141"
                   value={form.phone} onChange={handleChange}
                 />
               </div>
