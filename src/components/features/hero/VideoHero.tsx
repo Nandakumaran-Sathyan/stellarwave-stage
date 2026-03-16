@@ -26,8 +26,8 @@ const VideoHero: React.FC = () => {
         const video = videoRef.current;
         if (!video) return;
 
-        // Set muted via DOM property — Safari checks the attribute, not React's prop
-        video.muted = true;
+        // Start unmuted so sound plays immediately if allowed
+        video.muted = false;
 
         if (hasPlayed) {
             // Already played this session — show last frame
@@ -56,7 +56,7 @@ const VideoHero: React.FC = () => {
         video.play().catch(() => {
             // Autoplay still blocked (e.g. iOS low-power mode) — unlock on touch/click
             const unlock = () => {
-                video.muted = true;
+                video.muted = false;
                 video.play().catch(() => { });
                 document.removeEventListener('touchstart', unlock);
                 document.removeEventListener('click', unlock);
@@ -79,7 +79,6 @@ const VideoHero: React.FC = () => {
                 <video
                     ref={videoRef}
                     className="w-full h-full object-cover"
-                    muted
                     playsInline
                     loop={false}
                     preload="auto"
