@@ -19,7 +19,7 @@ const VideoHero: React.FC = () => {
     // Stable string — only changes when the actual source file changes.
     // Using this as `key` so the video element remounts ONLY when source switches
     // (mobile ↔ desktop), not on every pixel resize. Matches 950ddda's stability pattern.
-    const videoSrc = isMobile ? '/assets/logo-hero-mobile.mp4' : '/assets/logo-hero.mp4';
+    const videoSrc = isMobile ? '/assets/logo%20black%20reels.mp4' : '/assets/logo%20black.mp4';
 
     /* ── 2. Playback logic (950ddda-compatible) ── */
     useEffect(() => {
