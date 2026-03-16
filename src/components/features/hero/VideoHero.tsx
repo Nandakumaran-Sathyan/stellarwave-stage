@@ -54,15 +54,19 @@ const VideoHero: React.FC = () => {
         video.addEventListener('ended', handleEnded);
 
         video.play().catch(() => {
-            // Autoplay still blocked (e.g. iOS low-power mode) — unlock on touch/click
-            const unlock = () => {
-                video.muted = false;
-                video.play().catch(() => { });
-                document.removeEventListener('touchstart', unlock);
-                document.removeEventListener('click', unlock);
-            };
-            document.addEventListener('touchstart', unlock, { once: true });
-            document.addEventListener('click', unlock, { once: true });
+            // Autoplay with sound blocked. Fallback to playing muted immediately.
+            video.muted = true;
+            video.play().catch(() => {
+                // If even muted autoplay is blocked (e.g. iOS low-power mode), wait for tap
+                const unlock = () => {
+                    video.muted = true;
+                    video.play().catch(() => { });
+                    document.removeEventListener('touchstart', unlock);
+                    document.removeEventListener('click', unlock);
+                };
+                document.addEventListener('touchstart', unlock, { once: true });
+                document.addEventListener('click', unlock, { once: true });
+            });
         });
 
         return () => {
