@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Volume2 } from "lucide-react";
+import { Volume2, VolumeX } from "lucide-react";
 
 const CursorSpeakerVideo = ({ videoRef, audioOn, setAudioOn }: {
   videoRef: React.RefObject<HTMLVideoElement>;
@@ -64,6 +64,14 @@ const CursorSpeakerVideo = ({ videoRef, audioOn, setAudioOn }: {
           <Volume2 className="w-6 h-6 text-white" />
         </div>
       )}
+
+      {/* Audio Status Indicator */}
+      <div className="absolute bottom-4 right-4 z-20 flex items-center gap-2 bg-black/50 text-white px-3 py-1.5 rounded-full backdrop-blur-sm pointer-events-none transition-opacity opacity-80">
+        {audioOn ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+        <span className="text-xs font-medium tracking-wide uppercase">
+          {audioOn ? "Sound On" : "Sound Off"}
+        </span>
+      </div>
     </div>
   );
 };
