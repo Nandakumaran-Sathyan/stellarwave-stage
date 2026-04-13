@@ -8,14 +8,17 @@ import ContactRedirect from "@/components/features/common/ContactRedirect";
 
 const TeamsPage = React.lazy(() => import("@/pages/TeamsPage"));
 const ClientPage = React.lazy(() => import("@/pages/ClientPage"));
+const BlogPage = React.lazy(() => import("@/pages/BlogPage"));
+const BlogPostPage = React.lazy(() => import("@/pages/BlogPostPage"));
 
-// Route order matches navbar position: Home(0), Services(1), Teams(2), Client(3)
+// Route order matches navbar position: Home(0), Services(1), Teams(2), Client(3), Blog(4)
 const ROUTE_ORDER: Record<string, number> = {
     "/": 0,
     "/services": 1,
     "/teams": 2,
     "/client": 3,
-    "/contact": 0, // Maps to Home index for transition logic
+    "/contact": 0,
+    "/blog": 4,
 };
 
 function getRouteIndex(pathname: string): number {
@@ -45,6 +48,8 @@ export default function AnimatedRoutes() {
                             <Route path="/teams" element={<TeamsPage />} />
                             <Route path="/client" element={<ClientPage />} />
                             <Route path="/contact" element={<ContactRedirect />} />
+                            <Route path="/blog" element={<BlogPage />} />
+                            <Route path="/blog/:slug" element={<BlogPostPage />} />
                         </Routes>
                     </Suspense>
                 </PageTransition>

@@ -40,8 +40,10 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
       '/services': 'Services',
       '/teams': 'About Us',
       '/client': 'Client',
+      '/blog': 'Blog',
     }
-    const matchedNav = routeToNavMap[path]
+    // Match /blog/:slug as Blog too
+    const matchedNav = routeToNavMap[path] ?? (path.startsWith('/blog') ? 'Blog' : null)
     if (matchedNav) {
       setActiveTab(matchedNav)
     } else if (path === '/' || location.hash) {
@@ -93,7 +95,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
           transition={{ type: "spring", stiffness: 260, damping: 20 }}
         >
           {logo && (
-            <div className="flex items-center pl-1 pr-1 border-r border-black/10 dark:border-white/10 mr-1">
+            <div className="flex items-center pl-1 pr-1 mr-1">
               <img src={logo} alt="Logo" className="h-8 w-auto object-contain brightness-0 dark:brightness-0 dark:invert transition-all duration-300" />
             </div>
           )}

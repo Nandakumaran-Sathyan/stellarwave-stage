@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Briefcase, Users, Award, Phone } from "lucide-react"
+import { Home, Briefcase, Users, Award, Phone, BookOpen } from "lucide-react"
 import { AnimeNavBar } from "@/components/ui/anime-navbar"
 
 const navItems = [
@@ -22,6 +22,11 @@ const navItems = [
     name: "Client",
     url: "/client",
     icon: Award,
+  },
+  {
+    name: "Blog",
+    url: "/blog",
+    icon: BookOpen,
   },
   {
     name: "Contact",
