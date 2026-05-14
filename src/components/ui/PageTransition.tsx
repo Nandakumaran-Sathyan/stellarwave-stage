@@ -28,11 +28,14 @@ export default function PageTransition({ children, direction }: PageTransitionPr
             animate="center"
             exit="exit"
             transition={{
-                x: { type: "tween", duration: 0.35, ease: [0.25, 0.1, 0.25, 1] },
+                x: { type: "tween", duration: 0.25, ease: [0.25, 0.1, 0.25, 1] },
             }}
             style={{
                 width: "100%",
                 minHeight: "100vh",
+                willChange: "transform",
+                backfaceVisibility: "hidden",
+                perspective: "1000px",
             }}
         >
             {children}

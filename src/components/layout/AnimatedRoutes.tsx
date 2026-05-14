@@ -39,7 +39,7 @@ export default function AnimatedRoutes() {
 
     return (
         <div style={{ position: "relative", overflow: "clip" }}>
-            <AnimatePresence mode="wait" initial={false} custom={direction}>
+            <AnimatePresence mode="sync" initial={false} custom={direction}>
                 <PageTransition key={location.pathname} direction={direction}>
                     <Suspense fallback={null}>
                         <Routes location={location}>
