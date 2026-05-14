@@ -82,7 +82,7 @@ const VideoHero: React.FC = () => {
                     muted
                     playsInline
                     loop={false}
-                    preload="auto"
+                    preload="metadata"
                     autoPlay={!hasPlayed}
                     key={videoSrc}
                 >

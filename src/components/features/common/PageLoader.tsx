@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
+const SESSION_LOADER_KEY = 'stellar-loader-shown';
+
 interface PageLoaderProps {
   onLoadingComplete: () => void;
 }
@@ -8,16 +10,30 @@ interface PageLoaderProps {
 export const PageLoader: React.FC<PageLoaderProps> = ({ onLoadingComplete }) => {
   const [fadeOut, setFadeOut] = useState(false);
 
+  // If the loader was already shown this session, skip it immediately
+  const alreadyShown = sessionStorage.getItem(SESSION_LOADER_KEY) === 'true';
+
   useEffect(() => {
+    if (alreadyShown) {
+      onLoadingComplete();
+      return;
+    }
+
     const timer = setTimeout(() => {
       setFadeOut(true);
       setTimeout(() => {
+        sessionStorage.setItem(SESSION_LOADER_KEY, 'true');
         onLoadingComplete();
       }, 500);
-    }, 3000);
+    }, 2500); // Reduced from 3000 → 2500 ms
 
     return () => clearTimeout(timer);
-  }, [onLoadingComplete]);
+  }, [onLoadingComplete, alreadyShown]);
+
+  // Don't render anything if we're skipping
+  if (alreadyShown) return null;
+
+
 
   return (
     <motion.div

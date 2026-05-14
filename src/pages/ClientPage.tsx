@@ -382,6 +382,18 @@ const ClientPage: React.FC = () => {
         <title>Our Client Constellation — Stellar Wave Digital Marketing</title>
         <meta name="description" content="Stellar Wave partners with enterprises, sports institutions, consumer brands, and large-scale sporting properties across India. Explore our client portfolio and the growth systems we've built." />
         <link rel="canonical" href="https://stellarwave.in/client" />
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://stellarwave.in/client" />
+        <meta property="og:title" content="Our Client Constellation — Stellar Wave Digital Marketing" />
+        <meta property="og:description" content="Stellar Wave partners with enterprises, sports institutions, consumer brands, and large-scale sporting properties across India. Explore our client portfolio and the growth systems we've built." />
+        <meta property="og:image" content="https://stellarwave.in/icon.png" />
+        <meta property="og:site_name" content="Stellar Wave" />
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Our Client Constellation — Stellar Wave Digital Marketing" />
+        <meta name="twitter:description" content="Stellar Wave partners with enterprises, sports institutions, consumer brands, and large-scale sporting properties across India." />
+        <meta name="twitter:image" content="https://stellarwave.in/icon.png" />
       </Helmet>
       <main className="relative w-full min-h-screen overflow-hidden bg-white dark:bg-[#050505] transition-colors duration-300">
         {/* Background kept clean so global particles show through */}

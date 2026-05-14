@@ -29,6 +29,18 @@ export default function ServicesPage() {
                 <title>Digital Marketing Services in Chennai — Brand Strategy, Creative &amp; Growth | Stellar Wave</title>
                 <meta name="description" content="Explore Stellar Wave's digital marketing services in Chennai — Brand Strategy, Creative Content, Performance Marketing, and Sports Ecosystem Marketing. We build structured systems that drive measurable growth." />
                 <link rel="canonical" href="https://stellarwave.in/services" />
+                {/* Open Graph */}
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content="https://stellarwave.in/services" />
+                <meta property="og:title" content="Digital Marketing Services in Chennai | Stellar Wave" />
+                <meta property="og:description" content="Explore Stellar Wave's digital marketing services in Chennai — Brand Strategy, Creative Content, Performance Marketing, and Sports Ecosystem Marketing." />
+                <meta property="og:image" content="https://stellarwave.in/icon.png" />
+                <meta property="og:site_name" content="Stellar Wave" />
+                {/* Twitter */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Digital Marketing Services in Chennai | Stellar Wave" />
+                <meta name="twitter:description" content="Explore Stellar Wave's digital marketing services in Chennai — Brand Strategy, Creative Content, Performance Marketing, and Sports Ecosystem Marketing." />
+                <meta name="twitter:image" content="https://stellarwave.in/icon.png" />
             </Helmet>
             <main>
                 <ServicesExpanded />

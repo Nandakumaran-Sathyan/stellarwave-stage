@@ -8,11 +8,20 @@ export default function BlogPage() {
     <>
       <Helmet>
         <title>Blog — Digital Marketing Insights | Stellar Wave</title>
-        <meta
-          name="description"
-          content="Expert insights on digital marketing, brand strategy, performance marketing, and content creation from the Stellar Wave team in Chennai."
-        />
+        <meta name="description" content="Expert insights on digital marketing, brand strategy, performance marketing, and content creation from the Stellar Wave team in Chennai." />
         <link rel="canonical" href="https://stellarwave.in/blog" />
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://stellarwave.in/blog" />
+        <meta property="og:title" content="Blog — Digital Marketing Insights | Stellar Wave" />
+        <meta property="og:description" content="Expert insights on digital marketing, brand strategy, performance marketing, and content creation from the Stellar Wave team in Chennai." />
+        <meta property="og:image" content="https://stellarwave.in/icon.png" />
+        <meta property="og:site_name" content="Stellar Wave" />
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Blog — Digital Marketing Insights | Stellar Wave" />
+        <meta name="twitter:description" content="Expert insights on digital marketing, brand strategy, performance marketing, and content creation from the Stellar Wave team in Chennai." />
+        <meta name="twitter:image" content="https://stellarwave.in/icon.png" />
       </Helmet>
       <main className="min-h-screen bg-[#050505] text-white">
         {/* Page Header */}
