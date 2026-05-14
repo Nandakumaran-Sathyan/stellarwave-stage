@@ -8,13 +8,14 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     const location = useLocation();
 
     useEffect(() => {
+        const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
         const lenis = new Lenis({
-            duration: 1.2,
+            duration: isCoarsePointer ? 1.1 : 0.9,
             easing: (t: number) => 1 - Math.pow(1 - t, 4),
             smoothWheel: true,
-            touchMultiplier: 1.5,
+            touchMultiplier: 1.2,
             infinite: false,
-            syncTouch: true,
+            syncTouch: isCoarsePointer,
         });
 
         lenisRef.current = lenis;
@@ -34,6 +35,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
         const id = requestAnimationFrame(raf);
 
         return () => {
+            cancelAnimationFrame(id);
             lenis.destroy();
         };
     }, []);
