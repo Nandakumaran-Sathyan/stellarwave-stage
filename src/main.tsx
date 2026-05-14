@@ -3,6 +3,7 @@ import '@/styles/tailwind.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
+import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import App from './App';
 
@@ -16,6 +17,7 @@ root.render(
   <React.StrictMode>
     <HelmetProvider>
       <App />
+      <Analytics />
       <SpeedInsights />
     </HelmetProvider>
   </React.StrictMode>
