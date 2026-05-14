@@ -26,10 +26,17 @@ export default defineConfig({
           'vendor-three': ['three', 'ogl'],
           'vendor-sanity': ['@sanity/client', '@sanity/image-url'],
           'vendor-lottie': ['@lottiefiles/dotlottie-react'],
+          'vendor-particles': ['@tsparticles/react', '@tsparticles/slim'],
         },
       },
     },
     // Inline tiny assets (< 4 kB) directly into JS to save round-trips
     assetsInlineLimit: 4096,
+    // Optimize CSS
+    cssMinify: 'lightningcss',
+  },
+  // Optimize deps for faster startup
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom', 'framer-motion'],
   },
 })
