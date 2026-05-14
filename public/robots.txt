@@ -1,4 +1,12 @@
 User-agent: *
 Allow: /
+Disallow: /_next/
+Disallow: /api/
+Disallow: /.env*
+Disallow: /admin/
+Disallow: /*.json$
+
+User-agent: Googlebot
+Allow: /
 
 Sitemap: https://stellarwave.in/sitemap.xml
