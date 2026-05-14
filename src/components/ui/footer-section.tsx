@@ -32,7 +32,7 @@ export function Footer() {
 					<img
 						src="/assets/logo-2.png"
 						alt="Stellar Wave Logo"
-						className="h-8 w-auto object-contain invert dark:invert-0"
+						className="h-8 w-auto object-contain"
 					/>
 					<p className="text-muted-foreground text-sm text-center xl:text-left">
 						© {new Date().getFullYear()} Stellar Wave.<br className="hidden xl:block" /> All rights reserved.

@@ -6,6 +6,7 @@ import { LucideIcon, Menu, X } from "lucide-react"
 import { useNavigate, useLocation } from "react-router-dom"
 import { cn } from "@/lib/utils"
 import ThemeToggle from "@/components/ui/ThemeToggle"
+import Logo from '@/components/ui/Logo'
 
 interface NavItem {
   name: string
@@ -96,7 +97,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
         >
           {logo && (
             <div className="flex items-center pl-1 pr-1 mr-1">
-              <img src={logo} alt="Logo" className="h-8 w-auto object-contain brightness-0 dark:brightness-0 dark:invert transition-all duration-300" />
+              <Logo src={logo} alt="Logo" className="h-8 w-auto object-contain transition-all duration-300" />
             </div>
           )}
 
@@ -164,7 +165,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
         >
           {/* Logo */}
           {logo ? (
-            <img src={logo} alt="Logo" className="h-7 w-auto object-contain brightness-0 dark:brightness-0 dark:invert transition-all duration-300" />
+            <Logo src={logo} alt="Logo" className="h-7 w-auto object-contain transition-all duration-300" />
           ) : (
             <span className="text-sm font-bold tracking-tight text-black dark:text-white">Stellar Wave</span>
           )}

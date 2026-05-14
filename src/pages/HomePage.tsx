@@ -1,6 +1,7 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
+import Logo from '@/components/ui/Logo';
 
 const VideoHero = React.lazy(() => import("@/components/features/hero/VideoHero"));
 const HeroScroll = React.lazy(() => import("@/components/features/hero/HeroScroll"));
@@ -27,6 +28,7 @@ function useIsMobile() {
 }
 
 function MobileHero() {
+    
     return (
         <section className="relative min-h-[92svh] overflow-hidden bg-white text-black transition-colors duration-300 dark:bg-black dark:text-white">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#f4f0ff_0%,#ffffff_42%,#ececec_100%)] dark:bg-[radial-gradient(circle_at_top,#111111_0%,#050505_42%,#000000_100%)]" />
@@ -35,13 +37,13 @@ function MobileHero() {
                 <p className="text-[0.7rem] font-semibold uppercase tracking-[0.45em] text-black/55 dark:text-white/55">
                     Stellar Wave
                 </p>
-                <motion.img
+                <Logo
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.35, ease: "easeOut" }}
                     src="/assets/logo.png"
                     alt="Stellar Wave Logo"
-                    className="mt-8 h-auto w-[72vw] max-w-[340px] drop-shadow-[0_24px_60px_rgba(0,0,0,0.12)] dark:invert"
+                    className="mt-8 h-auto w-[72vw] max-w-[340px] drop-shadow-[0_24px_60px_rgba(0,0,0,0.12)]"
                     loading="eager"
                     fetchPriority="high"
                 />

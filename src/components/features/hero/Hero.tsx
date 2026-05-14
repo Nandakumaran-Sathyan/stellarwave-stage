@@ -1,4 +1,5 @@
 import React from 'react';
+import Logo from '@/components/ui/Logo';
 import Aurora from '@/components/features/common/Aurora';
 import { StarButton } from '@/components/ui/star-button';
 
@@ -37,10 +38,10 @@ const Hero: React.FC = () => {
         </div>
 
         <div className="relative w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl flex items-center justify-center aspect-[2/1] sm:aspect-[3/1] md:aspect-[4/1]">
-          <img
+          <Logo
             src="/assets/logo.png"
             alt="Stellar Wave Logo"
-            className="w-full h-full object-contain drop-shadow-lg max-h-[40vw] sm:max-h-[30vw] md:max-h-[20vw] dark:invert"
+            className="w-full h-full object-contain drop-shadow-lg max-h-[40vw] sm:max-h-[30vw] md:max-h-[20vw]"
           />
           {/* Gradient overlay on logo */}
           <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent to-white/85 dark:from-transparent dark:to-black/85" />
