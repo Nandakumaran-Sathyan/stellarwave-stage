@@ -59,6 +59,5 @@ export const POST_BY_SLUG_QUERY = `*[(_type in ["post", "blog"]) && defined(slug
   author,
   publishedAt,
   body,
-  content,
-  "body": coalesce(body, content)
+  content
 }`;
