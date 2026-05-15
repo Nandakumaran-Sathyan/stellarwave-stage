@@ -185,8 +185,8 @@ export default function BlogPostDetail() {
 
           {/* Body */}
           <div className="prose-blog">
-            {post.body && (
-              <PortableText value={post.body as any} components={portableTextComponents} />
+            {(post.body || post.content) && (
+              <PortableText value={(post.body ?? post.content) as any} components={portableTextComponents} />
             )}
           </div>
         </motion.div>

@@ -29,11 +29,12 @@ export interface BlogPost {
   author?: string;
   publishedAt?: string;
   body?: unknown; // Portable Text blocks
+  content?: unknown; // Portable Text blocks (blogType compatibility)
 }
 
 // ─── Queries ──────────────────────────────────────────────────────────────────
 
-export const ALL_POSTS_QUERY = `*[_type == "post" || _type == "blog"] | order(publishedAt desc) {
+export const ALL_POSTS_QUERY = `*[_type in ["post", "blog"] && defined(slug.current) && defined(publishedAt)] | order(publishedAt desc) {
   _id,
   title,
   slug,
@@ -41,10 +42,12 @@ export const ALL_POSTS_QUERY = `*[_type == "post" || _type == "blog"] | order(pu
   excerpt,
   tags,
   author,
-  publishedAt
+  publishedAt,
+  body,
+  content
 }`;
 
-export const POST_BY_SLUG_QUERY = `*[(_type == "post" || _type == "blog") && slug.current == $slug][0] {
+export const POST_BY_SLUG_QUERY = `*[(_type in ["post", "blog"]) && defined(slug.current) && slug.current == $slug][0] {
   _id,
   title,
   slug,
@@ -55,5 +58,7 @@ export const POST_BY_SLUG_QUERY = `*[(_type == "post" || _type == "blog") && slu
   tags,
   author,
   publishedAt,
-  body
+  body,
+  content,
+  "body": coalesce(body, content)
 }`;
