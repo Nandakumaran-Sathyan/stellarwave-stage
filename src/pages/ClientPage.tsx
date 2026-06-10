@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Building2, ShoppingBag, Dumbbell, Shield, Trophy, ChevronRight, X } from "lucide-react";
 import { Helmet } from "react-helmet-async";
@@ -137,6 +138,13 @@ const clientData: ClientCategory[] = [
         logoPadding: "p-0"
       },
       {
+        name: "Khelo India Women's Kickboxing National League",
+        tagline: "National-level Women’s Kickboxing League",
+        description: "A national-level women’s kickboxing league under the Khelo India initiative, where Stellar Wave played a key role in elevating the event through strategic branding, digital communication, content creation, audience engagement, and large-scale promotional execution. From building a strong visual identity to amplifying the league’s reach across platforms, our work helped position the event as a powerful celebration of women’s competitive sport in India.",
+        logo: "/assets/Logo_s/Khelo india 2026-1.png",
+        logoPadding: "p-0"
+      },
+      {
         name: "National Kickboxing Championship 2025",
         tagline: "1,000+ Athletes | Pan-India Participation",
         description: "A large-scale national-level championship bringing together athletes from across India. The event requires structured communication governance, participation growth strategy, and high-volume digital deployment to ensure operational visibility and competitive credibility.",
@@ -249,11 +257,18 @@ const ClientModal: React.FC<{
     obs.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
     return () => obs.disconnect();
   }, []);
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, []);
   if (!client) return null;
   const activeLogo = (isDark && client.logoDark) ? client.logoDark : client.logo;
   const logoFilter = client.invertInDark && isDark ? 'invert(1)' : undefined;
 
-  return (
+  return ReactDOM.createPortal(
     <AnimatePresence>
       <motion.div
         initial={{ opacity: 0 }}
@@ -314,6 +329,8 @@ const ClientModal: React.FC<{
         </motion.div>
       </motion.div>
     </AnimatePresence>
+    ,
+    document.body
   );
 };
 

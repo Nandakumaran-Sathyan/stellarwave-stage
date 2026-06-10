@@ -11,6 +11,7 @@ const logos = [
   { src: "/assets/Logo_s/tn-state-kickbozing.png", alt: "TNSKA", whiteSrc: "/assets/Logo_s/tn-state-kickbozing-white.png" },
   { src: "/assets/Logo_s/TAA.png", alt: "TNAA" },
   { src: "/assets/Logo_s/tcl.png", alt: "TCL" },
+  { src: "/assets/Logo_s/Khelo india 2026-1.png", alt: "Khelo India Women's Kickboxing National League" },
   { src: "/assets/Logo_s/national-kick-boxing.png", alt: "National Kickboxing", whiteSrc: "/assets/Logo_s/national-kick-boxing-white.png" },
   { src: "/assets/Logo_s/spitfire.png", alt: "Spitfire Boxing" },
   { src: "/assets/Logo_s/track-asia.png", alt: "Track Asia Cup", whiteSrc: "/assets/Logo_s/track-asia-white.png" },
