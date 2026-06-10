@@ -26,7 +26,11 @@ export const blogType = defineType({
       type: 'slug',
       group: 'content',
       description: 'Auto-generated URL path. Click "Generate" after entering the title.',
-      options: {source: 'title', maxLength: 96},
+      options: {
+        source: 'title',
+        maxLength: 96,
+        slugify: (input) => input.toString().toLowerCase().trim().replace(/^\/+/, '').replace(/\s+/g, '-').slice(0, 96),
+      },
       validation: (Rule) => Rule.required(),
     }),
     defineField({

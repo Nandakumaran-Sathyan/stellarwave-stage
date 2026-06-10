@@ -16,7 +16,11 @@ export const postType = defineType({
       name: 'slug',
       title: 'URL Slug',
       type: 'slug',
-      options: { source: 'title', maxLength: 96 },
+      options: {
+        source: 'title',
+        maxLength: 96,
+        slugify: (input) => input.toString().toLowerCase().trim().replace(/^\/+/, '').replace(/\s+/g, '-').slice(0, 96),
+      },
       validation: (rule) => rule.required(),
     }),
 

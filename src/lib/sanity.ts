@@ -51,7 +51,7 @@ export const ALL_POSTS_QUERY = `*[_type in ["post", "blog"] && defined(slug.curr
   content
 }`;
 
-export const POST_BY_SLUG_QUERY = `*[(_type in ["post", "blog"]) && defined(slug.current) && slug.current == $slug][0] {
+export const POST_BY_SLUG_QUERY = `*[(_type in ["post", "blog"]) && defined(slug.current) && (slug.current == $slug || slug.current == "/" + $slug)][0] {
   _id,
   title,
   slug,
