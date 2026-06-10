@@ -15,6 +15,10 @@ export function urlFor(source: any) {
   return builder.image(source);
 }
 
+export function normalizeSlug(slug: string) {
+  return slug.replace(/^\/+/, '');
+}
+
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 export interface BlogPost {

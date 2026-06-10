@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, User, ArrowRight, Tag } from 'lucide-react';
-import { sanityClient, urlFor, ALL_POSTS_QUERY, type BlogPost } from '@/lib/sanity';
+import { sanityClient, urlFor, ALL_POSTS_QUERY, normalizeSlug, type BlogPost } from '@/lib/sanity';
 
 const cardVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -65,7 +65,7 @@ export default function BlogList() {
         transition={{ duration: 0.7 }}
         className="mb-16"
       >
-        <Link to={`/blog/${featured.slug.current}`} className="group block">
+        <Link to={`/blog/${normalizeSlug(featured.slug.current)}`} className="group block">
           <div className="relative rounded-2xl overflow-hidden aspect-[16/7] bg-white/5 border border-white/10">
             {featured.featuredImage ? (
               <img
@@ -122,7 +122,7 @@ export default function BlogList() {
                 variants={cardVariants}
               >
                 <Link
-                  to={`/blog/${post.slug.current}`}
+                  to={`/blog/${normalizeSlug(post.slug.current)}`}
                   className="group flex flex-col h-full rounded-2xl overflow-hidden border border-white/10 bg-white/[0.03] hover:border-[#8350e8]/50 hover:bg-white/[0.06] transition-all duration-300"
                 >
                   {/* Image */}

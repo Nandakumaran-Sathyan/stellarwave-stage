@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { sanityClient, urlFor, POST_BY_SLUG_QUERY, type BlogPost } from '@/lib/sanity';
+import { sanityClient, urlFor, POST_BY_SLUG_QUERY, normalizeSlug, type BlogPost } from '@/lib/sanity';
 import BlogPostDetail from '@/components/features/blog/BlogPost';
 import Footer from '@/components/layout/Footer';
 
 export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<BlogPost | null>(null);
+  const normalizedSlug = slug ? normalizeSlug(slug) : undefined;
 
   useEffect(() => {
-    if (!slug) return;
-    sanityClient.fetch<BlogPost>(POST_BY_SLUG_QUERY, { slug }).then(setPost);
-  }, [slug]);
+    if (!normalizedSlug) return;
+    sanityClient.fetch<BlogPost>(POST_BY_SLUG_QUERY, { slug: normalizedSlug }).then(setPost);
+  }, [normalizedSlug]);
 
   const metaTitle = post?.metaTitle ?? (post ? `${post.title} | Stellar Wave Blog` : 'Blog | Stellar Wave');
   const metaDesc = post?.metaDescription ?? 'Read the latest insights from Stellar Wave on digital marketing, branding, and growth.';
@@ -23,7 +24,7 @@ export default function BlogPostPage() {
       <Helmet>
         <title>{metaTitle}</title>
         <meta name="description" content={metaDesc} />
-        {slug && <link rel="canonical" href={`https://stellarwave.in/blog/${slug}`} />}
+        {normalizedSlug && <link rel="canonical" href={`https://stellarwave.in/blog/${normalizedSlug}`} />}
         {/* Open Graph */}
         <meta property="og:title" content={metaTitle} />
         <meta property="og:description" content={metaDesc} />

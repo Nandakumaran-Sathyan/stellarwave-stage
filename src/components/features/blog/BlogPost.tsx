@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { PortableText } from '@portabletext/react';
 import { Calendar, User, Tag, ArrowLeft, Share2 } from 'lucide-react';
-import { sanityClient, urlFor, POST_BY_SLUG_QUERY, type BlogPost } from '@/lib/sanity';
+import { sanityClient, urlFor, POST_BY_SLUG_QUERY, normalizeSlug, type BlogPost } from '@/lib/sanity';
 
 function formatDate(iso?: string) {
   if (!iso) return '';
@@ -65,13 +65,14 @@ export default function BlogPostDetail() {
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
+  const normalizedSlug = slug ? normalizeSlug(slug) : undefined;
 
   useEffect(() => {
-    if (!slug) return;
-    sanityClient.fetch<BlogPost>(POST_BY_SLUG_QUERY, { slug })
+    if (!normalizedSlug) return;
+    sanityClient.fetch<BlogPost>(POST_BY_SLUG_QUERY, { slug: normalizedSlug })
       .then(setPost)
       .finally(() => setLoading(false));
-  }, [slug]);
+  }, [normalizedSlug]);
 
   const handleShare = () => {
     if (navigator.share) {
