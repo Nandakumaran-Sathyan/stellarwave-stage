@@ -225,6 +225,23 @@
 </head>
 
 <body>
+  <!--
+    Static fallback nav — real <a href> links present in the raw, pre-JS HTML.
+    The app's real navbar (react-router <Link>) renders inside #root once JS
+    hydrates and this is hidden by the browser automatically; it exists purely
+    so crawlers that don't execute JavaScript still find server-side internal
+    outlinks to every page, per standard crawlability best practice.
+  -->
+  <noscript>
+    <nav aria-label="Site">
+      <a href="/">Home</a>
+      <a href="/services">Services</a>
+      <a href="/teams">About Us</a>
+      <a href="/client">Clients</a>
+      <a href="/blog">Blog</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+  </noscript>
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>

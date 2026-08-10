@@ -30,7 +30,10 @@ const navItems = [
   },
   {
     name: "Contact",
-    url: "/contact",
+    // Points straight at the fragment so the link resolves in one hop —
+    // no internal 302 through the legacy /contact redirect (SEO: avoid
+    // internal links to redirecting URLs).
+    url: "/#contact",
     icon: Phone,
   },
 ]

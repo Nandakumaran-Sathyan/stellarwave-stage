@@ -1,5 +1,6 @@
 import React from 'react';
 import type { ComponentProps, ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import { InstagramIcon, LinkedinIcon, MailIcon } from 'lucide-react';
 
@@ -20,6 +21,17 @@ const socialLinks = [
 	{ title: 'Email', href: 'mailto:info@stellarwave.in', icon: MailIcon },
 ];
 
+// Real <Link> anchors so every page — not just the navbar — carries crawlable
+// internal outlinks to the rest of the site.
+const siteLinks = [
+	{ title: 'Home', to: '/' },
+	{ title: 'Services', to: '/services' },
+	{ title: 'About Us', to: '/teams' },
+	{ title: 'Clients', to: '/client' },
+	{ title: 'Blog', to: '/blog' },
+	{ title: 'Contact', to: '/#contact' },
+];
+
 export function Footer() {
 	return (
 		<footer className="md:rounded-t-6xl relative w-full max-w-6xl mx-auto rounded-t-4xl border-t border-black/10 dark:border-white/10 bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.black/5%),transparent)] dark:bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/8%),transparent)] px-6 py-12 lg:py-16">
@@ -37,6 +49,25 @@ export function Footer() {
 					<p className="text-muted-foreground text-sm text-center xl:text-left">
 						© {new Date().getFullYear()} Stellar Wave.<br className="hidden xl:block" /> All rights reserved.
 					</p>
+				</AnimatedContainer>
+
+				{/* Explore — internal sitemap links */}
+				<AnimatedContainer delay={0.2} className="flex flex-col items-center xl:items-start gap-3">
+					<h3 className="text-xs font-semibold uppercase tracking-widest text-black/50 dark:text-white/50">
+						Explore
+					</h3>
+					<ul className="flex flex-col items-center xl:items-start gap-2">
+						{siteLinks.map((link) => (
+							<li key={link.title}>
+								<Link
+									to={link.to}
+									className="text-sm text-slate-500 dark:text-slate-400 hover:text-black dark:hover:text-white transition-colors duration-300"
+								>
+									{link.title}
+								</Link>
+							</li>
+						))}
+					</ul>
 				</AnimatedContainer>
 
 				{/* Centre — big gradient brand name */}

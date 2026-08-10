@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { LucideIcon, Menu, X } from "lucide-react"
-import { useNavigate, useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { cn } from "@/lib/utils"
 import ThemeToggle from "@/components/ui/ThemeToggle"
 import Logo from '@/components/ui/Logo'
@@ -13,6 +13,10 @@ interface NavItem {
   url: string
   icon: LucideIcon
 }
+
+// framer-motion-animated version of react-router's <Link> — keeps the mobile
+// menu's stagger/slide animation while still rendering a real <a href>.
+const MotionLink = motion.create(Link)
 
 interface NavBarProps {
   items: NavItem[]
@@ -26,7 +30,6 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
   const [hoveredTab, setHoveredTab] = useState<string | null>(null)
   const [activeTab, setActiveTab] = useState<string>(defaultActive)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const navigate = useNavigate()
   const location = useLocation()
 
   useEffect(() => {
@@ -65,24 +68,20 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
 
   if (!mounted) return null
 
+  // Navigation itself is handled by the <Link>'s real href — this just
+  // drives the tab highlight and, for the Contact item, the smooth-scroll
+  // to the #contact section once the home route has mounted.
   const handleNavClick = (item: NavItem) => {
     setMobileOpen(false)
-    if (item.name === 'Contact' || item.url === '/contact') {
-      navigate('/#contact')
+    if (item.name === 'Contact') {
+      setActiveTab('Home')
       setTimeout(() => {
         const el = document.getElementById('contact')
         if (el) el.scrollIntoView({ behavior: 'smooth' })
       }, 800)
-      setActiveTab('Home')
       return
     }
     setActiveTab(item.name)
-    if (item.url.startsWith('/')) {
-      navigate(item.url)
-    } else if (item.url.startsWith('#')) {
-      const element = document.querySelector(item.url)
-      if (element) element.scrollIntoView({ behavior: 'smooth' })
-    }
   }
 
   return (
@@ -106,8 +105,9 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
               const isActive = activeTab === item.name
               const isHovered = hoveredTab === item.name
               return (
-                <button
+                <Link
                   key={item.name}
+                  to={item.url}
                   onClick={() => handleNavClick(item)}
                   onMouseEnter={() => setHoveredTab(item.name)}
                   onMouseLeave={() => setHoveredTab(null)}
@@ -143,7 +143,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
                       />
                     )}
                   </AnimatePresence>
-                </button>
+                </Link>
               )
             })}
           </div>
@@ -234,8 +234,9 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
                     const Icon = item.icon
                     const isActive = activeTab === item.name
                     return (
-                      <motion.button
+                      <MotionLink
                         key={item.name}
+                        to={item.url}
                         onClick={() => handleNavClick(item)}
                         initial={{ opacity: 0, x: -16 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -260,7 +261,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home", logo }: 
                             className="ml-auto w-1.5 h-1.5 rounded-full bg-primary"
                           />
                         )}
-                      </motion.button>
+                      </MotionLink>
                     )
                   })}
                 </nav>
