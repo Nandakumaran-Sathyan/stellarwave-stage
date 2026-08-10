@@ -396,20 +396,20 @@ const ClientPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Our Client Constellation — Stellar Wave Digital Marketing</title>
-        <meta name="description" content="Stellar Wave partners with enterprises, sports institutions, consumer brands, and large-scale sporting properties across India. Explore our client portfolio and the growth systems we've built." />
+        <title>Our Clients — Stellar Wave Digital Marketing Agency</title>
+        <meta name="description" content="Stellar Wave partners with enterprises, sports institutions, and consumer brands across India. Explore our client portfolio and growth systems." />
         <link rel="canonical" href="https://stellarwave.in/client" />
         {/* Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://stellarwave.in/client" />
-        <meta property="og:title" content="Our Client Constellation — Stellar Wave Digital Marketing" />
-        <meta property="og:description" content="Stellar Wave partners with enterprises, sports institutions, consumer brands, and large-scale sporting properties across India. Explore our client portfolio and the growth systems we've built." />
+        <meta property="og:title" content="Our Clients — Stellar Wave Digital Marketing Agency" />
+        <meta property="og:description" content="Stellar Wave partners with enterprises, sports institutions, and consumer brands across India. Explore our client portfolio and growth systems." />
         <meta property="og:image" content="https://stellarwave.in/icon.png" />
         <meta property="og:site_name" content="Stellar Wave" />
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Our Client Constellation — Stellar Wave Digital Marketing" />
-        <meta name="twitter:description" content="Stellar Wave partners with enterprises, sports institutions, consumer brands, and large-scale sporting properties across India." />
+        <meta name="twitter:title" content="Our Clients — Stellar Wave Digital Marketing Agency" />
+        <meta name="twitter:description" content="Stellar Wave partners with enterprises, sports institutions, and consumer brands across India. Explore our client portfolio and growth systems." />
         <meta name="twitter:image" content="https://stellarwave.in/icon.png" />
       </Helmet>
       <main className="relative w-full min-h-screen overflow-hidden bg-white dark:bg-[#050505] transition-colors duration-300">

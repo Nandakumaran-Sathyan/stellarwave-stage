@@ -12,19 +12,19 @@ export default function TeamsPage() {
         <>
             <Helmet>
                 <title>Meet the Team — Stellar Wave Digital Marketing Agency</title>
-                <meta name="description" content="Meet the people behind Stellar Wave — a Chennai-based digital marketing agency. Founded by Aravind Sunil and Pavithra Saravanan, our team combines strategy, creativity, and technology." />
+                <meta name="description" content="Meet the team behind Stellar Wave, a Chennai digital marketing agency founded by Aravind Sunil and Pavithra Saravanan." />
                 <link rel="canonical" href="https://stellarwave.in/teams" />
                 {/* Open Graph */}
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content="https://stellarwave.in/teams" />
                 <meta property="og:title" content="Meet the Team — Stellar Wave Digital Marketing Agency" />
-                <meta property="og:description" content="Meet the people behind Stellar Wave — a Chennai-based digital marketing agency. Founded by Aravind Sunil and Pavithra Saravanan, our team combines strategy, creativity, and technology." />
+                <meta property="og:description" content="Meet the team behind Stellar Wave, a Chennai digital marketing agency founded by Aravind Sunil and Pavithra Saravanan." />
                 <meta property="og:image" content="https://stellarwave.in/icon.png" />
                 <meta property="og:site_name" content="Stellar Wave" />
                 {/* Twitter */}
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:title" content="Meet the Team — Stellar Wave Digital Marketing Agency" />
-                <meta name="twitter:description" content="Meet the people behind Stellar Wave — a Chennai-based digital marketing agency. Founded by Aravind Sunil and Pavithra Saravanan, our team combines strategy, creativity, and technology." />
+                <meta name="twitter:description" content="Meet the team behind Stellar Wave, a Chennai digital marketing agency founded by Aravind Sunil and Pavithra Saravanan." />
                 <meta name="twitter:image" content="https://stellarwave.in/icon.png" />
             </Helmet>
             <main className="relative w-full bg-white dark:bg-black min-h-screen overflow-hidden transition-colors duration-300">

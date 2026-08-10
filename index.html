@@ -18,7 +18,7 @@
 
   <!-- Primary SEO -->
   <meta name="description"
-    content="Stellar Wave is a top digital marketing agency in Chennai specialising in brand strategy, creative content, performance marketing, and sports ecosystem marketing. Structured systems. Measurable growth." />
+    content="Stellar Wave is a digital marketing agency in Chennai for brand strategy, creative content, performance marketing, and sports ecosystem marketing." />
   <meta name="keywords"
     content="digital marketing agency Chennai, digital marketing Chennai, brand strategy Chennai, marketing agency India, sports marketing agency, Stellar Wave, stellarwave, performance marketing Chennai" />
   <meta name="robots" content="index, follow" />
@@ -226,11 +226,21 @@
 
 <body>
   <!--
-    Static fallback nav — real <a href> links present in the raw, pre-JS HTML.
-    The app's real navbar (react-router <Link>) renders inside #root once JS
-    hydrates and this is hidden by the browser automatically; it exists purely
-    so crawlers that don't execute JavaScript still find server-side internal
-    outlinks to every page, per standard crawlability best practice.
+    Static fallback content — real <a href> links, an <h1>, <h2>s, and
+    genuine page copy present in the raw, pre-JS HTML. The real app (with its
+    animated navbar and hero sections) renders inside #root once JS hydrates,
+    and browsers with scripting enabled never parse or render <noscript>
+    content at all — so there is no duplicate-heading risk for real users or
+    for JS-executing crawlers like Googlebot. This exists purely so crawlers
+    and tools that don't execute JavaScript still see real internal links,
+    a real heading structure, and substantive page content instead of an
+    empty shell, per standard progressive-enhancement / crawlability
+    practice. Content here should stay a faithful summary of what JS users
+    see on the page — never off-topic or keyword-stuffed text.
+
+    Per-route pages get their own version of the SEO_FALLBACK marker block
+    below injected by scripts/prerender-meta.mjs at build time; this copy is
+    what ships for "/" specifically since home is dist/index.html itself.
   -->
   <noscript>
     <nav aria-label="Site">
@@ -241,6 +251,17 @@
       <a href="/blog">Blog</a>
       <a href="/#contact">Contact</a>
     </nav>
+    <!-- SEO_FALLBACK_START -->
+    <main>
+      <h1>Digital Marketing Agency in Chennai — Stellar Wave</h1>
+      <h2>Strategy, Creative, and Growth — as one system</h2>
+      <p>Stellar Wave is a digital marketing agency based in Chennai, Tamil Nadu, building structured marketing systems for brands, institutions, and large-scale sporting properties across India. Our work is organised around three core disciplines — Strategy, Creative, and Growth — working together as one integrated system rather than as separate services.</p>
+      <p>On the strategy side, we help brands define clear market positioning, messaging, and go-to-market direction before a single asset is produced. Our creative team then brings that strategy to life through brand identity systems, campaign concepts, content, and short-form video. On the growth side, we run performance marketing across Meta, Google, and other digital platforms, alongside SEO, website development, and marketing automation, with measurement built in from day one.</p>
+      <h2>Sports ecosystem marketing across India</h2>
+      <p>Stellar Wave also specialises in sports ecosystem marketing — building brand systems for leagues, championships, federations, and athlete positioning, including international properties like the Track Asia Cup. Whether we are working with an enterprise engineering brand, a consumer retail label, or a national sporting federation, the approach stays the same: clarity of strategy, quality of creative, and discipline in measuring what actually moves the business forward.</p>
+      <p>We are based in Mylapore, Chennai, and work with clients across India. Get in touch to talk about what a structured marketing system could look like for your brand.</p>
+    </main>
+    <!-- SEO_FALLBACK_END -->
   </noscript>
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
