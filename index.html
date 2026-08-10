@@ -211,6 +211,46 @@
     .box-glow:hover {
       box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
     }
+
+    /* Styling for the pre-hydration fallback content below — kept minimal
+       since React replaces this entirely the instant JS mounts (createRoot,
+       not hydrateRoot, so there's no reconciliation and nothing to mismatch). */
+    #root-fallback {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 32px 24px 64px;
+      font-family: Inter, system-ui, sans-serif;
+      line-height: 1.6;
+    }
+
+    #root-fallback nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    #root-fallback nav a {
+      color: #c4a4ff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    #root-fallback h1 {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    #root-fallback h2 {
+      font-size: 18px;
+      color: #c4a4ff;
+      margin: 28px 0 8px;
+    }
+
+    #root-fallback p {
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 12px;
+    }
   </style>
   <script type="importmap">
 {
@@ -227,43 +267,47 @@
 <body>
   <!--
     Static fallback content — real <a href> links, an <h1>, <h2>s, and
-    genuine page copy present in the raw, pre-JS HTML. The real app (with its
-    animated navbar and hero sections) renders inside #root once JS hydrates,
-    and browsers with scripting enabled never parse or render <noscript>
-    content at all — so there is no duplicate-heading risk for real users or
-    for JS-executing crawlers like Googlebot. This exists purely so crawlers
-    and tools that don't execute JavaScript still see real internal links,
-    a real heading structure, and substantive page content instead of an
-    empty shell, per standard progressive-enhancement / crawlability
-    practice. Content here should stay a faithful summary of what JS users
-    see on the page — never off-topic or keyword-stuffed text.
+    genuine page copy, placed directly inside #root as its initial children.
+    main.tsx mounts with ReactDOM.createRoot() (not hydrateRoot), which wipes
+    and replaces #root's contents outright rather than reconciling with them
+    — so this is swapped out cleanly the instant JS executes, with zero
+    hydration-mismatch risk. Real users see it, at most, for the brief window
+    before the bundle runs (typically covered by the PageLoader overlay on
+    first visit anyway); crawlers and tools that don't execute JavaScript see
+    it permanently. Earlier this lived inside <noscript>, but that meant the
+    text wasn't picked up by word-count/content-area analysis (only tag
+    presence was) since noscript content isn't part of the visible content
+    area — moving it here makes it genuinely visible raw HTML instead.
+    Content here should stay a faithful summary of what JS users see on the
+    page — never off-topic or keyword-stuffed text.
 
     Per-route pages get their own version of the SEO_FALLBACK marker block
     below injected by scripts/prerender-meta.mjs at build time; this copy is
     what ships for "/" specifically since home is dist/index.html itself.
   -->
-  <noscript>
-    <nav aria-label="Site">
-      <a href="/">Home</a>
-      <a href="/services">Services</a>
-      <a href="/teams">About Us</a>
-      <a href="/client">Clients</a>
-      <a href="/blog">Blog</a>
-      <a href="/#contact">Contact</a>
-    </nav>
-    <!-- SEO_FALLBACK_START -->
-    <main>
-      <h1>Digital Marketing Agency in Chennai — Stellar Wave</h1>
-      <h2>Strategy, Creative, and Growth — as one system</h2>
-      <p>Stellar Wave is a digital marketing agency based in Chennai, Tamil Nadu, building structured marketing systems for brands, institutions, and large-scale sporting properties across India. Our work is organised around three core disciplines — Strategy, Creative, and Growth — working together as one integrated system rather than as separate services.</p>
-      <p>On the strategy side, we help brands define clear market positioning, messaging, and go-to-market direction before a single asset is produced. Our creative team then brings that strategy to life through brand identity systems, campaign concepts, content, and short-form video. On the growth side, we run performance marketing across Meta, Google, and other digital platforms, alongside SEO, website development, and marketing automation, with measurement built in from day one.</p>
-      <h2>Sports ecosystem marketing across India</h2>
-      <p>Stellar Wave also specialises in sports ecosystem marketing — building brand systems for leagues, championships, federations, and athlete positioning, including international properties like the Track Asia Cup. Whether we are working with an enterprise engineering brand, a consumer retail label, or a national sporting federation, the approach stays the same: clarity of strategy, quality of creative, and discipline in measuring what actually moves the business forward.</p>
-      <p>We are based in Mylapore, Chennai, and work with clients across India. Get in touch to talk about what a structured marketing system could look like for your brand.</p>
-    </main>
-    <!-- SEO_FALLBACK_END -->
-  </noscript>
-  <div id="root"></div>
+  <div id="root">
+    <div id="root-fallback">
+      <nav aria-label="Site">
+        <a href="/">Home</a>
+        <a href="/services">Services</a>
+        <a href="/teams">About Us</a>
+        <a href="/client">Clients</a>
+        <a href="/blog">Blog</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <!-- SEO_FALLBACK_START -->
+      <main>
+        <h1>Digital Marketing Agency in Chennai — Stellar Wave</h1>
+        <h2>Strategy, Creative, and Growth — as one system</h2>
+        <p>Stellar Wave is a digital marketing agency based in Chennai, Tamil Nadu, building structured marketing systems for brands, institutions, and large-scale sporting properties across India. Our work is organised around three core disciplines — Strategy, Creative, and Growth — working together as one integrated system rather than as separate services.</p>
+        <p>On the strategy side, we help brands define clear market positioning, messaging, and go-to-market direction before a single asset is produced. Our creative team then brings that strategy to life through brand identity systems, campaign concepts, content, and short-form video. On the growth side, we run performance marketing across Meta, Google, and other digital platforms, alongside SEO, website development, and marketing automation, with measurement built in from day one.</p>
+        <h2>Sports ecosystem marketing across India</h2>
+        <p>Stellar Wave also specialises in sports ecosystem marketing — building brand systems for leagues, championships, federations, and athlete positioning, including international properties like the Track Asia Cup. Whether we are working with an enterprise engineering brand, a consumer retail label, or a national sporting federation, the approach stays the same: clarity of strategy, quality of creative, and discipline in measuring what actually moves the business forward.</p>
+        <p>We are based in Mylapore, Chennai, and work with clients across India. Get in touch to talk about what a structured marketing system could look like for your brand.</p>
+      </main>
+      <!-- SEO_FALLBACK_END -->
+    </div>
+  </div>
   <script type="module" src="/src/main.tsx"></script>
 </body>
 

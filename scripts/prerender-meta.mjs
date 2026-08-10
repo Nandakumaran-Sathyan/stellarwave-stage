@@ -8,23 +8,25 @@
  *   1. Copies dist/index.html → dist/<route>/index.html
  *   2. Injects the correct <title>, <meta description>, <canonical>,
  *      <og:*>, and <twitter:*> tags into <head>.
- *   3. Replaces the <!-- SEO_FALLBACK_START/END --> block in <body> with a
- *      real <h1>, <h2>s, and genuine page copy for that route — the same
+ *   3. Replaces the <!-- SEO_FALLBACK_START/END --> block inside #root with
+ *      a real <h1>, <h2>s, and genuine page copy for that route — the same
  *      technique already used for the static nav links, so non-JS crawlers
  *      (and tools like Screaming Frog in raw-HTML mode) see a real heading
- *      structure and >200 words of substantive content instead of an empty
- *      shell, not just correct <head> tags.
+ *      structure and >200 words of substantive, *visible* content instead
+ *      of an empty shell, not just correct <head> tags.
  *   4. Regenerates dist/sitemap.xml to include every blog post URL — the
  *      static public/sitemap.xml only lists the fixed top-level routes and
  *      can't know about content that lives in Sanity.
  *
  * Why this approach (not puppeteer/jsdom):
  *   The site uses WebGL (Three.js, OGL, Spline) which can't run in headless
- *   environments. Wrapping the fallback content in <noscript> means it's
- *   only ever parsed by clients that don't execute JavaScript — browsers
- *   and JS-executing crawlers (Googlebot included) never render <noscript>
- *   content into the live DOM, so there's no duplicate-heading risk against
- *   the real React-rendered page.
+ *   environments. The fallback content lives directly inside #root (not
+ *   <noscript> — content-area/word-count analysis tools generally don't
+ *   count noscript text even though they do see its tags/links). main.tsx
+ *   mounts with ReactDOM.createRoot(), not hydrateRoot(), which replaces
+ *   #root's contents outright rather than reconciling with them — so this
+ *   is swapped out cleanly the instant JS executes, with zero
+ *   hydration-mismatch risk against the real React-rendered page.
  *
  * Resilience:
  *   Blog posts come from a network call to Sanity at build time. If that
