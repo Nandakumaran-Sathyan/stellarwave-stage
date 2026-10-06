@@ -8,19 +8,24 @@ export default function ServicesPage() {
     const location = useLocation();
 
     useEffect(() => {
-        // Check if there's a hash in the URL (e.g., #service-web-development)
+        // Check if there's a hash in the URL (e.g., #service-growth)
         if (location.hash) {
-            // Small delay to ensure the page has rendered
-            setTimeout(() => {
+            // Wait for the route transition and the scroll animations to
+            // measure the page, then jump — a smooth scroll started any
+            // earlier is cancelled when they re-measure.
+            const timer = setTimeout(() => {
                 const element = document.querySelector(location.hash);
                 if (element) {
-                    element.scrollIntoView({ behavior: "smooth", block: "start" });
+                    window.scrollTo({
+                        top: element.getBoundingClientRect().top + window.scrollY,
+                        behavior: "instant",
+                    });
                 }
-            }, 100);
-        } else {
-            // If no hash, scroll to top
-            window.scrollTo(0, 0);
+            }, 600);
+            return () => clearTimeout(timer);
         }
+        // If no hash, scroll to top
+        window.scrollTo(0, 0);
     }, [location.hash]);
 
     return (

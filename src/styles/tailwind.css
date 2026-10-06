@@ -3,15 +3,41 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Services storyboard: pinned cinematic scenes. Keep in sync with STORY_QUERY
-   in src/animations/servicesAnimations.ts */
-@custom-variant story {
-  @media (min-width: 1024px) and (min-height: 700px) and (prefers-reduced-motion: no-preference) {
+/* Services lifecycle: pinned scene. Keep in sync with CONDITIONS.pinned in
+   src/animations/servicesAnimations.ts */
+@custom-variant pinned {
+  @media (min-width: 1024px) and (min-height: 640px) and (prefers-reduced-motion: no-preference) {
     @slot;
   }
 }
 
+/* Services page: editorial palette. Dark is the foundation; the light theme
+   inverts the surface and keeps the same purple accent. */
+.sw-services {
+  --sw-bg: #f4f3f0;
+  --sw-fg: #0b0b0c;
+  --sw-muted: rgb(11 11 12 / 0.58);
+  --sw-line: rgb(11 11 12 / 0.14);
+  --sw-accent: #7445dc;
+  --sw-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+.dark .sw-services {
+  --sw-bg: #060606;
+  --sw-fg: #f4f3f0;
+  --sw-muted: rgb(244 243 240 / 0.56);
+  --sw-line: rgb(244 243 240 / 0.14);
+  --sw-accent: #a98bff;
+}
+
 @theme inline {
+  --color-sw-bg: var(--sw-bg);
+  --color-sw-fg: var(--sw-fg);
+  --color-sw-muted: var(--sw-muted);
+  --color-sw-line: var(--sw-line);
+  --color-sw-accent: var(--sw-accent);
+  --font-sw-display: var(--sw-display);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

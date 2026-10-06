@@ -5,34 +5,32 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.config({ ignoreMobileResize: true });
 
-/* ── Breakpoints ──
-   `story` = full pinned storyboard. Must match the `story` custom variant in
-   src/styles/tailwind.css, which switches the scenes to position: sticky.
-   (Sticky is used instead of ScrollTrigger's pin because PageTransition wraps
-   the page in a transformed element, which breaks fixed-position pinning.) */
-const STORY_QUERY =
-    "(min-width: 1024px) and (min-height: 700px) and (prefers-reduced-motion: no-preference)";
-
+/* ── Conditions ──
+   `pinned` must match the `pinned` custom variant in src/styles/tailwind.css,
+   which switches the lifecycle scene to position: sticky. (Sticky is used
+   instead of ScrollTrigger's pin because PageTransition wraps the page in a
+   transformed element, which breaks fixed-position pinning.) */
 const CONDITIONS = {
-    story: STORY_QUERY,
     motion: "(prefers-reduced-motion: no-preference)",
+    pinned: "(min-width: 1024px) and (min-height: 640px) and (prefers-reduced-motion: no-preference)",
     tablet: "(min-width: 768px)",
     pointer: "(hover: hover) and (pointer: fine)",
 };
 
-export interface JourneyConditions {
-    story: boolean;
+export interface MotionConditions {
     motion: boolean;
+    pinned: boolean;
     tablet: boolean;
     pointer: boolean;
 }
 
 type Selector = (query: string) => HTMLElement[];
-type JourneySetup = (root: HTMLElement, conditions: JourneyConditions) => void | (() => void);
+export type AnimationSetup = (root: HTMLElement, conditions: MotionConditions) => void | (() => void);
 
 /* Runs `setup` inside a gsap.matchMedia() context scoped to the returned ref.
-   Everything created in `setup` is reverted on breakpoint change and unmount. */
-export function useJourneyAnimation<T extends HTMLElement>(setup: JourneySetup) {
+   Everything created in `setup` is reverted on breakpoint change and unmount.
+   With reduced motion every setup returns early, leaving the static layout. */
+export function useServicesAnimation<T extends HTMLElement>(setup: AnimationSetup) {
     const ref = useRef<T>(null);
 
     useLayoutEffect(() => {
@@ -42,7 +40,7 @@ export function useJourneyAnimation<T extends HTMLElement>(setup: JourneySetup) 
         const mm = gsap.matchMedia();
         mm.add(
             CONDITIONS,
-            (context) => setup(root, context.conditions as unknown as JourneyConditions),
+            (context) => setup(root, context.conditions as unknown as MotionConditions),
             root
         );
         return () => mm.revert();
@@ -51,58 +49,29 @@ export function useJourneyAnimation<T extends HTMLElement>(setup: JourneySetup) 
     return ref;
 }
 
-/* ── Reveal vocabulary ──
-   Markup declares *what* an element does (data-reveal) and *when*
-   (data-enter = while the scene scrolls in, data-step="n" = nth beat while it
-   is pinned). The scene timelines below turn that into tweens, so the stage
-   components stay free of animation code. */
-const REVEALS: Record<string, gsap.TweenVars> = {
-    up: { autoAlpha: 0, y: 28 },
-    down: { autoAlpha: 0, y: -40 },
-    left: { autoAlpha: 0, x: -60 },
-    right: { autoAlpha: 0, x: 60 },
-    scale: { autoAlpha: 0, scale: 0.9 },
-    pop: { autoAlpha: 0, scale: 0.4 },
-    draw: { strokeDashoffset: 1 },
-    "line-x": { scaleX: 0 },
-    "line-y": { scaleY: 0 },
-};
-
-const RESTING: Record<string, number> = { autoAlpha: 1, x: 0, y: 0, scale: 1, scaleX: 1, scaleY: 1, strokeDashoffset: 0 };
-
-const revealOf = (el: HTMLElement) => {
-    const from = REVEALS[el.dataset.reveal ?? "up"] ?? REVEALS.up;
-    const to: gsap.TweenVars = {};
-    Object.keys(from).forEach((key) => (to[key] = RESTING[key]));
-    return { from, to, isLine: "strokeDashoffset" in from || "scaleX" in from || "scaleY" in from };
-};
-
 /* ── Helpers ── */
 
-/* Draws rail segments top-to-bottom so the tip of the line holds at 60% of the viewport. */
-function drawThread(fills: HTMLElement[], trigger: Element) {
-    if (!fills.length) return;
-    const tl = gsap.timeline({
-        defaults: { ease: "none" },
-        scrollTrigger: { trigger, start: "top 60%", end: "bottom 60%", scrub: true },
-    });
-    fills.forEach((fill) => {
-        tl.fromTo(fill, { scaleY: 0 }, { scaleY: 1, duration: fill.offsetHeight || 1 });
-    });
+/* The first-visit PageLoader overlay covers the page for ~1.5s. */
+function introDelay() {
+    try {
+        return sessionStorage.getItem("stellar-loader-shown") === "true" ? 0.35 : 1.5;
+    } catch {
+        return 0.35;
+    }
 }
 
 /* Image drifts a few px opposite the cursor. Returns its listener cleanup. */
-function mouseParallax(frame: HTMLElement) {
-    const img = frame.querySelector<HTMLElement>("[data-parallax-img]");
-    if (!img) return () => {};
+function hoverMove(frame: HTMLElement) {
+    const target = frame.querySelector<HTMLElement>("[data-mover]");
+    if (!target) return () => {};
 
-    const xTo = gsap.quickTo(img, "xPercent", { duration: 0.8, ease: "power3.out" });
-    const yTo = gsap.quickTo(img, "yPercent", { duration: 0.8, ease: "power3.out" });
+    const xTo = gsap.quickTo(target, "x", { duration: 0.9, ease: "power3.out" });
+    const yTo = gsap.quickTo(target, "y", { duration: 0.9, ease: "power3.out" });
 
     const onMove = (event: MouseEvent) => {
         const rect = frame.getBoundingClientRect();
-        xTo(((event.clientX - rect.left) / rect.width - 0.5) * -5);
-        yTo(((event.clientY - rect.top) / rect.height - 0.5) * -5);
+        xTo(((event.clientX - rect.left) / rect.width - 0.5) * -18);
+        yTo(((event.clientY - rect.top) / rect.height - 0.5) * -18);
     };
     const onLeave = () => {
         xTo(0);
@@ -117,159 +86,311 @@ function mouseParallax(frame: HTMLElement) {
     };
 }
 
-/* The first-visit PageLoader overlay covers the page for ~1.5s. */
-function introDelay() {
-    try {
-        return sessionStorage.getItem("stellar-loader-shown") === "true" ? 0.3 : 1.5;
-    } catch {
-        return 0.3;
+/* A rail that fills as its list scrolls past 60% of the viewport, with the
+   step under that line reported as active. Shared by the growth journey, the
+   process timeline and the mobile lifecycle. */
+function stepRail(list: HTMLElement, onActive: (index: number) => void) {
+    const fill = list.querySelector("[data-step-fill]");
+    if (fill) {
+        gsap.fromTo(
+            fill,
+            { scaleY: 0 },
+            {
+                scaleY: 1,
+                ease: "none",
+                scrollTrigger: { trigger: list, start: "top 60%", end: "bottom 60%", scrub: 0.4 },
+            }
+        );
     }
+    list.querySelectorAll("[data-step]").forEach((step, index) => {
+        ScrollTrigger.create({
+            trigger: step,
+            start: "top 60%",
+            end: "bottom 60%",
+            onToggle: (self) => self.isActive && onActive(index),
+        });
+    });
 }
 
-/* ── Hero: slow load sequence, then a faint drift on scroll ── */
-export const animateHero: JourneySetup = (root, { motion }) => {
+/* ── Page-wide editorial vocabulary ──
+   Markup declares *what* an element does through data attributes; this turns
+   them into tweens, so the section components stay free of animation code.
+
+   data-lines        headline — each [data-line] rises out of its mask
+   data-reveal       fade + slide up, staggered with its neighbours
+   data-scrub-text   each [data-word] brightens as the block is read
+   data-pillars      rules draw, then [data-pillar-word]s rise one by one
+   data-clip         image frame wipes open, [data-clip-inner] settles
+   data-parallax     image drifts inside its [data-frame]
+   data-zoom         slow scale while the frame crosses the viewport
+   data-hover-move   [data-mover] leans away from the cursor */
+export const animateEditorial: AnimationSetup = (root, { motion, tablet, pointer }) => {
     if (!motion) return;
     const q: Selector = gsap.utils.selector(root);
 
-    gsap.timeline({ defaults: { ease: "power3.out" }, delay: introDelay() })
-        .from(q("[data-hero='bg']"), { autoAlpha: 0, duration: 2.4, ease: "power1.inOut" })
-        .from(q("[data-hero='eyebrow']"), { autoAlpha: 0, y: 12, duration: 0.9 }, 0.5)
-        .from(q("[data-hero='line-text']"), { yPercent: 108, duration: 1.4, stagger: 0.16, ease: "power4.out" }, 0.8)
-        .from(q("[data-hero='subtitle']"), { autoAlpha: 0, y: 20, duration: 1 }, "-=0.7")
-        .from(q("[data-hero='line']"), { scaleX: 0, duration: 1.8, ease: "power2.inOut" }, "-=0.5")
-        .from(q("[data-hero='node']"), { autoAlpha: 0, scale: 0, duration: 0.6, stagger: 0.2, ease: "back.out(2)" }, "-=1.5")
-        .from(q("[data-hero='label']"), { autoAlpha: 0, y: 8, duration: 0.6, stagger: 0.2 }, "<0.1")
-        .from(q("[data-rail-fill]"), { scaleY: 0, duration: 0.8, ease: "power2.in" }, "-=0.3");
-
-    gsap.to(q("[data-hero='drift']"), {
-        yPercent: 18,
-        ease: "none",
-        scrollTrigger: { trigger: root, start: "top top", end: "bottom top", scrub: true },
-    });
-    gsap.to(q("[data-hero='copy']"), {
-        y: -60,
-        ease: "none",
-        scrollTrigger: { trigger: root, start: "top top", end: "bottom top", scrub: true },
-    });
-};
-
-/* ── Stage scenes ── */
-
-/* Desktop: the scene is sticky for the length of its wrapper. One scrubbed
-   timeline brings it in, another plays its beats while pinned. The two never
-   animate the same property of the same element, so they cannot fight. */
-function storyStage(q: Selector, scene: HTMLElement) {
-    const [railIn, railPinned] = q("[data-rail-fill]");
-
-    const enter = gsap.timeline({
-        defaults: { ease: "power2.out" },
-        scrollTrigger: { trigger: scene, start: "top bottom", end: "top top", scrub: true },
-    });
-    enter
-        .fromTo(q("[data-s='word']"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6 }, 0.4)
-        .fromTo(railIn, { scaleY: 0 }, { scaleY: 1, duration: 0.6, ease: "none" }, 0.4);
-    q("[data-enter]").forEach((el, i) => {
-        const { from, to } = revealOf(el);
-        enter.fromTo(el, from, { ...to, duration: 0.45 }, Math.min(0.35 + i * 0.04, 0.55));
-    });
-
-    /* Positions below are fractions of the pinned scroll distance (timeline length = 1). */
-    const tl = gsap.timeline({
-        defaults: { ease: "power2.out" },
-        scrollTrigger: { trigger: scene, start: "top top", end: "bottom bottom", scrub: 1 },
-    });
-
-    tl.fromTo(railPinned, { scaleY: 0 }, { scaleY: 1, duration: 1, ease: "none" }, 0)
-        .fromTo(q("[data-s='word-inner']"), { xPercent: 0 }, { xPercent: -12, duration: 1, ease: "none" }, 0)
-        .fromTo(q("[data-parallax-img]"), { scale: 1, x: 0, y: 0 }, { scale: 1.08, x: 10, y: -20, duration: 1, ease: "none" }, 0)
-        /* Systems breathe by a few pixels — never spin. */
-        .fromTo(q("[data-drift='orbit']"), { y: 6, rotation: -1.2 }, { y: -6, rotation: 1.2, duration: 1, ease: "none" }, 0)
-        .fromTo(q("[data-drift='scale']"), { scale: 1 }, { scale: 1.03, duration: 1, ease: "none" }, 0)
-        .fromTo(q("[data-s='tick']"), { scaleX: 0 }, { scaleX: 1, duration: 0.06 }, 0.01);
-
-    /* Beats: each data-step value gets its own slice of the scroll, in order. */
-    const steps = q("[data-step]");
-    const order = [...new Set(steps.map((el) => Number(el.dataset.step)))].sort((a, b) => a - b);
-    const START = 0.07;
-    const slot = (0.88 - START) / order.length;
-    steps.forEach((el) => {
-        const { from, to, isLine } = revealOf(el);
-        const at = START + order.indexOf(Number(el.dataset.step)) * slot;
-        tl.fromTo(el, from, { ...to, duration: slot * (isLine ? 0.95 : 0.7), ease: isLine ? "none" : "power2.out" }, at);
-    });
-
-    /* Hand-off: the visual starts leaving before the next stage arrives. */
-    tl.fromTo(q("[data-s='visual']"), { y: 0, autoAlpha: 1 }, { y: -40, autoAlpha: 0.4, duration: 0.08, ease: "power1.in" }, 0.92);
-}
-
-/* Mobile / tablet / short viewports: no pinning. Each data-group plays a
-   short one-shot reveal of its own elements when it scrolls into view. */
-function flowStage(q: Selector, scene: HTMLElement, tablet: boolean) {
-    drawThread(q("[data-rail-fill]"), scene);
-
-    const groups = new Map<Element, HTMLElement[]>();
-    q("[data-enter], [data-step]").forEach((el) => {
-        const group = el.closest("[data-group]") ?? scene;
-        groups.set(group, [...(groups.get(group) ?? []), el]);
-    });
-
-    groups.forEach((elements, group) => {
-        const tl = gsap.timeline({
-            defaults: { duration: 0.7, ease: "power2.out" },
-            scrollTrigger: { trigger: group, start: "top 85%", once: true },
+    q("[data-lines]").forEach((block) => {
+        gsap.from(block.querySelectorAll("[data-line]"), {
+            yPercent: 112,
+            duration: 1.3,
+            ease: "power4.out",
+            stagger: 0.11,
+            scrollTrigger: { trigger: block, start: "top 86%", once: true },
         });
-        elements.forEach((el, i) => tl.from(el, revealOf(el).from, Math.min(i * 0.07, 1.2)));
     });
 
+    const reveals = q("[data-reveal]");
+    gsap.set(reveals, { autoAlpha: 0, y: 28 });
+    ScrollTrigger.batch(reveals, {
+        start: "top 90%",
+        once: true,
+        onEnter: (batch) =>
+            gsap.to(batch, { autoAlpha: 1, y: 0, duration: 1.1, ease: "power3.out", stagger: 0.09, overwrite: true }),
+    });
+
+    q("[data-scrub-text]").forEach((block) => {
+        gsap.fromTo(
+            block.querySelectorAll("[data-word]"),
+            { opacity: 0.16 },
+            {
+                opacity: 1,
+                ease: "none",
+                stagger: 0.1,
+                scrollTrigger: { trigger: block, start: "top 82%", end: "bottom 50%", scrub: true },
+            }
+        );
+    });
+
+    q("[data-pillars]").forEach((group) => {
+        const inGroup = (query: string) => group.querySelectorAll(query);
+        gsap.timeline({ scrollTrigger: { trigger: group, start: "top 78%", once: true } })
+            .from(inGroup("[data-pillar-rule]"), { scaleX: 0, duration: 1.2, ease: "power3.inOut", stagger: 0.24 }, 0)
+            .from(inGroup("[data-pillar-word]"), { yPercent: 108, duration: 1.2, ease: "power4.out", stagger: 0.24 }, 0.15)
+            .from(inGroup("[data-pillar-meta]"), { autoAlpha: 0, duration: 0.8, stagger: 0.24 }, 0.5)
+            .from(inGroup("[data-outcome]"), { autoAlpha: 0, y: 16, duration: 1, ease: "power3.out" }, ">-0.35");
+    });
+
+    q("[data-clip]").forEach((frame) => {
+        gsap.timeline({ scrollTrigger: { trigger: frame, start: "top 88%", once: true } })
+            .fromTo(
+                frame,
+                { clipPath: "inset(100% 0% 0% 0%)" },
+                { clipPath: "inset(0% 0% 0% 0%)", duration: 1.5, ease: "power3.inOut", clearProps: "clipPath" },
+                0
+            )
+            .fromTo(
+                frame.querySelector("[data-clip-inner]"),
+                { scale: 1.22 },
+                { scale: 1, duration: 1.9, ease: "power3.out" },
+                0
+            );
+    });
+
+    /* Scroll-linked image movement is desktop/tablet only — on phones it costs
+       more frames than it is worth. */
     if (tablet) {
-        q("[data-parallax-frame]").forEach((frame) => {
+        q("[data-parallax]").forEach((image) => {
+            const amount = Number(image.dataset.parallax) || 7;
             gsap.fromTo(
-                frame.querySelector("[data-parallax-img]"),
+                image,
+                { yPercent: -amount },
+                {
+                    yPercent: amount,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: image.closest("[data-frame]"),
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: true,
+                    },
+                }
+            );
+        });
+
+        q("[data-zoom]").forEach((layer) => {
+            gsap.fromTo(
+                layer,
                 { scale: 1 },
                 {
-                    scale: 1.08,
+                    scale: 1.12,
                     ease: "none",
-                    scrollTrigger: { trigger: frame, start: "top bottom", end: "bottom top", scrub: true },
+                    scrollTrigger: {
+                        trigger: layer.closest("[data-frame]"),
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: true,
+                    },
                 }
             );
         });
     }
-}
-
-export const animateStage: JourneySetup = (root, { motion, story, tablet, pointer }) => {
-    if (!motion) return;
-    const q: Selector = gsap.utils.selector(root);
-    const scene = q("[data-s='scene']")[0];
-
-    if (story) storyStage(q, scene);
-    else flowStage(q, scene, tablet);
 
     if (!pointer) return;
-    const cleanups = q("[data-parallax-frame]").map(mouseParallax);
+    const cleanups = q("[data-hover-move]").map(hoverMove);
     return () => cleanups.forEach((cleanup) => cleanup());
 };
 
-/* ── Finale: the thread converges into a point, then the question ── */
-export const animateFinale: JourneySetup = (root, { motion, pointer }) => {
+/* ── Hero: slow load sequence, floating details, a faint drift on scroll ── */
+export const animateHero: AnimationSetup = (root, { motion }) => {
     if (!motion) return;
     const q: Selector = gsap.utils.selector(root);
 
-    gsap.timeline({
-        defaults: { ease: "power2.inOut" },
-        scrollTrigger: { trigger: root, start: "top 60%", once: true },
-    })
-        .from(q("[data-c='down']"), { scaleY: 0, duration: 0.5, ease: "none" })
-        .from(q("[data-c='across']"), { scaleX: 0, duration: 0.9 })
-        .from(q("[data-c='centre']"), { scaleY: 0, duration: 0.45 })
-        .from(q("[data-c='point']"), { scale: 0, autoAlpha: 0, duration: 0.5, ease: "back.out(3)" })
-        .from(q("[data-c='glow']"), { scale: 0, autoAlpha: 0, duration: 1.4, ease: "power2.out" }, "<")
-        .from(q("[data-c='line']"), { autoAlpha: 0, y: 30, duration: 0.9, ease: "power3.out" }, "-=0.9")
-        .from(q("[data-c='stage']"), { autoAlpha: 0, y: 12, duration: 0.6, stagger: 0.12, ease: "power2.out" }, "-=0.4")
-        .from(q("[data-c='ask']"), { autoAlpha: 0, y: 24, duration: 0.9, stagger: 0.15, ease: "power3.out" }, "-=0.2");
+    gsap.timeline({ defaults: { ease: "power3.out" }, delay: introDelay() })
+        .from(q("[data-hero='eyebrow']"), { autoAlpha: 0, y: 12, duration: 0.9 })
+        .from(q("[data-hero='line']"), { yPercent: 112, duration: 1.5, stagger: 0.14, ease: "power4.out" }, 0.15)
+        .from(q("[data-hero='copy']"), { autoAlpha: 0, y: 24, duration: 1.1, stagger: 0.12 }, 0.75)
+        .fromTo(
+            q("[data-hero='frame']"),
+            { clipPath: "inset(100% 0% 0% 0%)" },
+            { clipPath: "inset(0% 0% 0% 0%)", duration: 1.7, ease: "power3.inOut", clearProps: "clipPath" },
+            0.55
+        )
+        .fromTo(q("[data-clip-inner]"), { scale: 1.25 }, { scale: 1, duration: 2.2 }, 0.55)
+        .from(q("[data-hero='float']"), { autoAlpha: 0, scale: 0.92, duration: 1.2, stagger: 0.18 }, 1.5);
 
-    /* Magnetic CTA — a few pixels toward the cursor, nothing more. */
-    const magnet = q("[data-c='magnet']")[0];
-    if (!pointer || !magnet) return;
+    /* Floating details breathe on different periods so they never sync up. */
+    q("[data-hero='float']").forEach((element, index) => {
+        gsap.to(element, {
+            y: index % 2 ? 14 : -16,
+            duration: 3.4 + index * 0.9,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+        });
+    });
+
+    gsap.to(q("[data-hero='heading']"), {
+        y: -50,
+        ease: "none",
+        scrollTrigger: { trigger: root, start: "top top", end: "bottom top", scrub: true },
+    });
+};
+
+/* ── 001: the five-stage line draws across (down, on phones) as it is read ── */
+export const animateProgression: AnimationSetup = (root, { motion, tablet }) => {
+    if (!motion) return;
+    const q: Selector = gsap.utils.selector(root);
+    const track = q("[data-progression]")[0];
+    const nodes = q("[data-progression-node]");
+    if (!track) return;
+
+    const tl = gsap.timeline({
+        defaults: { ease: "none" },
+        scrollTrigger: { trigger: track, start: "top 82%", end: "bottom 55%", scrub: 0.5 },
+    });
+    tl.fromTo(
+        q("[data-progression-fill]"),
+        tablet ? { scaleX: 0, scaleY: 1 } : { scaleX: 1, scaleY: 0 },
+        { scaleX: 1, scaleY: 1, duration: 1 },
+        0
+    );
+    nodes.forEach((node, index) => {
+        const at = (index / Math.max(nodes.length - 1, 1)) * 0.92;
+        tl.fromTo(node, { opacity: 0.28 }, { opacity: 1, duration: 0.08 }, at).fromTo(
+            node.querySelector("[data-progression-dot]"),
+            { scale: 0 },
+            { scale: 1, duration: 0.08, ease: "power2.out" },
+            at
+        );
+    });
+};
+
+/* ── Growth journey / process timeline ── */
+export const createStepRail =
+    (onActive: (index: number | null) => void): AnimationSetup =>
+    (root, { motion }) => {
+        if (!motion) return;
+        const list = root.querySelector<HTMLElement>("[data-step-list]");
+        if (!list) return;
+
+        onActive(0);
+        stepRail(list, onActive);
+        return () => onActive(null);
+    };
+
+/* ── 005: the most kinetic section — type and panels travel sideways ── */
+export const animateSporting: AnimationSetup = (root, { motion }) => {
+    if (!motion) return;
+    const q: Selector = gsap.utils.selector(root);
+
+    gsap.fromTo(
+        q("[data-sport='marquee']"),
+        { xPercent: 4 },
+        {
+            xPercent: -32,
+            ease: "none",
+            scrollTrigger: { trigger: q("[data-sport='stage']")[0], start: "top bottom", end: "bottom top", scrub: 0.6 },
+        }
+    );
+
+    const viewport = q("[data-sport='viewport']")[0];
+    const track = q("[data-sport='track']")[0];
+    if (!viewport || !track) return;
+
+    gsap.fromTo(
+        track,
+        { x: 0 },
+        {
+            x: () => -(track.scrollWidth - viewport.clientWidth),
+            ease: "none",
+            scrollTrigger: {
+                trigger: viewport,
+                start: "top 85%",
+                end: "bottom 20%",
+                scrub: 0.6,
+                invalidateOnRefresh: true,
+            },
+        }
+    );
+};
+
+/* ── 008: the lifecycle ──
+   Desktop: the scene is sticky for the length of its wrapper; scroll progress
+   picks the active stage and draws the line to its node.
+   Elsewhere: a vertical sequence driven by the shared step rail. */
+export const createLifecycle =
+    (onActive: (index: number | null) => void, stageCount: number): AnimationSetup =>
+    (root, { motion, pinned }) => {
+        if (!motion) return;
+        const q: Selector = gsap.utils.selector(root);
+
+        onActive(0);
+
+        if (pinned) {
+            /* Nodes sit at the centre of equal rows, so the line reaches node i
+               when progress = i / stageCount, then runs out to the end. */
+            const first = 100 - 100 / (stageCount * 2);
+            const last = 100 / (stageCount * 2);
+            const hold = 1 / stageCount;
+
+            gsap.timeline({
+                defaults: { ease: "none" },
+                scrollTrigger: {
+                    trigger: q("[data-life='scene']")[0],
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: 0.5,
+                    onUpdate: (self) => onActive(Math.min(stageCount - 1, Math.floor(self.progress * stageCount))),
+                },
+            })
+                .fromTo(
+                    q("[data-life='line']"),
+                    { clipPath: `inset(0% 0% ${first}% 0%)` },
+                    { clipPath: `inset(0% 0% ${last}% 0%)`, duration: 1 - hold }
+                )
+                .to(q("[data-life='line']"), { clipPath: "inset(0% 0% 0% 0%)", duration: hold });
+        } else {
+            const list = q("[data-step-list]")[0];
+            if (list) stepRail(list, onActive);
+        }
+
+        return () => onActive(null);
+    };
+
+/* ── Final CTA: a magnetic button — a few pixels toward the cursor, nothing more ── */
+export const animateCta: AnimationSetup = (root, { motion, pointer }) => {
+    if (!motion || !pointer) return;
+    const magnet = root.querySelector<HTMLElement>("[data-magnet]");
+    if (!magnet) return;
 
     const xTo = gsap.quickTo(magnet, "x", { duration: 0.5, ease: "power3.out" });
     const yTo = gsap.quickTo(magnet, "y", { duration: 0.5, ease: "power3.out" });
@@ -290,33 +411,6 @@ export const animateFinale: JourneySetup = (root, { motion, pointer }) => {
     };
 };
 
-/* ── Progress indicator ──
-   Navigation state rather than decoration, so it runs regardless of motion preference. */
-export function createProgressTriggers(
-    storyboard: HTMLElement,
-    sections: HTMLElement[],
-    onActive: (index: number) => void,
-    onVisible: (visible: boolean) => void
-) {
-    const ctx = gsap.context(() => {
-        ScrollTrigger.create({
-            trigger: storyboard,
-            start: "top 60%",
-            end: "bottom 40%",
-            onToggle: (self) => onVisible(self.isActive),
-        });
-        sections.forEach((section, index) => {
-            ScrollTrigger.create({
-                trigger: section,
-                start: "top center",
-                end: "bottom center",
-                onToggle: (self) => self.isActive && onActive(index),
-            });
-        });
-    });
-    return () => ctx.revert();
-}
-
 /* Re-measures trigger positions when the document height changes (route
    transition finishing, fonts, images). Nothing here changes layout itself,
    so this cannot loop. */
@@ -333,7 +427,8 @@ export function refreshOnLayoutChange() {
     };
 }
 
-export function scrollToElement(element: HTMLElement | null | undefined) {
+export function scrollToId(id: string) {
+    const element = document.getElementById(id);
     if (!element) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     window.scrollTo({

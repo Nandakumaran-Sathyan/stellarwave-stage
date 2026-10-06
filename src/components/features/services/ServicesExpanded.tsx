@@ -1,83 +1,40 @@
-import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
-import {
-    createProgressTriggers,
-    refreshOnLayoutChange,
-    scrollToElement,
-} from "@/animations/servicesAnimations";
-import { servicesData } from "./servicesData";
-import { lifecycleStages } from "./lifecycleData";
-import type { StageSectionProps } from "./StageScene";
-import ServiceLifecycleHero from "./ServiceLifecycleHero";
-import FoundationSection from "./FoundationSection";
-import PresenceSection from "./PresenceSection";
-import DemandSection from "./DemandSection";
-import ScaleSection from "./ScaleSection";
-import AuthoritySection from "./AuthoritySection";
-import LifecycleProgress from "./LifecycleProgress";
-import LifecycleFinale from "./LifecycleFinale";
-import ServiceDetailDrawer from "./ServiceDetailDrawer";
+import React, { useEffect } from "react";
+import { animateEditorial, refreshOnLayoutChange, useServicesAnimation } from "@/animations/servicesAnimations";
+import ServicesHero from "./ServicesHero";
+import LifecycleIntro from "./LifecycleIntro";
+import StrategySection from "./StrategySection";
+import CreativeSection from "./CreativeSection";
+import GrowthSection from "./GrowthSection";
+import SportingSection from "./SportingSection";
+import ProcessSection from "./ProcessSection";
+import SelectedWork from "./SelectedWork";
+import MarketingLifecycle from "./MarketingLifecycle";
+import ServicesFAQ from "./ServicesFAQ";
+import ServicesCTA from "./ServicesCTA";
 
-/* One section per lifecycle stage, in order (see lifecycleData.ts). */
-const STAGE_SECTIONS: React.ComponentType<StageSectionProps>[] = [
-    FoundationSection,
-    PresenceSection,
-    DemandSection,
-    ScaleSection,
-    AuthoritySection,
-];
-
-const serviceById = (id: string | null) => servicesData.find((service) => service.id === id) ?? null;
-
+/* The Services page: how Stellar Wave builds a complete marketing system.
+   Copy and imagery live in servicesContent.ts; all motion is GSAP
+   (servicesAnimations.ts) — the shared reveals are wired up here, once, for
+   the whole page, and sections with their own choreography add to it. */
 export default function ServicesExpanded() {
-    const storyboardRef = useRef<HTMLDivElement>(null);
-    const sectionRefs = useRef<(HTMLElement | null)[]>([]);
-    const [active, setActive] = useState(0);
-    const [progressVisible, setProgressVisible] = useState(false);
-    const [openServiceId, setOpenServiceId] = useState<string | null>(null);
+    const ref = useServicesAnimation<HTMLDivElement>(animateEditorial);
 
-    useLayoutEffect(() => {
-        const storyboard = storyboardRef.current;
-        if (!storyboard) return;
-
-        const sections = sectionRefs.current.filter((el): el is HTMLElement => el !== null);
-        const stopProgress = createProgressTriggers(storyboard, sections, setActive, setProgressVisible);
-        const stopRefresh = refreshOnLayoutChange();
-        return () => {
-            stopProgress();
-            stopRefresh();
-        };
-    }, []);
-
-    const selectStage = useCallback((index: number) => scrollToElement(sectionRefs.current[index]), []);
-    const closeDrawer = useCallback(() => setOpenServiceId(null), []);
+    useEffect(() => refreshOnLayoutChange(), []);
 
     return (
-        /* No overflow-hidden here — the stage scenes rely on position: sticky */
-        <section className="relative w-full bg-white text-black transition-colors duration-300 dark:bg-[#080808] dark:text-white">
-            <ServiceLifecycleHero onSelectStage={selectStage} />
-
-            {/* The lifecycle — one scene per stage */}
-            <div ref={storyboardRef}>
-                {STAGE_SECTIONS.map((StageSection, i) => {
-                    const stage = lifecycleStages[i];
-                    return (
-                        <StageSection
-                            key={stage.id}
-                            stage={stage}
-                            serviceName={serviceById(stage.serviceId)?.name ?? stage.name}
-                            onExplore={setOpenServiceId}
-                            sectionRef={(element) => {
-                                sectionRefs.current[i] = element;
-                            }}
-                        />
-                    );
-                })}
-            </div>
-
-            <LifecycleFinale onSelectStage={selectStage} />
-
-            <LifecycleProgress active={active} visible={progressVisible} onSelect={selectStage} />
-            <ServiceDetailDrawer service={serviceById(openServiceId)} onClose={closeDrawer} />
-        </section>
+        /* No overflow-hidden here — the lifecycle scene relies on position: sticky */
+        <div ref={ref} className="sw-services relative w-full bg-sw-bg text-sw-fg transition-colors duration-300">
+            <ServicesHero />
+            <LifecycleIntro />
+            <StrategySection />
+            <CreativeSection />
+            <GrowthSection />
+            <SportingSection />
+            <ProcessSection />
+            <SelectedWork />
+            <MarketingLifecycle />
+            <ServicesFAQ />
+            <ServicesCTA />
+        </div>
     );
 }
