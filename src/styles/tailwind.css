@@ -19,8 +19,8 @@
   --sw-muted: rgb(11 11 12 / 0.58);
   --sw-line: rgb(11 11 12 / 0.14);
   --sw-accent: #7445dc;
-  --sw-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
-  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* Same typeface as the rest of the site (Tailwind font-sans) */
+  --sw-display: var(--font-sans);
 }
 
 .dark .sw-services {
